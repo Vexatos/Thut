@@ -5,8 +5,8 @@ import net.minecraft.block.material.Material;
 
 public class BlockMachine extends Block {
 
-	public BlockMachine() {
-		super(Material.iron);
-	}
+  public BlockMachine() {
+    super(Material.iron);
+  }
 
 }

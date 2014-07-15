@@ -13,41 +13,37 @@ import thut.world.common.blocks.fluids.liquids.BlockLava;
 
 public class LiquidHandler {
 
-	@SubscribeEvent
-	public void onBucketFill(FillBucketEvent event) {
+  @SubscribeEvent
+  public void onBucketFill(FillBucketEvent event) {
 
-		ItemStack result = fillCustomBucket(event.world, event.target);
+    ItemStack result = fillCustomBucket(event.world, event.target);
 
-		if (result == null)
-			return;
+    if(result == null) {
+      return;
+    }
 
-		event.result = result;
-		event.setResult(Result.ALLOW);
-	}
+    event.result = result;
+    event.setResult(Result.ALLOW);
+  }
 
-	public ItemStack fillCustomBucket(World world, MovingObjectPosition pos) 
-	{
+  public ItemStack fillCustomBucket(World world, MovingObjectPosition pos) {
 
-		Block blockID = world.getBlock(pos.blockX, pos.blockY, pos.blockZ);
-		
-		boolean isLava = false;
-		for(int i = 0;i<3;i++)
-		{
-			isLava = isLava||blockID == BlockLava.getInstance(i);
-		}
-		
-		if ((isLava)
-				&& world.getBlockMetadata(pos.blockX, pos.blockY, pos.blockZ) == 0) 
-		{
+    Block blockID = world.getBlock(pos.blockX, pos.blockY, pos.blockZ);
 
-			world.setBlock(pos.blockX, pos.blockY, pos.blockZ, Blocks.air);
+    boolean isLava = false;
+    for(int i = 0; i < 3; i++) {
+      isLava = isLava || blockID == BlockLava.getInstance(i);
+    }
 
-			return new ItemStack(Items.lava_bucket);
-		} 
-		
-		
-		else
-			return null;
-	}
+    if((isLava)
+        && world.getBlockMetadata(pos.blockX, pos.blockY, pos.blockZ) == 0) {
+
+      world.setBlock(pos.blockX, pos.blockY, pos.blockZ, Blocks.air);
+
+      return new ItemStack(Items.lava_bucket);
+    } else {
+      return null;
+    }
+  }
 
 }

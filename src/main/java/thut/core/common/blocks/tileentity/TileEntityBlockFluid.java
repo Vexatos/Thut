@@ -8,50 +8,49 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityBlockFluid extends TileEntity {
 
-	public int[] metaArray = { 8, 8, 8, 8, 8, 8 };
+  public int[] metaArray = { 8, 8, 8, 8, 8, 8 };
 
-	public boolean canUpdate() {
-		return false;
-	}
+  public boolean canUpdate() {
+    return false;
+  }
 
-	public void writeToNBT(NBTTagCompound par1) {
-		super.writeToNBT(par1);
-		par1.setIntArray("metaArray", metaArray);
-	}
+  public void writeToNBT(NBTTagCompound par1) {
+    super.writeToNBT(par1);
+    par1.setIntArray("metaArray", metaArray);
+  }
 
-	public void readFromNBT(NBTTagCompound par1) {
-		super.readFromNBT(par1);
-		metaArray = par1.getIntArray("metaArray");
-	}
-	
-    /**
-     * Overriden in a sign to provide the text.
-     */
-	@Override
-    public Packet getDescriptionPacket()
-    {
-        NBTTagCompound nbttagcompound = new NBTTagCompound();
-        this.writeToNBT(nbttagcompound);
-        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 3, nbttagcompound);
-    }
-    @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
-    {
-    	NBTTagCompound nbttagcompound = pkt.func_148857_g();
-    	this.readFromNBT(nbttagcompound);
-    }
+  public void readFromNBT(NBTTagCompound par1) {
+    super.readFromNBT(par1);
+    metaArray = par1.getIntArray("metaArray");
+  }
 
-	public void sendUpdate() {
-		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-	}
+  /**
+   * Overriden in a sign to provide the text.
+   */
+  @Override
+  public Packet getDescriptionPacket() {
+    NBTTagCompound nbttagcompound = new NBTTagCompound();
+    this.writeToNBT(nbttagcompound);
+    return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 3, nbttagcompound);
+  }
 
-	public void setIcon(int side, int meta)// , Icon icon
-	{
-		metaArray[side] = meta;
-	}
+  @Override
+  public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+    NBTTagCompound nbttagcompound = pkt.func_148857_g();
+    this.readFromNBT(nbttagcompound);
+  }
 
-	public int[] getMetaArray() {
-		return metaArray;
-	}
+  public void sendUpdate() {
+    worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+  }
+
+  public void setIcon(int side, int meta)// , Icon icon
+  {
+    metaArray[side] = meta;
+  }
+
+  public int[] getMetaArray() {
+    return metaArray;
+  }
 
 }

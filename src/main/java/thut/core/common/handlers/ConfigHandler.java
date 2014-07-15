@@ -13,33 +13,33 @@ import java.util.List;
 
 public class ConfigHandler {
 
-	public static boolean collisionDamage;
-	public static boolean paneFix;
-	
-	public ConfigHandler(File configFile){
-		// Loads The Configuration File into Forges Configuration
-		Configuration conf = new Configuration(configFile);
-		try{
-			conf.load();
-			
-			paneFix = conf.get("Misc", "fix panes", true, "Do glass panes of mods using outdated methods connect to concrete?").getBoolean(true);
+  public static boolean collisionDamage;
+  public static boolean paneFix;
 
-			byte rad = (byte) conf.get("Misc", "explosionRadius", 63, "The radius of the volume affected by explosions, max value of 127, higher settings make the game take longer to load at startup").getInt();
-			ExplosionCustom.MAX_RADIUS = (byte) Math.min(rad,127);
-		}catch(RuntimeException e){
-			
-		}finally{
-			conf.save();
-		}
-		
+  public ConfigHandler(File configFile) {
+    // Loads The Configuration File into Forges Configuration
+    Configuration conf = new Configuration(configFile);
+    try {
+      conf.load();
 
-		items.add(new ItemSpout());
-		items.add(new ItemTank());
-		
-		for(Item item: items){
-			GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
-		}
-	}
-	
-	private static List<Item> items = new ArrayList<Item>();
+      paneFix = conf.get("Misc", "fix panes", true, "Do glass panes of mods using outdated methods connect to concrete?").getBoolean(true);
+
+      byte rad = (byte) conf.get("Misc", "explosionRadius", 63, "The radius of the volume affected by explosions, max value of 127, higher settings make the game take longer to load at startup")
+          .getInt();
+      ExplosionCustom.MAX_RADIUS = (byte) Math.min(rad, 127);
+    } catch(RuntimeException e) {
+
+    } finally {
+      conf.save();
+    }
+
+    items.add(new ItemSpout());
+    items.add(new ItemTank());
+
+    for(Item item : items) {
+      GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
+    }
+  }
+
+  private static List<Item> items = new ArrayList<Item>();
 }

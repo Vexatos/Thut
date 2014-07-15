@@ -25,153 +25,145 @@ import thut.core.common.blocks.tileentity.TileEntityBlockFluid;
 import java.util.Random;
 
 import static thut.api.ThutBlocks.concrete;
+
 public class BlockConcrete extends BlockFluid implements ITileEntityProvider//, IAntiPoisonBlock
 {
-	
-	public static int resistance = 10;
-	public static float hardness = 30;
-	Integer[][] data;
-	
-	public BlockConcrete() {
-		super(new Fluid("solidconcrete"),Material.rock);
-		setBlockName("concrete");
-		this.rate = 10;
-		concrete = this;
-		setCreativeTab(ConcreteCore.tabThut);
-		setSolid();
-		this.stampable = true;
-		this.setTickRandomly(false);
-		this.setStepSound(soundTypeStone);
-	}
-	public void setData()
-	{
-		if(fluidBlocks.get(this)==null){
-			fluidBlocks.put(this, new FluidInfo());
-			FluidInfo info = fluidBlocks.get(this);
-			info.viscosity = 15;
-			info.randomFactor = 15;
-			info.fallOfEdge = false;
-			info.combinationBlocks.put(this, this);
-			}
-	}
-	
-	
-	@Override
-	public boolean isNormalCube(IBlockAccess world, int x, int y, int z) {
-		return world.getBlockMetadata(x, y, z) == 15;
-	}
-    /**
-     * Returns the ID of the items to drop on destruction.
-     */
-    public Item getItemDropped(int par1, Random par2Random, int par3)
-    {
-        return ThutItems.dust.getItem();
-    }
-    
-    
-    @Override
-    public int quantityDropped(int meta, int fortune, Random random)
-    {
-        return meta + 1;
-    }
-	
-	
-	@Override
-	public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int x, int y, int z)
-    {
-    	this.setBoundsByMeta(par1IBlockAccess.getBlockMetadata(x, y, z));
-    	this.setResistanceByMeta(par1IBlockAccess.getBlockMetadata(x, y, z));
-    }
 
-    
-	@Override
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
-    {
-        int l = par1World.getBlockMetadata(par2, par3, par4);
-        float f = 0.0625F;
-        return AxisAlignedBB.getBoundingBox((double) par2 + this.minX, (double) par3 + this.minY, (double) par4 + this.minZ,
-            (double) par2 + this.maxX, (double) ((float) par3 + (float) l * f), (double) par4 + this.maxZ);
-    }
-	
-	@Override
-    public float getExplosionResistance(Entity par1Entity, World world, int x, int y, int z, double explosionX, double explosionY, double explosionZ)
-    {
-        return getBlastResistanceByMeta(world.getBlockMetadata(x, y, z));
-    }
-	
-	@Override
-	public void updateTick(World worldObj, int x, int y, int z, Random par5Random){}
-	
-	
-	public void onBlockClicked(World worldObj, int x, int y, int z, EntityPlayer player){
-		this.setResistanceByMeta(worldObj.getBlockMetadata(x, y, z));
-	}
-	
-	public void setResistanceByMeta(int meta){
-		int j = meta;
-        float f = (float)((1 + j)) / 16.0F;
-        this.setResistance(f*resistance);
-        this.setHardness(f*hardness);
-	}
-	public float getBlastResistanceByMeta(int meta){
-		int j = meta;
-        float f = (float)((1 + j)) / 16.0F;
-        return (f*resistance);
-	}
-	public float getHardnessByMeta(int meta){
-		int j = meta;
-        float f = (float)((1 + j)) / 16.0F;
-        return (f*hardness);
-	}
-	
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister par1IconRegister)
-	{
-		this.blockIcon = par1IconRegister.registerIcon("concrete:dryConcrete_"+8);
-		this.theIcon = par1IconRegister.registerIcon("concrete:" + "rebarRusty");
-		this.iconArray = new IIcon[16];
-    	for (int i = 0; i < this.iconArray.length; ++i)
-        {
-            this.iconArray[i] = par1IconRegister.registerIcon("concrete:" + "dryConcrete_"+i);
-        }
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public IIcon theIcon;
-	
-    
-	public boolean[] sides(IBlockAccess worldObj, int x, int y, int z) {
-		boolean[] side = new boolean[6];
-    	int[][]sides = {{1,0,0},{-1,0,0},{0,0,1},{0,0,-1},{0,1,0},{0,-1,0}};
-		for(int i = 0; i<6; i++){
-			Block block = worldObj.getBlock(x+sides[i][0], y+sides[i][1], z+sides[i][2]);
-			side[i] = (block instanceof IRebar);
-		}
-		return side;
-	}
+  public static int resistance = 10;
+  public static float hardness = 30;
+  Integer[][] data;
 
-	@Override
-	public IIcon getIcon(IBlockAccess worldObj, int x, int y, int z, int side)
-	{
-		TileEntityBlockFluid te = (TileEntityBlockFluid) worldObj.getTileEntity(x, y, z);
-		return iconArray[te.metaArray[side]];
-	}
-	@Override
-    public boolean recolourBlock(World world, int x, int y, int z, ForgeDirection side, int colour)
-    {
-    	TileEntityBlockFluid te = (TileEntityBlockFluid) world.getTileEntity(x, y, z);
-    	int old = te.metaArray[side.ordinal()];
-    	if(old == colour)
-    		return false;
-    	te.metaArray[side.ordinal()] = colour;
-    	te.sendUpdate();
-    	return true;
-    }
+  public BlockConcrete() {
+    super(new Fluid("solidconcrete"), Material.rock);
+    setBlockName("concrete");
+    this.rate = 10;
+    concrete = this;
+    setCreativeTab(ConcreteCore.tabThut);
+    setSolid();
+    this.stampable = true;
+    this.setTickRandomly(false);
+    this.setStepSound(soundTypeStone);
+  }
 
-	@Override
-	public TileEntity createNewTileEntity(World var1, int var2) {
-	    return new TileEntityBlockFluid();
-	}
+  public void setData() {
+    if(fluidBlocks.get(this) == null) {
+      fluidBlocks.put(this, new FluidInfo());
+      FluidInfo info = fluidBlocks.get(this);
+      info.viscosity = 15;
+      info.randomFactor = 15;
+      info.fallOfEdge = false;
+      info.combinationBlocks.put(this, this);
+    }
+  }
+
+  @Override
+  public boolean isNormalCube(IBlockAccess world, int x, int y, int z) {
+    return world.getBlockMetadata(x, y, z) == 15;
+  }
+
+  /**
+   * Returns the ID of the items to drop on destruction.
+   */
+  public Item getItemDropped(int par1, Random par2Random, int par3) {
+    return ThutItems.dust.getItem();
+  }
+
+  @Override
+  public int quantityDropped(int meta, int fortune, Random random) {
+    return meta + 1;
+  }
+
+  @Override
+  public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int x, int y, int z) {
+    this.setBoundsByMeta(par1IBlockAccess.getBlockMetadata(x, y, z));
+    this.setResistanceByMeta(par1IBlockAccess.getBlockMetadata(x, y, z));
+  }
+
+  @Override
+  public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
+    int l = par1World.getBlockMetadata(par2, par3, par4);
+    float f = 0.0625F;
+    return AxisAlignedBB.getBoundingBox((double) par2 + this.minX, (double) par3 + this.minY, (double) par4 + this.minZ,
+        (double) par2 + this.maxX, (double) ((float) par3 + (float) l * f), (double) par4 + this.maxZ);
+  }
+
+  @Override
+  public float getExplosionResistance(Entity par1Entity, World world, int x, int y, int z, double explosionX, double explosionY, double explosionZ) {
+    return getBlastResistanceByMeta(world.getBlockMetadata(x, y, z));
+  }
+
+  @Override
+  public void updateTick(World worldObj, int x, int y, int z, Random par5Random) {
+  }
+
+  public void onBlockClicked(World worldObj, int x, int y, int z, EntityPlayer player) {
+    this.setResistanceByMeta(worldObj.getBlockMetadata(x, y, z));
+  }
+
+  public void setResistanceByMeta(int meta) {
+    int j = meta;
+    float f = (float) ((1 + j)) / 16.0F;
+    this.setResistance(f * resistance);
+    this.setHardness(f * hardness);
+  }
+
+  public float getBlastResistanceByMeta(int meta) {
+    int j = meta;
+    float f = (float) ((1 + j)) / 16.0F;
+    return (f * resistance);
+  }
+
+  public float getHardnessByMeta(int meta) {
+    int j = meta;
+    float f = (float) ((1 + j)) / 16.0F;
+    return (f * hardness);
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  @SideOnly(Side.CLIENT)
+  public void registerBlockIcons(IIconRegister par1IconRegister) {
+    this.blockIcon = par1IconRegister.registerIcon("concrete:dryConcrete_" + 8);
+    this.theIcon = par1IconRegister.registerIcon("concrete:" + "rebarRusty");
+    this.iconArray = new IIcon[16];
+    for(int i = 0; i < this.iconArray.length; ++i) {
+      this.iconArray[i] = par1IconRegister.registerIcon("concrete:" + "dryConcrete_" + i);
+    }
+  }
+
+  @SideOnly(Side.CLIENT)
+  public IIcon theIcon;
+
+  public boolean[] sides(IBlockAccess worldObj, int x, int y, int z) {
+    boolean[] side = new boolean[6];
+    int[][] sides = { { 1, 0, 0 }, { -1, 0, 0 }, { 0, 0, 1 }, { 0, 0, -1 }, { 0, 1, 0 }, { 0, -1, 0 } };
+    for(int i = 0; i < 6; i++) {
+      Block block = worldObj.getBlock(x + sides[i][0], y + sides[i][1], z + sides[i][2]);
+      side[i] = (block instanceof IRebar);
+    }
+    return side;
+  }
+
+  @Override
+  public IIcon getIcon(IBlockAccess worldObj, int x, int y, int z, int side) {
+    TileEntityBlockFluid te = (TileEntityBlockFluid) worldObj.getTileEntity(x, y, z);
+    return iconArray[te.metaArray[side]];
+  }
+
+  @Override
+  public boolean recolourBlock(World world, int x, int y, int z, ForgeDirection side, int colour) {
+    TileEntityBlockFluid te = (TileEntityBlockFluid) world.getTileEntity(x, y, z);
+    int old = te.metaArray[side.ordinal()];
+    if(old == colour) {
+      return false;
+    }
+    te.metaArray[side.ordinal()] = colour;
+    te.sendUpdate();
+    return true;
+  }
+
+  @Override
+  public TileEntity createNewTileEntity(World var1, int var2) {
+    return new TileEntityBlockFluid();
+  }
 }

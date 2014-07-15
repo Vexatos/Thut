@@ -16,94 +16,76 @@ import thut.concrete.common.CommonProxy;
 import thut.concrete.common.blocks.tileentity.crafting.TileEntityKiln;
 import thut.concrete.common.blocks.tileentity.crafting.TileEntityMixer;
 
-public class ClientProxy extends CommonProxy{
-	
-	public static int renderPass;
-	public static Minecraft mc;
-	public static int fluidRenderID;
-	public static int rebarRenderID;
-	
-	@Override
-	public void initClient()
-	{
-		mc = FMLClientHandler.instance().getClient();
-		RenderingRegistry.registerBlockHandler(RenderRebar.ID,RenderRebar.renderer);
-		RenderingRegistry.registerBlockHandler(RenderFluid.ID,new RenderFluid());
-	}
-	
-	
-    @Override
-    public EntityPlayer getPlayer(String playerName)
-    {
-        if (isOnClientSide())
-        {
-            if (playerName != null)
-            {
-                return getWorld().getPlayerEntityByName(playerName);
-            }
-            else
-            {
-                return Minecraft.getMinecraft().thePlayer;
-            }
-        }
-        else
-        {
-            return super.getPlayer(playerName);
-        }
+public class ClientProxy extends CommonProxy {
+
+  public static int renderPass;
+  public static Minecraft mc;
+  public static int fluidRenderID;
+  public static int rebarRenderID;
+
+  @Override
+  public void initClient() {
+    mc = FMLClientHandler.instance().getClient();
+    RenderingRegistry.registerBlockHandler(RenderRebar.ID, RenderRebar.renderer);
+    RenderingRegistry.registerBlockHandler(RenderFluid.ID, new RenderFluid());
+  }
+
+  @Override
+  public EntityPlayer getPlayer(String playerName) {
+    if(isOnClientSide()) {
+      if(playerName != null) {
+        return getWorld().getPlayerEntityByName(playerName);
+      } else {
+        return Minecraft.getMinecraft().thePlayer;
+      }
+    } else {
+      return super.getPlayer(playerName);
     }
-    
-    @Override
-    public boolean isOnClientSide()
-    {
-        return FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT;
+  }
+
+  @Override
+  public boolean isOnClientSide() {
+    return FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT;
+  }
+
+  @Override
+  public World getWorld() {
+    if(isOnClientSide()) {
+      return Minecraft.getMinecraft().theWorld;
+    } else {
+      return super.getWorld();
     }
-    
-    @Override
-    public World getWorld()
-    {
-        if (isOnClientSide())
-        {
-            return Minecraft.getMinecraft().theWorld;
-        }
-        else
-        {
-            return super.getWorld();
-        }
+  }
+
+  @Override
+  public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
+    TileEntity te = world.getTileEntity(x, y, z);
+    if(te == null) {
+      return null;
     }
-	
-	@Override
-	public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
-	{
-		TileEntity te = world.getTileEntity(x, y, z);
-		if(te==null)
-			return null;
-		if(te instanceof TileEntityKiln)
-		{
-			TileEntityKiln tileEntity = (TileEntityKiln)te;
-			return new GuiLimekiln(player.inventory, tileEntity);
-		}
-		if(te instanceof TileEntityMixer)
-		{
-			TileEntityMixer tileEntity = (TileEntityMixer)te;
-			return new GuiMixer(player.inventory, tileEntity);
-		}
-		
-		return null;
-	}
-	
-	@Override
-	public void loadSounds(){
-		try{
-			
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-	}
-	
-	public EntityPlayer getPlayer()
-	{
-		return getPlayer(null);
-	}
-	
+    if(te instanceof TileEntityKiln) {
+      TileEntityKiln tileEntity = (TileEntityKiln) te;
+      return new GuiLimekiln(player.inventory, tileEntity);
+    }
+    if(te instanceof TileEntityMixer) {
+      TileEntityMixer tileEntity = (TileEntityMixer) te;
+      return new GuiMixer(player.inventory, tileEntity);
+    }
+
+    return null;
+  }
+
+  @Override
+  public void loadSounds() {
+    try {
+
+    } catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  public EntityPlayer getPlayer() {
+    return getPlayer(null);
+  }
+
 }

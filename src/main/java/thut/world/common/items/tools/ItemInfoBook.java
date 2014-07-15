@@ -1,6 +1,5 @@
 package thut.world.common.items.tools;
 
-public class ItemInfoBook 
-{
+public class ItemInfoBook {
 
 }

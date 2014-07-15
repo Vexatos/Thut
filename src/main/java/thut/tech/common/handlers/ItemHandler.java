@@ -13,31 +13,27 @@ import static net.minecraft.init.Items.iron_ingot;
 import static thut.api.ThutBlocks.*;
 import static thut.api.ThutItems.redstone;
 
-public class ItemHandler 
-{
-	private static List<Item> items = new ArrayList<Item>();
-	
-	public static void registerItems()
-	{
-		items.add(new ItemLinker());
-		
-		for(Item item: items){
-			GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
-		}
-	}
-	
-	public static void registerRecipes()
-	{
-		for (ItemStack item : OreDictionary.getOres("rebar")) 
-		{
-			GameRegistry.addShapelessRecipe(new ItemStack(liftRail,1,0), item, new ItemStack(redstone));
-		}
-		
-		GameRegistry.addRecipe(new ItemStack(ItemLinker.instance),"xyx"," x ","   ", 'x', iron_ingot, 'y', redstone);
-		GameRegistry.addRecipe(new ItemStack(lift,1,0),"xyx","zxz","zzz", 'x', iron_ingot, 'y', redstone, 'z', new ItemStack(stone));
-		GameRegistry.addRecipe(new ItemStack(lift,1,1),"xyx","yxy","xyx", 'x', iron_ingot, 'y', redstone);
-		
-		GameRegistry.addRecipe(new ItemStack(liftRail,4),"xy ","yxy"," yx", 'x', iron_ingot, 'y', redstone);
-		
-	}
+public class ItemHandler {
+  private static List<Item> items = new ArrayList<Item>();
+
+  public static void registerItems() {
+    items.add(new ItemLinker());
+
+    for(Item item : items) {
+      GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
+    }
+  }
+
+  public static void registerRecipes() {
+    for(ItemStack item : OreDictionary.getOres("rebar")) {
+      GameRegistry.addShapelessRecipe(new ItemStack(liftRail, 1, 0), item, new ItemStack(redstone));
+    }
+
+    GameRegistry.addRecipe(new ItemStack(ItemLinker.instance), "xyx", " x ", "   ", 'x', iron_ingot, 'y', redstone);
+    GameRegistry.addRecipe(new ItemStack(lift, 1, 0), "xyx", "zxz", "zzz", 'x', iron_ingot, 'y', redstone, 'z', new ItemStack(stone));
+    GameRegistry.addRecipe(new ItemStack(lift, 1, 1), "xyx", "yxy", "xyx", 'x', iron_ingot, 'y', redstone);
+
+    GameRegistry.addRecipe(new ItemStack(liftRail, 4), "xy ", "yxy", " yx", 'x', iron_ingot, 'y', redstone);
+
+  }
 }

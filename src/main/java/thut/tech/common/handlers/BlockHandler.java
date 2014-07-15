@@ -10,19 +10,17 @@ import thut.tech.common.blocks.technical.BlockLiftRail;
 import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
 import thut.tech.common.entity.EntityLift;
 
-public class BlockHandler 
-{
-	
-	public static void registerBlocks()
-	{
-		Block lift = new BlockLift();
-		Block rail = new BlockLiftRail();
-		
-		GameRegistry.registerTileEntity(TileEntityLiftAccess.class, "liftaccesste");
-		
-		EntityRegistry.registerModEntity(EntityLift.class, "thuttechlift", 1, TechCore.instance, 32, 3, true);
+public class BlockHandler {
 
-		GameRegistry.registerBlock(lift, ItemBlockMeta.class, lift.getLocalizedName().substring(5));
-		GameRegistry.registerBlock(rail, rail.getUnlocalizedName().substring(5));
-	}
+  public static void registerBlocks() {
+    Block lift = new BlockLift();
+    Block rail = new BlockLiftRail();
+
+    GameRegistry.registerTileEntity(TileEntityLiftAccess.class, "liftaccesste");
+
+    EntityRegistry.registerModEntity(EntityLift.class, "thuttechlift", 1, TechCore.instance, 32, 3, true);
+
+    GameRegistry.registerBlock(lift, ItemBlockMeta.class, lift.getLocalizedName().substring(5));
+    GameRegistry.registerBlock(rail, rail.getUnlocalizedName().substring(5));
+  }
 }

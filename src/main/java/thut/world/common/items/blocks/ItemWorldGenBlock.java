@@ -13,47 +13,42 @@ import java.util.List;
 
 import static thut.world.common.blocks.world.BlockWorldGen.names;
 
-public class ItemWorldGenBlock extends ItemBlock{
-	
-	public ItemWorldGenBlock(Block par1)
-    {
-        super(par1);
+public class ItemWorldGenBlock extends ItemBlock {
+
+  public ItemWorldGenBlock(Block par1) {
+    super(par1);
     //    this.setMaxDamage(0);
-        this.setHasSubtypes(true);
-		this.setUnlocalizedName("Block");
-		this.setCreativeTab(WorldCore.tabThut);
-	
-    }
-	
-	@Override
-	public int getMetadata (int damageValue) {
-		return damageValue;
-	}
-	
-	   /**
-     * Returns the unlocalized name of this item. This version accepts an ItemStack so different stacks can have
-     * different names based on their damage or NBT.
-     */
-    @Override
-    public String getUnlocalizedName(ItemStack par1ItemStack)
-    {
-        int i = par1ItemStack.getItemDamage()%names.length;
-        return super.getUnlocalizedName() + "." + names[i];
-    }
+    this.setHasSubtypes(true);
+    this.setUnlocalizedName("Block");
+    this.setCreativeTab(WorldCore.tabThut);
 
-    @Override
-    @SideOnly(Side.CLIENT)
+  }
 
-    /**
-     * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
-     */
-    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List)
-    {
-        for (int j = 0; j < names.length; ++j)
-        {
-            par3List.add(new ItemStack(par1, 1, j));
-        }
+  @Override
+  public int getMetadata(int damageValue) {
+    return damageValue;
+  }
+
+  /**
+   * Returns the unlocalized name of this item. This version accepts an ItemStack so different stacks can have
+   * different names based on their damage or NBT.
+   */
+  @Override
+  public String getUnlocalizedName(ItemStack par1ItemStack) {
+    int i = par1ItemStack.getItemDamage() % names.length;
+    return super.getUnlocalizedName() + "." + names[i];
+  }
+
+  @Override
+  @SideOnly(Side.CLIENT)
+
+  /**
+   * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
+   */
+  public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+    for(int j = 0; j < names.length; ++j) {
+      par3List.add(new ItemStack(par1, 1, j));
     }
+  }
 
-	
 }

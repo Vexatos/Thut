@@ -15,104 +15,92 @@ import thut.world.common.WorldCore;
 
 import java.util.List;
 
-public class BlockWorldGen extends Block
-{
+public class BlockWorldGen extends Block {
 
-    @SideOnly(Side.CLIENT)
-	public IIcon[] iconArray;
-    
-    public static final String[] names = {
-    										"Chalk",
-									    	"Trass",
-									    	"Limestone"
-									    };
-    
-    public static final int MAX_META = names.length;
-    
-	public BlockWorldGen() {
-		super(Material.rock);
-		setBlockName("worldBlock");
-		ThutBlocks.worldGen = this;
-		this.setCreativeTab(WorldCore.tabThut);
-		this.setResistance(10);
-		this.setHardness(1);
-	}
-	
-    //*
-   
+  @SideOnly(Side.CLIENT)
+  public IIcon[] iconArray;
+
+  public static final String[] names = {
+      "Chalk",
+      "Trass",
+      "Limestone"
+  };
+
+  public static final int MAX_META = names.length;
+
+  public BlockWorldGen() {
+    super(Material.rock);
+    setBlockName("worldBlock");
+    ThutBlocks.worldGen = this;
+    this.setCreativeTab(WorldCore.tabThut);
+    this.setResistance(10);
+    this.setHardness(1);
+  }
+
+  //*
+
   //*/ 
-   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-    @SideOnly(Side.CLIENT)
-    @Override
-    /**
-     * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
-     */
-    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
-    {
-        for (int j = 0; j < MAX_META; j++)
-        {
-            par3List.add(new ItemStack(par1, 1, j));
-        }
-    }
-    
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    @Override
-    @SideOnly(Side.CLIENT)
+  @SideOnly(Side.CLIENT)
+  @Override
+  /**
+   * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
+   */
+  public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+    for(int j = 0; j < MAX_META; j++) {
+      par3List.add(new ItemStack(par1, 1, j));
+    }
+  }
 
-    /**
-     * When this method is called, your block should register all the icons it needs with the given IIconRegister. This
-     * is the only chance you get to register icons.
-     */
-    public void registerBlockIcons(IIconRegister par1IconRegister)
-    {
-        this.iconArray = new IIcon[MAX_META];
+  @Override
+  @SideOnly(Side.CLIENT)
 
-        for (int i = 0; i < this.iconArray.length; i++)
-        {
-			this.iconArray[i] = par1IconRegister.registerIcon(WorldCore.TEXTURE_PATH + names[i]);
-        }
-    }
-    
-    protected ItemStack createStackedBlock(int par1)
-    {
-        return new ItemStack(this, 1, par1);
-    }
-   
-    /**
-     * Determines the damage on the item the block drops. Used in cloth and wood.
-     */
-    @Override
-    public int damageDropped(int par1)
-    {
-        return par1;
-    }
-    
+  /**
+   * When this method is called, your block should register all the icons it needs with the given IIconRegister. This
+   * is the only chance you get to register icons.
+   */
+  public void registerBlockIcons(IIconRegister par1IconRegister) {
+    this.iconArray = new IIcon[MAX_META];
 
-    @SideOnly(Side.CLIENT)
-    /**
-     * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
-     */
-    @Override
-    public IIcon getIcon(int par1, int par2)
-    {
-        return this.iconArray[par2%MAX_META];
+    for(int i = 0; i < this.iconArray.length; i++) {
+      this.iconArray[i] = par1IconRegister.registerIcon(WorldCore.TEXTURE_PATH + names[i]);
     }
-    
-    /**
-     * Determines if the current block is replaceable by Ore veins during world generation.
-     *
-     * @param world The current world
-     * @param x X Position
-     * @param y Y Position
-     * @param z Z Position
-     * @param target The generic target block the gen is looking for, Standards define stone
-     *      for overworld generation, and neatherack for the nether.
-     * @return True to allow this block to be replaced by a ore
-     */
-    @Override
-    public boolean isReplaceableOreGen(World world, int x, int y, int z, Block target)
-    {
-        return true;
-    }
+  }
+
+  protected ItemStack createStackedBlock(int par1) {
+    return new ItemStack(this, 1, par1);
+  }
+
+  /**
+   * Determines the damage on the item the block drops. Used in cloth and wood.
+   */
+  @Override
+  public int damageDropped(int par1) {
+    return par1;
+  }
+
+  @SideOnly(Side.CLIENT)
+  /**
+   * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
+   */
+  @Override
+  public IIcon getIcon(int par1, int par2) {
+    return this.iconArray[par2 % MAX_META];
+  }
+
+  /**
+   * Determines if the current block is replaceable by Ore veins during world generation.
+   * @param world The current world
+   * @param x X Position
+   * @param y Y Position
+   * @param z Z Position
+   * @param target The generic target block the gen is looking for, Standards define stone
+   * for overworld generation, and neatherack for the nether.
+   * @return True to allow this block to be replaced by a ore
+   */
+  @Override
+  public boolean isReplaceableOreGen(World world, int x, int y, int z, Block target) {
+    return true;
+  }
 }

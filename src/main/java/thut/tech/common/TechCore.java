@@ -15,44 +15,41 @@ import thut.tech.common.handlers.ConfigHandler;
 import thut.tech.common.handlers.ItemHandler;
 import thut.tech.common.network.PacketThutTech;
 
-@Mod( modid = TechCore.ID, name="Thut's Tech", version="1.0.0")
-public class TechCore 
-{
-	@SidedProxy(clientSide = "thut.tech.client.ClientProxy", serverSide = "thut.tech.common.CommonProxy")
-	public static CommonProxy proxy;
-	
-	public static final String ID = "thuttech";
-	
-	@Instance(ID)
-	public static TechCore instance;
+@Mod(modid = TechCore.ID, name = "Thut's Tech", version = "1.0.0")
+public class TechCore {
+  @SidedProxy(clientSide = "thut.tech.client.ClientProxy", serverSide = "thut.tech.common.CommonProxy")
+  public static CommonProxy proxy;
+
+  public static final String ID = "thuttech";
+
+  @Instance(ID)
+  public static TechCore instance;
 
   public static CreativeTabThut tabThut = CreativeTabThut.tabThut;
-    
-	@EventHandler
-    public void preInit(FMLPreInitializationEvent e)
-    {
-		BlockHandler.registerBlocks();
-		ItemHandler.registerItems();
-		
-		Configuration config =  new Configuration(e.getSuggestedConfigurationFile());
-		ConfigHandler.load(config);
-		
-    }
-	
-	@EventHandler
-    public void load(FMLInitializationEvent evt)
-    {
-		proxy.initClient();
-		PacketPipeline.packetPipeline.initalise();
-		PacketPipeline.packetPipeline.registerPacket(PacketThutTech.class);
-    }
-	
-	@EventHandler
-	public void postInit(FMLPostInitializationEvent e)
-	{
 
-		PacketPipeline.packetPipeline.postInitialise();;
-	}
-	
-	
+  private static final String[] LANGUAGES_SUPPORTED = new String[] { "en_UK", "en_US", "de_DE" };
+
+  @EventHandler
+  public void preInit(FMLPreInitializationEvent e) {
+    BlockHandler.registerBlocks();
+    ItemHandler.registerItems();
+
+    Configuration config = new Configuration(e.getSuggestedConfigurationFile());
+    ConfigHandler.load(config);
+
+  }
+
+  @EventHandler
+  public void load(FMLInitializationEvent evt) {
+    proxy.initClient();
+    PacketPipeline.packetPipeline.initalise();
+    PacketPipeline.packetPipeline.registerPacket(PacketThutTech.class);
+  }
+
+  @EventHandler
+  public void postInit(FMLPostInitializationEvent e) {
+
+    PacketPipeline.packetPipeline.postInitialise();
+  }
+
 }

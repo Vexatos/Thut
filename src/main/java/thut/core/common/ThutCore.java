@@ -15,57 +15,54 @@ import thut.api.explosion.ExplosionCustom.Cruncher;
 import thut.api.network.PacketPipeline;
 import thut.core.common.handlers.ConfigHandler;
 
-@Mod( modid = "ThutCore", name="ThutCore", version="0.0.1")
+@Mod(modid = "ThutCore", name = "ThutCore", version = "0.0.1")
 
 public class ThutCore {
 
-	@SidedProxy(clientSide = "thut.core.client.ClientProxy", serverSide = "thut.core.common.CommonProxy")
-	public static CommonProxy proxy;
-		
-	@Instance("ThutCore")
-	public static ThutCore instance;
-	
-	public static String modid = "ThutCore";
-	
-	private static final String[]  LANGUAGES_SUPPORTED	= new String[] { "en_UK", "en_US" , "de_DE"};
-    
-    public static CreativeTabThut tabThut = CreativeTabThut.tabThut;
-    
-	public static Block[] blocks;
-	public static Item[] items;
-	
-	public static Class test;
-	
-	public static BiomeGenBase volcano;
-	public static BiomeGenBase chalk;
+  @SidedProxy(clientSide = "thut.core.client.ClientProxy", serverSide = "thut.core.common.CommonProxy")
+  public static CommonProxy proxy;
 
-	// Configuration Handler that handles the config file
-	public ConfigHandler config;
+  @Instance("ThutCore")
+  public static ThutCore instance;
 
-	@EventHandler
-    public void preInit(FMLPreInitializationEvent e)
-    {
-		config = new ConfigHandler(e.getSuggestedConfigurationFile());
-		proxy.loadSounds();
-		
-		MinecraftForge.EVENT_BUS.register(this);
-		
-		Cruncher sort = new Cruncher();
-	}
-	
-	  @EventHandler
-	    public void load(FMLInitializationEvent evt)
-	    {
-		proxy.initClient();
-		proxy.registerEntities();
-		proxy.registerTEs();
-		
-		PacketPipeline.packetPipeline.initalise();
-	}
-	
-	@EventHandler
-	public void postInit(FMLPostInitializationEvent e)
-	{
-		PacketPipeline.packetPipeline.postInitialise();
-	}
+  public static String modid = "ThutCore";
+
+  private static final String[] LANGUAGES_SUPPORTED = new String[] { "en_UK", "en_US", "de_DE" };
+
+  public static CreativeTabThut tabThut = CreativeTabThut.tabThut;
+
+  public static Block[] blocks;
+  public static Item[] items;
+
+  public static Class test;
+
+  public static BiomeGenBase volcano;
+  public static BiomeGenBase chalk;
+
+  // Configuration Handler that handles the config file
+  public ConfigHandler config;
+
+  @EventHandler
+  public void preInit(FMLPreInitializationEvent e) {
+    config = new ConfigHandler(e.getSuggestedConfigurationFile());
+    proxy.loadSounds();
+
+    MinecraftForge.EVENT_BUS.register(this);
+
+    Cruncher sort = new Cruncher();
+  }
+
+  @EventHandler
+  public void load(FMLInitializationEvent evt) {
+    proxy.initClient();
+    proxy.registerEntities();
+    proxy.registerTEs();
+
+    PacketPipeline.packetPipeline.initalise();
+  }
+
+  @EventHandler
+  public void postInit(FMLPostInitializationEvent e) {
+    PacketPipeline.packetPipeline.postInitialise();
+  }
 }

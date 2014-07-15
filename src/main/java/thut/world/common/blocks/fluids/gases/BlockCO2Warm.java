@@ -7,25 +7,25 @@ import thut.core.common.blocks.BlockGas;
 
 import java.util.Random;
 
-public class BlockCO2Warm extends BlockGas
-{
-	public BlockCO2Warm() {
-		super(getFluid(-10, "warmCO2"));
-		ThutBlocks.warmCO2 = this;
-		this.setBlockName("warmCO2");
-		this.setTemperature(373);
-		this.setDensity(-10);
-	}
+public class BlockCO2Warm extends BlockGas {
+  public BlockCO2Warm() {
+    super(getFluid(-10, "warmCO2"));
+    ThutBlocks.warmCO2 = this;
+    this.setBlockName("warmCO2");
+    this.setTemperature(373);
+    this.setDensity(-10);
+  }
 
-    @Override
-    public void updateTick(World world, int x, int y, int z, Random rand) {
-    	int warmsides = 4;
+  @Override
+  public void updateTick(World world, int x, int y, int z, Random rand) {
+    int warmsides = 4;
 
-    	Random r = new Random();
-    	warmsides += countSides(world, x, y, z, Blocks.fire);
-    	if(r.nextInt(6)<warmsides)
-    		super.updateTick(world, x, y, z, rand);
-    	else
-    		world.setBlock(x, y, z, ThutBlocks.coolCO2, world.getBlockMetadata(x, y, z), 3);
+    Random r = new Random();
+    warmsides += countSides(world, x, y, z, Blocks.fire);
+    if(r.nextInt(6) < warmsides) {
+      super.updateTick(world, x, y, z, rand);
+    } else {
+      world.setBlock(x, y, z, ThutBlocks.coolCO2, world.getBlockMetadata(x, y, z), 3);
     }
+  }
 }

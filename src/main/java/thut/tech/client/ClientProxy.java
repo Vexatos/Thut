@@ -15,88 +15,71 @@ import thut.tech.common.CommonProxy;
 import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
 import thut.tech.common.entity.EntityLift;
 
-public class ClientProxy extends CommonProxy{
-	
-	public static int renderPass;
-	public static Minecraft mc;
-	public static int fluidRenderID;
-	public static int rebarRenderID;
-	
-	@Override
-	public void initClient()
-	{
-		mc = FMLClientHandler.instance().getClient();
-	//	RenderingRegistry.registerBlockHandler(RenderRebar.ID,RenderRebar.renderer);
+public class ClientProxy extends CommonProxy {
 
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLiftAccess.class, new RenderLiftController());
+  public static int renderPass;
+  public static Minecraft mc;
+  public static int fluidRenderID;
+  public static int rebarRenderID;
 
-		RenderingRegistry.registerEntityRenderingHandler(EntityLift.class, new RenderLift());
-	}
-	
-	
-    @Override
-    public EntityPlayer getPlayer(String playerName)
-    {
-        if (isOnClientSide())
-        {
-            if (playerName != null)
-            {
-                return getWorld().getPlayerEntityByName(playerName);
-            }
-            else
-            {
-                return Minecraft.getMinecraft().thePlayer;
-            }
-        }
-        else
-        {
-            return super.getPlayer(playerName);
-        }
-    }
-    
-    @Override
-    public boolean isOnClientSide()
-    {
-        return FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT;
-    }
-    
-    @Override
-    public World getWorld()
-    {
-        if (isOnClientSide())
-        {
-            return Minecraft.getMinecraft().theWorld;
-        }
-        else
-        {
-            return super.getWorld();
-        }
-    }
-	
-	@Override
-	public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
-	{
-		TileEntity te = world.getTileEntity(x, y, z);
-		if(te==null)
-			return null;
+  @Override
+  public void initClient() {
+    mc = FMLClientHandler.instance().getClient();
+    //	RenderingRegistry.registerBlockHandler(RenderRebar.ID,RenderRebar.renderer);
 
-		
-		return null;
-	}
-	
-	@Override
-	public void loadSounds(){
-		try{
-			
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-	}
-	
-	public EntityPlayer getPlayer()
-	{
-		return getPlayer(null);
-	}
-	
+    ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLiftAccess.class, new RenderLiftController());
+
+    RenderingRegistry.registerEntityRenderingHandler(EntityLift.class, new RenderLift());
+  }
+
+  @Override
+  public EntityPlayer getPlayer(String playerName) {
+    if(isOnClientSide()) {
+      if(playerName != null) {
+        return getWorld().getPlayerEntityByName(playerName);
+      } else {
+        return Minecraft.getMinecraft().thePlayer;
+      }
+    } else {
+      return super.getPlayer(playerName);
+    }
+  }
+
+  @Override
+  public boolean isOnClientSide() {
+    return FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT;
+  }
+
+  @Override
+  public World getWorld() {
+    if(isOnClientSide()) {
+      return Minecraft.getMinecraft().theWorld;
+    } else {
+      return super.getWorld();
+    }
+  }
+
+  @Override
+  public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
+    TileEntity te = world.getTileEntity(x, y, z);
+    if(te == null) {
+      return null;
+    }
+
+    return null;
+  }
+
+  @Override
+  public void loadSounds() {
+    try {
+
+    } catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  public EntityPlayer getPlayer() {
+    return getPlayer(null);
+  }
+
 }
