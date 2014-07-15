@@ -1,17 +1,14 @@
 package thut.tech.common.handlers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.block.Block;
 import thut.api.blocks.ItemBlockMeta;
 import thut.tech.common.TechCore;
 import thut.tech.common.blocks.technical.BlockLift;
 import thut.tech.common.blocks.technical.BlockLiftRail;
 import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
 import thut.tech.common.entity.EntityLift;
-import net.minecraft.block.Block;
 
 public class BlockHandler 
 {

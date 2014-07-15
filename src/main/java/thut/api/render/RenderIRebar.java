@@ -1,14 +1,10 @@
 package thut.api.render;
 
-import java.util.Arrays;
-
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.IBlockAccess;
 
 public class RenderIRebar {
 

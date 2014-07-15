@@ -1,32 +1,19 @@
 package thut.world.common.blocks.world;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import thut.api.ThutBlocks;
-import thut.api.explosion.ExplosionCustom;
-import thut.world.common.WorldCore;
-import thut.world.common.blocks.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.stats.StatList;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
+import thut.api.ThutBlocks;
+import thut.world.common.WorldCore;
+
+import java.util.List;
 
 public class BlockWorldGen extends Block
 {

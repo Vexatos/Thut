@@ -1,14 +1,14 @@
 package thut.world.common.worldgen;
 
-import static thut.api.ThutBlocks.*;
+import net.minecraft.block.Block;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.block.Block;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
+import static thut.api.ThutBlocks.*;
 
 public class WorldGen extends WorldGenerator{
 		

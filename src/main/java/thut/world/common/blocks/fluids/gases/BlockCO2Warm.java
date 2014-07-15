@@ -1,13 +1,11 @@
 package thut.world.common.blocks.fluids.gases;
 
-import java.util.Random;
-
-import thut.api.ThutBlocks;
-import thut.core.common.blocks.BlockGas;
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.Fluid;
+import thut.api.ThutBlocks;
+import thut.core.common.blocks.BlockGas;
+
+import java.util.Random;
 
 public class BlockCO2Warm extends BlockGas
 {

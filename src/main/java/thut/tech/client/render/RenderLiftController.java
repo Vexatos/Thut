@@ -1,26 +1,21 @@
 package thut.tech.client.render;
 
-import org.lwjgl.opengl.GL11;
-
-import thut.api.ThutBlocks;
-import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.IBlockAccess;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.ForgeDirection;
+import org.lwjgl.opengl.GL11;
+import thut.api.ThutBlocks;
+import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
 
 public class RenderLiftController extends TileEntitySpecialRenderer
 {

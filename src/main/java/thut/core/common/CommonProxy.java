@@ -1,12 +1,12 @@
 package thut.core.common;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 import thut.core.common.blocks.tileentity.TileEntityBlockFluid;
 import thut.core.common.blocks.tileentity.TileEntityMultiBlockPart;
 import thut.core.common.blocks.tileentity.TileEntityMultiBlockPartFluids;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class CommonProxy
 {

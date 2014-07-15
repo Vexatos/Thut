@@ -1,41 +1,16 @@
 package thut.world.common.corehandlers;
 
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static java.lang.Math.*;
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import thut.world.client.ClientProxy;
-import thut.world.common.Volcano;
-import thut.world.common.WorldCore;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.management.ServerConfigurationManager;
-import net.minecraft.world.EnumSkyBlock;
-import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.world.ChunkEvent;
-import net.minecraftforge.event.world.ChunkEvent.Unload;
-import net.minecraftforge.event.world.ChunkWatchEvent;
-import net.minecraftforge.event.world.ChunkWatchEvent.Watch;
-import net.minecraftforge.event.world.WorldEvent;
-import net.minecraftforge.event.world.ChunkEvent.Load;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class WorldEventHandler {
 

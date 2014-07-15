@@ -1,32 +1,16 @@
 package thut.api.maths;
 
-import static java.lang.Math.*;
-
-import java.awt.Color;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.NotSerializableException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import thut.api.entity.IMultiBox;
-
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
@@ -36,12 +20,20 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.IFluidBlock;
+
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import static java.lang.Math.*;
 
 /**
  * @author Thutmose
  * 
  */
+@SuppressWarnings("unchecked")
 public class Vector3 {
 	public double x;
 	public double y;
@@ -478,7 +470,6 @@ public class Vector3 {
 	/**
 	 * Returns the unit vector in with the same direction as vector.
 	 * 
-	 * @param vector
 	 * @return unit vector in direction of vector.
 	 */
 	public Vector3 normalize() {
@@ -508,7 +499,6 @@ public class Vector3 {
 	/**
 	 * Returns the unit vector in with the same direction as vector.
 	 * 
-	 * @param vector
 	 * @return unit vector in direction of vector.
 	 */
 	public Vector3 toSpherical() {
@@ -522,7 +512,6 @@ public class Vector3 {
 	/**
 	 * Returns the unit vector in with the same direction as vector.
 	 * 
-	 * @param vector
 	 * @return unit vector in direction of vector.
 	 */
 	public Vector3 toCartesian() {
@@ -568,7 +557,6 @@ public class Vector3 {
 	/**
 	 * Adds vectorA to vectorB
 	 * 
-	 * @param vectorA
 	 * @param vectorB
 	 * @return
 	 */
@@ -598,7 +586,6 @@ public class Vector3 {
 	/**
 	 * Subtracts vectorB from vectorA
 	 * 
-	 * @param vectorA
 	 * @param vectorB
 	 * @return
 	 */
@@ -656,7 +643,6 @@ public class Vector3 {
 	/**
 	 * Returns the magnitude of vector
 	 * 
-	 * @param vector
 	 * @return
 	 */
 	public double mag() {
@@ -667,7 +653,6 @@ public class Vector3 {
 	/**
 	 * Returns the magnitude of vector squared
 	 * 
-	 * @param vector
 	 * @return
 	 */
 	public double magSq() {
@@ -696,7 +681,6 @@ public class Vector3 {
 	/**
 	 * Multiplies the vector by the constant.
 	 * 
-	 * @param vector
 	 * @param constant
 	 * @return
 	 */
@@ -754,7 +738,7 @@ public class Vector3 {
 	 * Rotates the given vector around the given line by the given angle. This
 	 * internally normalizes the line incase it is not already normalized
 	 * 
-	 * @param vectorH
+	 * @param vector
 	 * @param line
 	 * @param angle
 	 * @return
@@ -795,8 +779,7 @@ public class Vector3 {
 	/**
 	 * Rotates the given vector around the given line by the given angle. This
 	 * internally normalizes the line incase it is not already normalized
-	 * 
-	 * @param vectorH
+	 *
 	 * @param line
 	 * @param angle
 	 * @return
@@ -849,7 +832,6 @@ public class Vector3 {
 	/**
 	 * Rotates the given vector by the given amounts of pitch and yaw.
 	 * 
-	 * @param vector
 	 * @param pitch
 	 * @param yaw
 	 * @return
@@ -898,8 +880,7 @@ public class Vector3 {
 
 	/**
 	 * Returns the dot (scalar) product of the two vectors
-	 * 
-	 * @param vector1
+	 *
 	 * @param vector2
 	 * @return
 	 */
@@ -925,8 +906,7 @@ public class Vector3 {
 
 	/**
 	 * Returns the angle between two vectors
-	 * 
-	 * @param vector1
+	 *
 	 * @param vector2
 	 * @return
 	 */
@@ -982,8 +962,7 @@ public class Vector3 {
 
 	/**
 	 * Returns the cross (vector) product of the two vectors.
-	 * 
-	 * @param vector1
+	 *
 	 * @param vector2
 	 * @return
 	 */
@@ -1327,8 +1306,6 @@ public class Vector3 {
 	 * 
 	 * @param worldObj
 	 * @param source
-	 * @param direction
-	 * @param range
 	 * @return
 	 */
 	public static boolean isVisibleLocation(World worldObj, Vector3 source,

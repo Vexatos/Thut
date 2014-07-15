@@ -1,45 +1,30 @@
 package thut.concrete.common.blocks.fluids;
 
-import static net.minecraftforge.common.util.ForgeDirection.*;
-import static thut.api.ThutBlocks.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.ConcurrentHashMap;
-
-import thut.api.blocks.*;
-import thut.api.render.RenderRebar;
-import thut.concrete.client.render.RenderFluid;
-import thut.core.common.blocks.BlockFluid;
-import thut.core.common.blocks.BlockFluid.FluidInfo;
-//import atomicscience.api.IAntiPoisonBlock;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockPane;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.EntityRenderer;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
+import thut.api.blocks.IRebar;
+import thut.concrete.client.render.RenderFluid;
+import thut.core.common.blocks.BlockFluid;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
+
+import static thut.api.ThutBlocks.*;
+
+//import atomicscience.api.IAntiPoisonBlock;
 
 public class BlockLiquidREConcrete extends BlockFluid implements IRebar//, IAntiPoisonBlock
 {

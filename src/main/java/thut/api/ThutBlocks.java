@@ -1,9 +1,9 @@
 package thut.api;
 
-import java.util.HashSet;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+
+import java.util.HashSet;
 
 public class ThutBlocks extends Blocks 
 {

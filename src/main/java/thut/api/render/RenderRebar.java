@@ -1,28 +1,18 @@
 package thut.api.render;
 
-
-import static org.lwjgl.opengl.GL11.*;
-
-import java.util.Arrays;
-
-import org.lwjgl.opengl.GL11;
-
-import thut.api.blocks.IRebar;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.EntityRenderer;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import cpw.mods.fml.client.registry.RenderingRegistry;
+import org.lwjgl.opengl.GL11;
+import thut.api.blocks.IRebar;
+
+import static org.lwjgl.opengl.GL11.*;
 
 public class RenderRebar implements ISimpleBlockRenderingHandler{
 

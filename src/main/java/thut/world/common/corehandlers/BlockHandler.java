@@ -1,35 +1,24 @@
 package thut.world.common.corehandlers;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemBlock;
+import thut.core.common.blocks.BlockFluid;
+import thut.world.common.blocks.BlockMisc;
+import thut.world.common.blocks.fluids.dusts.BlockDust;
+import thut.world.common.blocks.fluids.dusts.BlockDustInactive;
+import thut.world.common.blocks.fluids.gases.BlockCO2Cool;
+import thut.world.common.blocks.fluids.gases.BlockCO2Warm;
+import thut.world.common.blocks.fluids.liquids.BlockLava;
+import thut.world.common.blocks.fluids.solids.BlockSolidLava;
+import thut.world.common.blocks.world.BlockVolcano;
+import thut.world.common.blocks.world.BlockWorldGen;
+import thut.world.common.items.blocks.ItemWorldGenBlock;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockDoor;
-import net.minecraft.block.BlockGrass;
-import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.world.World;
-import net.minecraftforge.oredict.OreDictionary;
-import thut.api.ThutBlocks;
-import thut.core.common.blocks.BlockFluid;
-import thut.world.common.blocks.*;
-import thut.world.common.blocks.fluids.*;
-import thut.world.common.blocks.fluids.dusts.*;
-import thut.world.common.blocks.fluids.gases.BlockCO2Cool;
-import thut.world.common.blocks.fluids.gases.BlockCO2Warm;
-import thut.world.common.blocks.fluids.liquids.*;
-import thut.world.common.blocks.fluids.solids.*;
-import thut.world.common.blocks.world.BlockVolcano;
-import thut.world.common.blocks.world.BlockWorldGen;
-import thut.world.common.items.blocks.ItemWorldGenBlock;
 
 public class BlockHandler {
 

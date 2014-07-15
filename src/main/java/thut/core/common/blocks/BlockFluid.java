@@ -1,58 +1,42 @@
 package thut.core.common.blocks;
 
-import static net.minecraftforge.common.util.ForgeDirection.DOWN;
-import static net.minecraftforge.common.util.ForgeDirection.EAST;
-import static net.minecraftforge.common.util.ForgeDirection.NORTH;
-import static net.minecraftforge.common.util.ForgeDirection.SOUTH;
-import static net.minecraftforge.common.util.ForgeDirection.UP;
-import static net.minecraftforge.common.util.ForgeDirection.WEST;
-import static net.minecraft.init.Blocks.*;
-import static thut.api.ThutBlocks.concrete;
-
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.*;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.BlockFluidBase;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import thut.api.ThutBlocks;
 import thut.api.maths.Vector3;
 import thut.core.client.ClientProxy;
 import thut.core.client.render.RenderFluid;
 import thut.core.common.ThutCore;
 import thut.core.common.handlers.ConfigHandler;
+
+import java.util.*;
+
+import static net.minecraft.init.Blocks.*;
+import static net.minecraftforge.common.util.ForgeDirection.*;
+
 //import thut.world.client.ClientProxy;
 //import thut.world.client.render.RenderFluid;
 //import thut.world.common.WorldCore;
 //import thut.world.common.corehandlers.ConfigHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.*;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemDye;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
-import net.minecraft.world.EnumSkyBlock;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.*;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.BlockFluidBase;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.RenderBlockFluid;
 
 public abstract class BlockFluid extends BlockFluidBase {
 
@@ -216,19 +200,19 @@ public abstract class BlockFluid extends BlockFluidBase {
 		float f = 0.0625F;
 
 		if (solid) {
-			return AxisAlignedBB.getAABBPool().getAABB(0, 0, 0, 1, f * l, 1)
+			return AxisAlignedBB.getBoundingBox(0, 0, 0, 1, f * l, 1).getBoundingBox(0, 0, 0, 1, f * l, 1)
 					.offset(x, y, z);
 		}
 
 		if (!((new Vector3(x, y - 1, z)).isFluid(par1World) || par1World
 				.isAirBlock(x, y - 1, z))) {
-			return AxisAlignedBB.getAABBPool().getAABB((double) x + this.minX,
-					(double) y + this.minY, (double) z + this.minZ,
-					(double) x + this.maxX,
-					(double) ((float) y + (float) l * f),
-					(double) z + this.maxZ);
+			return AxisAlignedBB.getBoundingBox((double) x + this.minX,
+          (double) y + this.minY, (double) z + this.minZ,
+          (double) x + this.maxX,
+          (double) ((float) y + (float) l * f),
+          (double) z + this.maxZ);
 		} else {
-			return AxisAlignedBB.getAABBPool().getAABB(0, 0, 0, 0, 0, 0)
+			return AxisAlignedBB.getBoundingBox(0, 0, 0, 0, 0, 0)
 					.offset(x, y, z);
 		}
 	}
@@ -479,7 +463,7 @@ public abstract class BlockFluid extends BlockFluidBase {
 		if (solid) {
 			int l = worldObj.getBlockMetadata(x, y, z) + 1;
 			float f = 0.0625F;
-			return AxisAlignedBB.getAABBPool().getAABB(0, 0, 0, 1, f * l, 1)
+			return AxisAlignedBB.getBoundingBox(0, 0, 0, 1, f * l, 1)
 					.offset(x, y, z);
 		}
 		if (ThutCore.proxy.getPlayer() == null) {
@@ -573,9 +557,7 @@ public abstract class BlockFluid extends BlockFluidBase {
 	 * TODO More Optimization Checks if the block should spread to the side
 	 * 
 	 * @param worldObj
-	 * @param x
-	 * @param y
-	 * @param z
+	 * @param vec
 	 */
 	public boolean trySpread(World worldObj, Vector3 vec) {
 		boolean moved = false;
@@ -622,10 +604,8 @@ public abstract class BlockFluid extends BlockFluidBase {
 	/**
 	 * TODO More Optimization Checks if the block should fall down
 	 * 
-	 * @param par1World
-	 * @param x
-	 * @param y
-	 * @param z
+	 * @param worldObj
+	 * @param vec
 	 */
 	public boolean tryFall(World worldObj, Vector3 vec){
     	Block id = vec.getBlock(worldObj);

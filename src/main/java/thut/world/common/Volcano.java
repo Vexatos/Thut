@@ -1,16 +1,15 @@
 package thut.world.common;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.concurrent.ConcurrentHashMap;
-
-import thut.api.maths.Vector3;
-import thut.world.common.corehandlers.ConfigHandler;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import thut.api.maths.Vector3;
+import thut.world.common.corehandlers.ConfigHandler;
+
+import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Volcano {
 	

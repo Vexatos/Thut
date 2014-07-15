@@ -1,46 +1,20 @@
 package thut.world.common.blocks;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
-
-
-
-
-
-
-
-
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import thut.api.ThutBlocks;
-import thut.api.explosion.ExplosionCustom;
-import thut.api.explosion.ExplosionCustom.Cruncher;
-import thut.api.maths.Vector3;
-import thut.world.common.WorldCore;
-import thut.world.common.blocks.fluids.solids.BlockSolidLava;
-import thut.world.common.corehandlers.ConfigHandler;
 import net.minecraft.block.Block;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBook;
-import net.minecraft.item.ItemCoal;
 import net.minecraft.item.ItemDye;
-import net.minecraft.item.ItemHoe;
-import net.minecraft.item.ItemSoup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import thut.api.ThutBlocks;
+import thut.api.explosion.ExplosionCustom;
+import thut.world.common.WorldCore;
+import thut.world.common.corehandlers.ConfigHandler;
 
 public class BlockMisc extends Block
 {

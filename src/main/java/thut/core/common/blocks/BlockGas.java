@@ -1,6 +1,5 @@
 package thut.core.common.blocks;
 
-import thut.api.maths.Vector3;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -14,6 +13,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.BlockFluidFinite;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import thut.api.maths.Vector3;
 
 public abstract class BlockGas extends BlockFluidFinite
 {

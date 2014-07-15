@@ -1,40 +1,7 @@
 package thut.world.common.blocks.tileentity;
 
-import static net.minecraftforge.common.util.ForgeDirection.*;
-import static thut.api.ThutBlocks.*;
-
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
-
-
-
-
-
-
-
 import com.google.common.io.ByteArrayDataInput;
-
-import thut.api.ThutBlocks;
-import thut.api.explosion.ExplosionCustom;
-import thut.api.explosion.ExplosionCustom.Cruncher;
-import thut.api.maths.Vector3;
-import thut.core.common.blocks.BlockFluid;
-import thut.world.client.ClientProxy;
-import thut.world.common.Volcano;
-import thut.world.common.WorldCore;
-import thut.world.common.blocks.BlockMisc;
-import thut.world.common.blocks.fluids.dusts.BlockDust;
-import thut.world.common.blocks.fluids.liquids.BlockLava;
-import thut.world.common.blocks.fluids.solids.BlockSolidLava;
-import thut.world.common.blocks.world.BlockVolcano;
-import thut.world.common.corehandlers.ConfigHandler;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -42,11 +9,28 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.MinecraftForge;
+import thut.api.ThutBlocks;
+import thut.api.explosion.ExplosionCustom;
+import thut.api.maths.Vector3;
+import thut.core.common.blocks.BlockFluid;
+import thut.world.common.Volcano;
+import thut.world.common.WorldCore;
+import thut.world.common.blocks.fluids.liquids.BlockLava;
+import thut.world.common.blocks.fluids.solids.BlockSolidLava;
+import thut.world.common.corehandlers.ConfigHandler;
+
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import static net.minecraftforge.common.util.ForgeDirection.DOWN;
+import static net.minecraftforge.common.util.ForgeDirection.UP;
+import static thut.api.ThutBlocks.*;
 
 public class TileEntityVolcano extends TileEntity
 {

@@ -1,19 +1,7 @@
 package thut.concrete.common.blocks.technical;
 
-import static net.minecraft.init.Blocks.brick_block;
-import static net.minecraft.init.Blocks.stonebrick;
-import static thut.api.ThutBlocks.*;
-
-import java.util.Arrays;
-import java.util.Random;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import thut.concrete.common.ConcreteCore;
-import thut.concrete.common.blocks.tileentity.crafting.TileEntityMixer;
-import thut.concrete.common.blocks.tileentity.crafting.TileEntityMixer;
-import thut.core.common.blocks.tileentity.TileEntityMultiBlockPartFluids;
-import thut.core.common.blocks.tileentity.TileEntityMultiCoreFluids;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -29,6 +17,17 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import thut.concrete.common.ConcreteCore;
+import thut.concrete.common.blocks.tileentity.crafting.TileEntityMixer;
+import thut.core.common.blocks.tileentity.TileEntityMultiBlockPartFluids;
+import thut.core.common.blocks.tileentity.TileEntityMultiCoreFluids;
+
+import java.util.Arrays;
+import java.util.Random;
+
+import static net.minecraft.init.Blocks.brick_block;
+import static net.minecraft.init.Blocks.stonebrick;
+import static thut.api.ThutBlocks.mixer;
 
 public class BlockMixer extends Block implements ITileEntityProvider
 {

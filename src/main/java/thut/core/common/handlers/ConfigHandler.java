@@ -1,16 +1,15 @@
 package thut.core.common.handlers;
 
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.item.Item;
+import net.minecraftforge.common.config.Configuration;
+import thut.api.explosion.ExplosionCustom;
+import thut.core.common.items.ItemSpout;
+import thut.core.common.items.ItemTank;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import cpw.mods.fml.common.registry.GameRegistry;
-import thut.api.explosion.ExplosionCustom;
-import thut.api.maths.Vector3;
-import thut.core.common.items.ItemSpout;
-import thut.core.common.items.ItemTank;
-import net.minecraft.item.Item;
-import net.minecraftforge.common.config.Configuration;
 
 public class ConfigHandler {
 

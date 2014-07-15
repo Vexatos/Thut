@@ -1,21 +1,8 @@
 package thut.concrete.client.render;
 
-import static org.lwjgl.opengl.GL11.glPopMatrix;
-import static org.lwjgl.opengl.GL11.glPushMatrix;
-import static org.lwjgl.opengl.GL11.glScaled;
-import static org.lwjgl.opengl.GL11.glTranslated;
-
-import org.lwjgl.opengl.GL11;
-
-import thut.api.blocks.IRebar;
-import thut.api.render.RenderIRebar;
-import thut.concrete.client.ClientProxy;
-import thut.concrete.common.blocks.fluids.BlockLiquidREConcrete;
-import thut.concrete.common.blocks.fluids.BlockREConcrete;
-import thut.core.client.render.RenderCuboid;
-import thut.core.common.blocks.BlockFluid;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
@@ -24,8 +11,16 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fluids.BlockFluidBase;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import cpw.mods.fml.client.registry.RenderingRegistry;
+import org.lwjgl.opengl.GL11;
+import thut.api.blocks.IRebar;
+import thut.api.render.RenderIRebar;
+import thut.concrete.client.ClientProxy;
+import thut.concrete.common.blocks.fluids.BlockLiquidREConcrete;
+import thut.concrete.common.blocks.fluids.BlockREConcrete;
+import thut.core.client.render.RenderCuboid;
+import thut.core.common.blocks.BlockFluid;
+
+import static org.lwjgl.opengl.GL11.*;
 /**
  * Modified from the Default renderer for Forge fluid blocks.
  * 

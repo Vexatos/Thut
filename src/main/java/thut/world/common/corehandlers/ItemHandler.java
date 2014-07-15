@@ -1,34 +1,29 @@
 package thut.world.common.corehandlers;
 
-import static thut.api.ThutItems.*;
-
-//import static thutconcrete.common.blocks.Blocks.*;
-import java.util.ArrayList;
-import java.util.List;
-
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.oredict.OreDictionary;
 import thut.api.ThutBlocks;
-import thut.api.ThutItems;
 import thut.core.common.items.ItemDusts;
 import thut.core.common.items.ItemDusts.Dust;
 import thut.world.common.WorldCore;
 import thut.world.common.blocks.fluids.dusts.BlockDust;
 import thut.world.common.blocks.fluids.dusts.BlockDustInactive;
-import thut.world.common.blocks.fluids.solids.BlockSolidLava;
-import thut.world.common.blocks.world.BlockWorldGen;
-import thut.world.common.items.*;
 import thut.world.common.items.tools.ItemGrinder;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static thut.api.ThutItems.dust;
+import static thut.api.ThutItems.trass;
+
+//import static thutconcrete.common.blocks.Blocks.*;
 
 public class ItemHandler {
 

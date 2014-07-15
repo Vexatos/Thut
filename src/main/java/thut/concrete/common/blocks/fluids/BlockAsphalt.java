@@ -1,11 +1,5 @@
 package thut.concrete.common.blocks.fluids;
 
-import static thut.api.ThutBlocks.*;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -21,8 +15,13 @@ import net.minecraftforge.fluids.Fluid;
 import thut.api.blocks.IRebar;
 import thut.concrete.common.ConcreteCore;
 import thut.core.common.blocks.BlockFluid;
-import thut.core.common.blocks.BlockFluid.FluidInfo;
 import thut.core.common.blocks.tileentity.TileEntityBlockFluid;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import static thut.api.ThutBlocks.asphalt;
 
 public class BlockAsphalt extends BlockFluid implements ITileEntityProvider {
 

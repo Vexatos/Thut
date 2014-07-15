@@ -1,41 +1,5 @@
 package thut.world.common;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Logger;
-
-import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.WorldType;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.gen.structure.MapGenStructureIO;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeDictionary.Type;
-import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.oredict.OreDictionary;
-import thut.api.ThutBlocks;
-import thut.api.explosion.ExplosionCustom.Cruncher;
-import thut.api.maths.Vector3;
-import thut.api.network.PacketPipeline;
-import thut.core.common.CreativeTabThut;
-import thut.world.common.blocks.fluids.solids.BlockSolidLava;
-import thut.world.common.corehandlers.BlockHandler;
-import thut.world.common.corehandlers.ConfigHandler;
-import thut.world.common.corehandlers.ItemHandler;
-import thut.world.common.corehandlers.LiquidHandler;
-import thut.world.common.corehandlers.RecipeHandler;
-import thut.world.common.corehandlers.WorldEventHandler;
-import thut.world.common.worldgen.BiomeGenChalk;
-import thut.world.common.worldgen.BiomeVolcano;
-import thut.world.common.worldgen.TrassWorldGen;
-import thut.world.common.worldgen.VolcanoWorldGen;
-import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -47,8 +11,31 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.common.registry.VillagerRegistry;
-import cpw.mods.fml.relauncher.Side;
+import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
+import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.oredict.OreDictionary;
+import thut.api.ThutBlocks;
+import thut.api.maths.Vector3;
+import thut.api.network.PacketPipeline;
+import thut.core.common.CreativeTabThut;
+import thut.world.common.corehandlers.*;
+import thut.world.common.worldgen.BiomeGenChalk;
+import thut.world.common.worldgen.BiomeVolcano;
+import thut.world.common.worldgen.TrassWorldGen;
+import thut.world.common.worldgen.VolcanoWorldGen;
+
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Mod( modid = "thutworld", name="Thut's WorldGen", version="0.0.1")
 public class WorldCore {

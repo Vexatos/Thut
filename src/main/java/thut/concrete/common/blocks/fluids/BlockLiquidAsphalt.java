@@ -1,17 +1,15 @@
 package thut.concrete.common.blocks.fluids;
 
-
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.Fluid;
-import static thut.api.ThutBlocks.*;
 import thut.concrete.common.ConcreteCore;
 import thut.core.common.blocks.BlockFluid;
+
+import static thut.api.ThutBlocks.asphalt;
+import static thut.api.ThutBlocks.liquidAsphalt;
 
 public class BlockLiquidAsphalt extends BlockFluid {
 

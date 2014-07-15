@@ -1,37 +1,19 @@
 package thut.core.common;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.BiomeDictionary.Type;
-import net.minecraftforge.oredict.OreDictionary;
-import thut.api.ThutBlocks;
-import thut.api.explosion.ExplosionCustom.Cruncher;
-import thut.api.maths.Vector3;
-import thut.api.network.PacketPipeline;
-import thut.core.common.handlers.ConfigHandler;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.MinecraftForge;
+import thut.api.explosion.ExplosionCustom.Cruncher;
+import thut.api.network.PacketPipeline;
+import thut.core.common.handlers.ConfigHandler;
 
 @Mod( modid = "ThutCore", name="ThutCore", version="0.0.1")
 

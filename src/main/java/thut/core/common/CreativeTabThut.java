@@ -1,11 +1,11 @@
 package thut.core.common;
 
-import thut.api.ThutBlocks;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import thut.api.ThutBlocks;
 
 public class CreativeTabThut extends CreativeTabs{
 

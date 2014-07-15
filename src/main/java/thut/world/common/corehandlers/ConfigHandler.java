@@ -1,18 +1,12 @@
 package thut.world.common.corehandlers;
 
-
-import java.io.File;
-import java.util.logging.Level;
-
-import thut.api.explosion.ExplosionCustom;
-import thut.api.maths.Vector3;
-import thut.world.common.WorldCore;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 import thut.world.common.blocks.fluids.liquids.BlockLava;
 import thut.world.common.blocks.fluids.solids.BlockSolidLava;
 import thut.world.common.blocks.tileentity.TileEntityVolcano;
-import net.minecraft.nbt.NBTBase;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
+
+import java.io.File;
 
 public class ConfigHandler {
 

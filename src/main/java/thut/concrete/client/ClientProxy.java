@@ -1,14 +1,6 @@
 package thut.concrete.client;
 
-import thut.api.render.RenderRebar;
-import thut.concrete.client.gui.GuiLimekiln;
-import thut.concrete.client.gui.GuiMixer;
-import thut.concrete.client.render.RenderFluid;
-import thut.concrete.common.CommonProxy;
-import thut.concrete.common.blocks.tileentity.crafting.TileEntityKiln;
-import thut.concrete.common.blocks.tileentity.crafting.TileEntityMixer;
 import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -16,8 +8,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.sound.SoundLoadEvent;
-import net.minecraftforge.common.MinecraftForge;
+import thut.api.render.RenderRebar;
+import thut.concrete.client.gui.GuiLimekiln;
+import thut.concrete.client.gui.GuiMixer;
+import thut.concrete.client.render.RenderFluid;
+import thut.concrete.common.CommonProxy;
+import thut.concrete.common.blocks.tileentity.crafting.TileEntityKiln;
+import thut.concrete.common.blocks.tileentity.crafting.TileEntityMixer;
 
 public class ClientProxy extends CommonProxy{
 	

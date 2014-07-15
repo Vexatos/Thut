@@ -1,12 +1,6 @@
 package thut.world.client;
 
-import thut.core.client.render.RenderFluid;
-import thut.core.common.blocks.BlockFluid;
-import thut.world.common.CommonProxy;
-import thut.world.common.WorldCore;
-import thut.world.common.blocks.tileentity.*;
 import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -14,8 +8,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.sound.SoundLoadEvent;
-import net.minecraftforge.common.MinecraftForge;
+import thut.core.client.render.RenderFluid;
+import thut.core.common.blocks.BlockFluid;
+import thut.world.common.CommonProxy;
 
 public class ClientProxy extends CommonProxy{
 	

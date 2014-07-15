@@ -1,37 +1,29 @@
 package thut.world.common.blocks.fluids.solids;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.ConcurrentHashMap;
-
-import thut.api.ThutBlocks;
-import thut.api.ThutItems;
-import thut.api.maths.Vector3;
-import thut.core.client.render.RenderFluid;
-import thut.core.common.blocks.BlockFluid;
-import thut.world.common.WorldCore;
-import thut.world.common.blocks.fluids.liquids.BlockLava;
-import thut.world.common.corehandlers.ConfigHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.oredict.OreDictionary;
+import thut.api.ThutBlocks;
+import thut.api.ThutItems;
+import thut.api.maths.Vector3;
+import thut.core.common.blocks.BlockFluid;
+import thut.world.common.WorldCore;
+import thut.world.common.blocks.fluids.liquids.BlockLava;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
 
 public class BlockSolidLava extends BlockFluid
 {
@@ -294,7 +286,7 @@ public class BlockSolidLava extends BlockFluid
 	     * @param x X Position
 	     * @param y Y Position
 	     * @param z Z Position
-	     * @param Explosion The explosion instance affecting the block
+	     * @param explosion The explosion instance affecting the block
 	     */
 	    public void onBlockExploded(World world, int x, int y, int z, Explosion explosion)
 	    {

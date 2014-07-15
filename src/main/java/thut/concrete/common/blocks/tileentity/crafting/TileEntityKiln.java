@@ -1,17 +1,12 @@
 package thut.concrete.common.blocks.tileentity.crafting;
 
-import static thut.api.ThutBlocks.*;
-import thut.api.ThutItems;
-import thut.api.maths.Vector3;
-import thut.core.common.blocks.tileentity.TileEntityMultiBlockPart;
-import thut.core.common.blocks.tileentity.TileEntityMultiCore;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
@@ -19,10 +14,13 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
-import net.minecraft.world.EnumSkyBlock;
 import net.minecraftforge.common.util.ForgeDirection;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import thut.api.ThutItems;
+import thut.api.maths.Vector3;
+import thut.core.common.blocks.tileentity.TileEntityMultiBlockPart;
+import thut.core.common.blocks.tileentity.TileEntityMultiCore;
+
+import static thut.api.ThutBlocks.*;
 
 public class TileEntityKiln extends TileEntityMultiCore
 {

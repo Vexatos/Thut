@@ -1,24 +1,18 @@
 package thut.core.common.items;
 
-import java.util.HashMap;
-import java.util.List;
-
-import thut.api.ThutBlocks;
-import thut.core.common.ThutCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
+import thut.core.common.ThutCore;
+
+import java.util.HashMap;
+import java.util.List;
 
 public class ItemDusts extends Item
 {
@@ -34,8 +28,8 @@ public class ItemDusts extends Item
 		super();
 		this.setHasSubtypes(true);
 		this.setUnlocalizedName("dust");
-        this.setMaxDamage(0);
-        this.setCreativeTab(ThutCore.tabThut);
+    this.setMaxDamage(0);
+    this.setCreativeTab(ThutCore.tabThut);
 	}
 
     @SideOnly(Side.CLIENT)

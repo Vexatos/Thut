@@ -1,14 +1,10 @@
 package thut.world.common.worldgen;
 
-import java.util.Random;
-
-import thut.world.common.WorldCore;
-import thut.world.common.blocks.world.BlockWorldGen;
-import thut.world.common.corehandlers.ConfigHandler;
+import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.feature.WorldGenMinable;
-import cpw.mods.fml.common.IWorldGenerator;
+
+import java.util.Random;
 
 public class TrassWorldGen implements IWorldGenerator
 {

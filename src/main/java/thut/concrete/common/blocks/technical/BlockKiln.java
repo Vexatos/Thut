@@ -1,35 +1,31 @@
 package thut.concrete.common.blocks.technical;
-import static thut.api.ThutBlocks.*;
 
-import java.util.Random;
-
-import thut.concrete.common.ConcreteCore;
-import thut.concrete.common.blocks.tileentity.crafting.TileEntityMixer;
-import thut.concrete.common.blocks.tileentity.crafting.TileEntityKiln;
-import thut.core.common.blocks.tileentity.TileEntityMultiBlockPart;
-import thut.core.common.blocks.tileentity.TileEntityMultiCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import thut.concrete.common.ConcreteCore;
+import thut.concrete.common.blocks.tileentity.crafting.TileEntityKiln;
+import thut.concrete.common.blocks.tileentity.crafting.TileEntityMixer;
+import thut.core.common.blocks.tileentity.TileEntityMultiBlockPart;
+import thut.core.common.blocks.tileentity.TileEntityMultiCore;
+
+import java.util.Random;
+
+import static thut.api.ThutBlocks.*;
 
 public class BlockKiln extends Block implements ITileEntityProvider
 {

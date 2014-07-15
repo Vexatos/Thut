@@ -1,41 +1,24 @@
 package thut.concrete.common.handlers;
 
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
+import thut.api.ThutItems;
+
+import java.util.Vector;
+
 import static net.minecraft.init.Blocks.brick_block;
 import static net.minecraft.init.Blocks.stone;
 import static net.minecraft.init.Blocks.stonebrick;
 import static net.minecraft.init.Blocks.wool;
 import static net.minecraft.init.Items.iron_ingot;
 import static net.minecraft.init.Items.stick;
-import static thut.api.ThutBlocks.limekiln;
-import static thut.api.ThutBlocks.mixer;
-import static thut.api.ThutBlocks.rebar;
-import static thut.api.ThutItems.boneMeal;
-import static thut.api.ThutItems.brushes;
-import static thut.api.ThutItems.carbonate;
-import static thut.api.ThutItems.cement;
-import static thut.api.ThutItems.chalkOre;
-import static thut.api.ThutItems.cookable;
-import static thut.api.ThutItems.getItems;
-import static thut.api.ThutItems.lime;
-import static thut.api.ThutItems.limestoneOre;
-import static thut.api.ThutItems.solidLava0;
-import static thut.api.ThutItems.solidLava1;
-import static thut.api.ThutItems.solidLava2;
-import static thut.api.ThutItems.trass;
-import static thut.api.ThutItems.trassOre;
-import static thut.api.ThutItems.twoRebar;
-
-import java.util.Vector;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
-import thut.api.ThutItems;
-import cpw.mods.fml.common.registry.GameRegistry;
+import static thut.api.ThutBlocks.*;
+import static thut.api.ThutItems.*;
 
 public class RecipeHandler {
 

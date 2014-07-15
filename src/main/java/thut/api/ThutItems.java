@@ -1,11 +1,11 @@
 package thut.api;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ThutItems extends Items {
 	

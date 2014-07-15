@@ -1,15 +1,12 @@
 package thut.world.common.worldgen;
 
-import java.util.Random;
-
-import thut.api.ThutBlocks;
-import thut.world.common.Volcano;
-import thut.world.common.blocks.world.BlockVolcano;
-import thut.world.common.blocks.world.BlockWorldGen;
-import thut.world.common.corehandlers.ConfigHandler;
+import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
-import cpw.mods.fml.common.IWorldGenerator;
+import thut.api.ThutBlocks;
+import thut.world.common.Volcano;
+
+import java.util.Random;
 
 public class VolcanoWorldGen implements IWorldGenerator{
 	

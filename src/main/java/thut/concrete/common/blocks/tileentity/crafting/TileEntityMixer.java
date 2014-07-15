@@ -1,18 +1,9 @@
 package thut.concrete.common.blocks.tileentity.crafting;
 
-import static net.minecraft.init.Blocks.stonebrick;
-import thut.api.ThutBlocks;
-import thut.api.ThutItems;
-import thut.concrete.common.handlers.RecipeHandler;
-import thut.concrete.common.handlers.RecipeHandler.MixerRecipe;
-import thut.core.common.blocks.tileentity.TileEntityMultiBlockPartFluids;
-import thut.core.common.blocks.tileentity.TileEntityMultiCore;
-import thut.core.common.blocks.tileentity.TileEntityMultiCoreFluids;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -20,16 +11,13 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidContainerItem;
-import net.minecraftforge.fluids.IFluidHandler;
+import net.minecraftforge.fluids.*;
+import thut.api.ThutBlocks;
+import thut.concrete.common.handlers.RecipeHandler;
+import thut.concrete.common.handlers.RecipeHandler.MixerRecipe;
+import thut.core.common.blocks.tileentity.TileEntityMultiBlockPartFluids;
+import thut.core.common.blocks.tileentity.TileEntityMultiCoreFluids;
 
 public class TileEntityMixer extends TileEntityMultiCoreFluids{
 

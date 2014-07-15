@@ -1,12 +1,7 @@
 package thut.core.common.items;
 
-import java.util.ArrayList;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import thut.api.maths.Vector3;
-import thut.core.common.blocks.BlockFluid;
-import thut.tech.common.TechCore;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,12 +13,17 @@ import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
+import thut.api.maths.Vector3;
+import thut.core.common.blocks.BlockFluid;
+import thut.tech.common.TechCore;
+
+import java.util.ArrayList;
 
 public class ItemSpout extends Item {
 
 	public ItemSpout() {
 		super();
-        this.setHasSubtypes(true);
+    this.setHasSubtypes(true);
 		this.setUnlocalizedName("spout");
 		this.setCreativeTab(TechCore.tabThut);
 	}

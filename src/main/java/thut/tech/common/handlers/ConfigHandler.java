@@ -1,8 +1,8 @@
 package thut.tech.common.handlers;
 
+import net.minecraftforge.common.config.Configuration;
 import thut.api.maths.Vector3;
 import thut.tech.common.entity.EntityLift;
-import net.minecraftforge.common.config.Configuration;
 
 public class ConfigHandler 
 {

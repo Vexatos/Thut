@@ -1,51 +1,33 @@
 package thut.world.common.blocks.fluids.liquids;
 
-import static net.minecraftforge.common.util.ForgeDirection.DOWN;
-import static net.minecraftforge.common.util.ForgeDirection.EAST;
-import static net.minecraftforge.common.util.ForgeDirection.NORTH;
-import static net.minecraftforge.common.util.ForgeDirection.SOUTH;
-import static net.minecraftforge.common.util.ForgeDirection.UP;
-import static net.minecraftforge.common.util.ForgeDirection.WEST;
-import static thut.api.ThutBlocks.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.ConcurrentHashMap;
-
-import thut.api.ThutBlocks;
-import thut.api.maths.Vector3;
-import thut.core.common.blocks.BlockFluid;
-import thut.world.common.Volcano;
-import thut.world.common.WorldCore;
-import thut.world.common.blocks.fluids.dusts.BlockDust;
-import thut.world.common.blocks.fluids.solids.BlockSolidLava;
-import thut.world.common.blocks.tileentity.TileEntityVolcano;
-import thut.world.common.blocks.world.BlockVolcano;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
+import thut.api.ThutBlocks;
+import thut.api.maths.Vector3;
+import thut.core.common.blocks.BlockFluid;
+import thut.world.common.WorldCore;
+import thut.world.common.blocks.fluids.solids.BlockSolidLava;
+import thut.world.common.blocks.tileentity.TileEntityVolcano;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
+
+import static net.minecraftforge.common.util.ForgeDirection.*;
+import static thut.api.ThutBlocks.*;
 
 public class BlockLava extends BlockFluid //implements IHeatSource
 	{

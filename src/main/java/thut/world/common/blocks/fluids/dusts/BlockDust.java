@@ -1,40 +1,26 @@
 package thut.world.common.blocks.fluids.dusts;
 
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.Fluid;
 import thut.api.ThutBlocks;
 import thut.api.maths.Vector3;
 import thut.core.common.blocks.BlockFluid;
 import thut.world.common.WorldCore;
-import thut.world.common.blocks.fluids.liquids.BlockLava;
-import thut.world.common.blocks.world.BlockWorldGen;
 import thut.world.common.corehandlers.ConfigHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.EnumSkyBlock;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.*;
-import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.Fluid;
+
+import java.util.List;
+import java.util.Random;
 
 
 public class BlockDust extends BlockFluid
@@ -49,8 +35,8 @@ public class BlockDust extends BlockFluid
 
     public BlockDust()
     {
-    	super(new Fluid("dust").setDensity(900).setViscosity(3000),Material.sand);
-		setBlockName("dust");
+    	super(new Fluid("blockDust").setDensity(900).setViscosity(3000),Material.sand);
+		setBlockName("blockDust");
 		setHardness(0.1f);
 		setResistance(0.0f);
 		ThutBlocks.dust = this;
@@ -157,10 +143,10 @@ public class BlockDust extends BlockFluid
         float f = 0.0625F;
         if(!(new Vector3(par2,par3-1,par4).isFluid(par1World)||
         		par1World.isAirBlock(par2, par3-1, par4)||(block instanceof BlockFluid&&meta!=0))){
-        return AxisAlignedBB.getAABBPool().getAABB((double)par2 + this.minX, (double)par3 + this.minY, (double)par4 + this.minZ, (double)par2 + this.maxX, (double)((float)par3 + (float)l * f), (double)par4 + this.maxZ);
+        return AxisAlignedBB.getBoundingBox((double)par2 + this.minX, (double)par3 + this.minY, (double)par4 + this.minZ, (double)par2 + this.maxX, (double)((float)par3 + (float)l * f), (double)par4 + this.maxZ);
         }
         else{
-        	return AxisAlignedBB.getAABBPool().getAABB(0, 0, 0, 0, 0, 0);
+        	return AxisAlignedBB.getBoundingBox(0, 0, 0, 0, 0, 0);
         }
     }
     

@@ -2,19 +2,14 @@ package thut.world.common.corehandlers;
 
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import thut.world.common.blocks.fluids.liquids.BlockLava;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
+import thut.world.common.blocks.fluids.liquids.BlockLava;
 
 public class LiquidHandler {
 

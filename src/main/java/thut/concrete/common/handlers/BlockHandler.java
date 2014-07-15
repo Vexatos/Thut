@@ -1,24 +1,17 @@
 package thut.concrete.common.handlers;
 
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.block.Block;
+import thut.concrete.common.blocks.fluids.*;
+import thut.concrete.common.blocks.technical.BlockKiln;
+import thut.concrete.common.blocks.technical.BlockMixer;
+import thut.concrete.common.blocks.technical.BlockRebar;
+import thut.concrete.common.blocks.tileentity.crafting.TileEntityKiln;
+import thut.concrete.common.blocks.tileentity.crafting.TileEntityMixer;
+import thut.core.common.blocks.BlockFluid;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import cpw.mods.fml.common.registry.GameRegistry;
-import thut.concrete.common.blocks.fluids.BlockAsphalt;
-import thut.concrete.common.blocks.fluids.BlockConcrete;
-import thut.concrete.common.blocks.fluids.BlockLiquidAsphalt;
-import thut.concrete.common.blocks.fluids.BlockLiquidConcrete;
-import thut.concrete.common.blocks.fluids.BlockLiquidREConcrete;
-import thut.concrete.common.blocks.fluids.BlockREConcrete;
-import thut.concrete.common.blocks.technical.BlockMixer;
-import thut.concrete.common.blocks.technical.BlockKiln;
-import thut.concrete.common.blocks.technical.BlockRebar;
-import thut.concrete.common.blocks.tileentity.crafting.TileEntityMixer;
-import thut.concrete.common.blocks.tileentity.crafting.TileEntityKiln;
-import thut.core.common.blocks.BlockFluid;
-import thut.core.common.blocks.tileentity.TileEntityBlockFluid;
-import thut.core.common.blocks.tileentity.TileEntityMultiBlockPart;
-import net.minecraft.block.Block;
 
 public class BlockHandler 
 {

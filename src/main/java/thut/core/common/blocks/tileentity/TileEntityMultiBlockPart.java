@@ -1,6 +1,5 @@
 package thut.core.common.blocks.tileentity;
 
-import static thut.api.ThutBlocks.*;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -10,6 +9,8 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+
+import static thut.api.ThutBlocks.brick_block;
 
 public class TileEntityMultiBlockPart extends TileEntity implements ISidedInventory
 {

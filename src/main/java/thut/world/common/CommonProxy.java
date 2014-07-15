@@ -1,13 +1,13 @@
 package thut.world.common;
 
 //import powercrystals.minefactoryreloaded.api.FarmingRegistry;
-import thut.world.common.blocks.tileentity.*;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.server.FMLServerHandler;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
+import thut.world.common.blocks.tileentity.TileEntityVolcano;
 
 public class CommonProxy  implements IGuiHandler
 {

@@ -1,11 +1,5 @@
 package thut.tech.client;
 
-import thut.api.render.RenderRebar;
-import thut.tech.client.render.RenderLift;
-import thut.tech.client.render.RenderLiftController;
-import thut.tech.common.CommonProxy;
-import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
-import thut.tech.common.entity.EntityLift;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -15,8 +9,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.sound.SoundLoadEvent;
-import net.minecraftforge.common.MinecraftForge;
+import thut.tech.client.render.RenderLift;
+import thut.tech.client.render.RenderLiftController;
+import thut.tech.common.CommonProxy;
+import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
+import thut.tech.common.entity.EntityLift;
 
 public class ClientProxy extends CommonProxy{
 	

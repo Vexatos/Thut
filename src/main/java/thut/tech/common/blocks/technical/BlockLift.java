@@ -1,29 +1,5 @@
 package thut.tech.common.blocks.technical;
 
-import java.util.List;
-
-//import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
-//import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import thut.api.ThutBlocks;
-import thut.api.blocks.IMetaBlock;
-import thut.tech.common.TechCore;
-import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
-import thut.tech.common.entity.EntityLift;
-import thut.tech.common.items.ItemLinker;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -43,6 +19,17 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.util.RotationHelper;
+import thut.api.ThutBlocks;
+import thut.api.blocks.IMetaBlock;
+import thut.tech.common.TechCore;
+import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
+import thut.tech.common.entity.EntityLift;
+import thut.tech.common.items.ItemLinker;
+
+import java.util.List;
+
+//import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
+//import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 
 public class BlockLift extends Block implements ITileEntityProvider, IMetaBlock//, IConnectableRedNet
 {

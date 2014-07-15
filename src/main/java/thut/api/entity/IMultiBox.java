@@ -1,14 +1,10 @@
 package thut.api.entity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
+import net.minecraft.entity.Entity;
 import thut.api.maths.Matrix3;
 import thut.api.maths.Vector3;
-import net.minecraft.entity.Entity;
+
+import java.util.concurrent.ConcurrentHashMap;
 
 
 public interface IMultiBox 

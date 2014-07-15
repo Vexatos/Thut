@@ -1,14 +1,22 @@
 package thut.tech.common.blocks.tileentity;
 
-
-import static net.minecraftforge.common.util.ForgeDirection.*;
+import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraftforge.common.util.ForgeDirection;
+import thut.api.ThutBlocks;
+import thut.api.maths.Vector3;
+import thut.tech.common.entity.EntityLift;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
-
-import javax.print.attribute.standard.SheetCollate;
 
 //import appeng.api.WorldCoord;
 //import appeng.api.events.GridTileLoadEvent;
@@ -21,35 +29,7 @@ import javax.print.attribute.standard.SheetCollate;
 //import dan200.computer.api.IComputerAccess;
 //import dan200.computer.api.ILuaContext;
 //import dan200.computer.api.IPeripheral;
-
-
 //import universalelectricity.core.block.IElectricityStorage;
-
-
-
-
-
-
-
-import thut.api.ThutBlocks;
-import thut.api.maths.Vector3;
-import thut.tech.common.entity.EntityLift;
-import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Direction;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.common.MinecraftForge;
 
 public class TileEntityLiftAccess extends TileEntity// implements IPeripheral//, IGridMachine, IDirectionalMETile
 {

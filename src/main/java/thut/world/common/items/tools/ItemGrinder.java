@@ -1,25 +1,15 @@
 package thut.world.common.items.tools;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.Random;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.world.World;
-import thut.api.explosion.ExplosionCustom;
 import thut.api.maths.Vector3;
-import thut.core.common.blocks.BlockFluid;
-import thut.core.common.items.ItemDusts;
 import thut.world.common.WorldCore;
-import thut.world.common.blocks.fluids.solids.BlockSolidLava;
-import thut.world.common.corehandlers.ItemHandler;
 
 public class ItemGrinder extends Item {
 

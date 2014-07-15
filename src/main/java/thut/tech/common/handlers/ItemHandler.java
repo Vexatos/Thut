@@ -1,18 +1,17 @@
 package thut.tech.common.handlers;
 
-import static net.minecraft.init.Items.iron_ingot;
-import static thut.api.ThutItems.*;
-import static thut.api.ThutBlocks.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-import thut.api.ThutItems;
 import thut.tech.common.items.ItemLinker;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static net.minecraft.init.Items.iron_ingot;
+import static thut.api.ThutBlocks.*;
+import static thut.api.ThutItems.redstone;
 
 public class ItemHandler 
 {

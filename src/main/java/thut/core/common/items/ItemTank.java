@@ -2,9 +2,6 @@ package thut.core.common.items;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import thut.core.common.blocks.BlockFluid;
-import thut.tech.common.TechCore;
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -14,12 +11,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
+import thut.tech.common.TechCore;
 
 public class ItemTank extends Item implements IFluidContainerItem
 {
 	public ItemTank() {
 		super();
-        this.setHasSubtypes(false);
+    this.setHasSubtypes(false);
 		this.setUnlocalizedName("tank");
 		this.setCreativeTab(TechCore.tabThut);
 	}

@@ -1,36 +1,29 @@
 package thut.concrete.common.blocks.technical;
-import static thut.api.ThutBlocks.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
-import thut.api.blocks.IRebar;
-import thut.api.render.RenderRebar;
-import thut.concrete.common.ConcreteCore;
-import thut.concrete.common.blocks.fluids.BlockLiquidConcrete;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockPane;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import thut.api.blocks.IRebar;
+import thut.api.render.RenderRebar;
+import thut.concrete.common.ConcreteCore;
+import thut.concrete.common.blocks.fluids.BlockLiquidConcrete;
+
+import java.util.List;
+
+import static thut.api.ThutBlocks.liquidREConcrete;
+import static thut.api.ThutBlocks.rebar;
 
 public class BlockRebar extends Block implements IRebar
 {

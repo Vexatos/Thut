@@ -1,12 +1,9 @@
 package thut.concrete.client.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.StatCollector;
-
+import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-
 import thut.concrete.common.blocks.tileentity.crafting.ContainerMixer;
 import thut.concrete.common.blocks.tileentity.crafting.TileEntityMixer;
 

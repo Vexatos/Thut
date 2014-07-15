@@ -1,16 +1,16 @@
 package thut.api.maths;
 
-import static thut.api.maths.Vector3.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.util.DamageSource;
 import thut.api.entity.IMultiBox;
-import thut.api.maths.Vector3;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static thut.api.maths.Vector3.collisionDamage;
+import static thut.api.maths.Vector3.vectorDot;
 
 
 public class Matrix3 {
@@ -220,7 +220,7 @@ public class Matrix3 {
 	 * Computes the minor matrix formed from removal of the ith row and jth
 	 * column of matrix.
 	 * 
-	 * @param Matrix
+	 * @param input
 	 * @param i
 	 * @param j
 	 * @return

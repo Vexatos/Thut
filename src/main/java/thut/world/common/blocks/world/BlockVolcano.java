@@ -1,25 +1,18 @@
 package thut.world.common.blocks.world;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import thut.api.ThutBlocks;
-import thut.api.explosion.ExplosionCustom;
-import thut.world.common.Volcano;
-import thut.world.common.WorldCore;
-import thut.world.common.blocks.tileentity.TileEntityVolcano;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
+import thut.api.ThutBlocks;
+import thut.world.common.Volcano;
+import thut.world.common.WorldCore;
+import thut.world.common.blocks.tileentity.TileEntityVolcano;
 
 public class BlockVolcano extends Block implements ITileEntityProvider
 {

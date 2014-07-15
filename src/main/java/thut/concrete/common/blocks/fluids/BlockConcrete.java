@@ -1,39 +1,30 @@
 package thut.concrete.common.blocks.fluids;
 
-import static thut.api.ThutBlocks.*;
-
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.ConcurrentHashMap;
-
-import thut.api.ThutItems;
-import thut.api.blocks.IRebar;
-import thut.concrete.common.ConcreteCore;
-import thut.core.common.blocks.BlockFluid;
-import thut.core.common.blocks.BlockFluid.FluidInfo;
-import thut.core.common.blocks.tileentity.TileEntityBlockFluid;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
+import thut.api.ThutItems;
+import thut.api.blocks.IRebar;
+import thut.concrete.common.ConcreteCore;
+import thut.core.common.blocks.BlockFluid;
+import thut.core.common.blocks.tileentity.TileEntityBlockFluid;
+
+import java.util.Random;
+
+import static thut.api.ThutBlocks.concrete;
 public class BlockConcrete extends BlockFluid implements ITileEntityProvider//, IAntiPoisonBlock
 {
 	
@@ -98,8 +89,8 @@ public class BlockConcrete extends BlockFluid implements ITileEntityProvider//, 
     {
         int l = par1World.getBlockMetadata(par2, par3, par4);
         float f = 0.0625F;
-        return AxisAlignedBB.getAABBPool().getAABB((double)par2 + this.minX, (double)par3 + this.minY, (double)par4 + this.minZ,
-        								(double)par2 + this.maxX, (double)((float)par3 + (float)l * f), (double)par4 + this.maxZ);
+        return AxisAlignedBB.getBoundingBox((double) par2 + this.minX, (double) par3 + this.minY, (double) par4 + this.minZ,
+            (double) par2 + this.maxX, (double) ((float) par3 + (float) l * f), (double) par4 + this.maxZ);
     }
 	
 	@Override

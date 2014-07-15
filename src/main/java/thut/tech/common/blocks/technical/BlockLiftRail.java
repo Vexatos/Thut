@@ -1,30 +1,5 @@
 package thut.tech.common.blocks.technical;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
-//import appeng.api.me.tiles.IGridTileEntity;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import thut.api.ThutBlocks;
-import thut.api.blocks.IRebar;
-import thut.api.render.RenderRebar;
-import thut.tech.common.TechCore;
-import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -33,16 +8,23 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.Direction;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import thut.api.ThutBlocks;
+import thut.api.blocks.IRebar;
+import thut.api.render.RenderRebar;
+import thut.tech.common.TechCore;
+import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
+
+import java.util.List;
+
+//import appeng.api.me.tiles.IGridTileEntity;
 
 public class BlockLiftRail extends Block implements ITileEntityProvider, IRebar
 {

@@ -1,17 +1,14 @@
 package thut.concrete.common;
 
-import thut.concrete.client.gui.GuiLimekiln;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.IGuiHandler;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import thut.concrete.common.blocks.tileentity.crafting.ContainerLimekiln;
 import thut.concrete.common.blocks.tileentity.crafting.ContainerMixer;
 import thut.concrete.common.blocks.tileentity.crafting.TileEntityKiln;
 import thut.concrete.common.blocks.tileentity.crafting.TileEntityMixer;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.network.IGuiHandler;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.server.FMLServerHandler;
 
 public class CommonProxy  implements IGuiHandler
 {

@@ -1,12 +1,5 @@
 package thut.tech.common.network;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
-import cpw.mods.fml.repackage.com.nothome.delta.ByteBufferSeekableSource;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import net.minecraft.entity.Entity;
@@ -16,6 +9,8 @@ import net.minecraft.world.World;
 import thut.api.network.Packet;
 import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
 import thut.tech.common.entity.EntityLift;
+
+import java.io.*;
 
 public class PacketThutTech extends Packet {
 
