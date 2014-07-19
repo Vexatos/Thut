@@ -7,6 +7,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import thut.api.ThutBlocks;
 
+import java.util.List;
+
 public class CreativeTabThut extends CreativeTabs {
 
   public static CreativeTabThut tabThut = new CreativeTabThut();
@@ -39,4 +41,8 @@ public class CreativeTabThut extends CreativeTabs {
     return Item.getItemFromBlock(ThutBlocks.solidLavas[0]);
   }
 
+  @Override
+  public void displayAllReleventItems(List p_78018_1_) {
+    super.displayAllReleventItems(p_78018_1_);
+  }
 }

@@ -67,3 +67,5 @@ item.spout.name=Spout
 
 # Misc
 itemGroup.tabConcrete=Thut's Concrete
+
+entity.thuttechlift.name=Lift

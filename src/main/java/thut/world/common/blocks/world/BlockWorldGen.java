@@ -21,9 +21,9 @@ public class BlockWorldGen extends Block {
   public IIcon[] iconArray;
 
   public static final String[] names = {
-      "Chalk",
-      "Trass",
-      "Limestone"
+      "chalk",
+      "trass",
+      "limestone"
   };
 
   public static final int MAX_META = names.length;

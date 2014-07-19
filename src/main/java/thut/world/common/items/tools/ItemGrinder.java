@@ -20,7 +20,6 @@ public class ItemGrinder extends ItemThutWorld {
     super();
     this.maxStackSize = 1;
     this.setMaxDamage(MAX_USES);
-    this.setCreativeTab(WorldCore.tabThut);
     this.setUnlocalizedName("smoother");
   }
 

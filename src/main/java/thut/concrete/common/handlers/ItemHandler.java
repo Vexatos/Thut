@@ -29,7 +29,7 @@ public class ItemHandler {
     }
 
     for(Item item : items) {
-      GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
+      GameRegistry.registerItem(item, item.getUnlocalizedName());
     }
   }
 

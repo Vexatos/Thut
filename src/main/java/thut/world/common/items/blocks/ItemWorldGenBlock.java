@@ -36,7 +36,7 @@ public class ItemWorldGenBlock extends ItemBlock {
   @Override
   public String getUnlocalizedName(ItemStack par1ItemStack) {
     int i = par1ItemStack.getItemDamage() % names.length;
-    return super.getUnlocalizedName() + "." + names[i];
+    return "tile." + names[i];
   }
 
   @Override

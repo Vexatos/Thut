@@ -24,7 +24,6 @@ public class ItemSpout extends ItemThutCore {
     super();
     this.setHasSubtypes(true);
     this.setUnlocalizedName("spout");
-    this.setCreativeTab(TechCore.tabThut);
   }
 
   public boolean onItemUse(ItemStack itemstack, EntityPlayer player, World worldObj, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {

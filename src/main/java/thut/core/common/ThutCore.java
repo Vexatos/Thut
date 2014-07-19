@@ -14,6 +14,7 @@ import net.minecraftforge.common.MinecraftForge;
 import thut.api.explosion.ExplosionCustom.Cruncher;
 import thut.api.network.PacketPipeline;
 import thut.core.common.handlers.ConfigHandler;
+import thut.core.common.handlers.ItemHandler;
 import thut.reference.ThutCoreReference;
 
 @Mod(modid = ThutCoreReference.MOD_ID, name = ThutCoreReference.MOD_NAME, version = ThutCoreReference.VERSION)
@@ -42,6 +43,9 @@ public class ThutCore {
   @EventHandler
   public void preInit(FMLPreInitializationEvent e) {
     config = new ConfigHandler(e.getSuggestedConfigurationFile());
+
+    ItemHandler.registerItems();
+
     proxy.loadSounds();
 
     MinecraftForge.EVENT_BUS.register(this);

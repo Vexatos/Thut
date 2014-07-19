@@ -5,14 +5,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import thut.api.ThutItems;
-import thut.concrete.common.ConcreteCore;
+import thut.concrete.common.items.ItemThutConcrete;
 
-public class ItemPaintBrush extends Item {
+public class ItemPaintBrush extends ItemThutConcrete {
 
   public static final int MAX_USES = 128;
   public final int colour;
@@ -23,7 +22,6 @@ public class ItemPaintBrush extends Item {
     this.colour = colour;
     this.setMaxDamage(colour < 16 ? MAX_USES : 0);
     this.setHasSubtypes(true);
-    this.setCreativeTab(ConcreteCore.tabThut);
     this.setUnlocalizedName("paintBrush" + colour);
   }
 

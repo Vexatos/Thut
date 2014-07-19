@@ -21,14 +21,14 @@ tile.volcano.name=Volcano Spawner
 tile.rebar.name=Rebar
 tile.liftRail.name=Elevator Rail
 
-tile.worldBlock.Chalk.name=Chalk
-tile.worldBlock.Trass.name=Trass
-tile.worldBlock.Limestone.name=Limestone
+tile.chalk.name=Chalk
+tile.trass.name=Trass
+tile.limestone.name=Limestone
 
 tile.liftSpawner.name=Elevator
 tile.liftController.name=Elevator Controller Block
-tile.seismicMonitor.display.name=Display
-tile.seismicMonitor.seismicSensor.name=Remote Sensor
+tile.display.name=Display
+tile.seismicSensor.name=Remote Sensor
 
 # Items
 item.dustTrass.name=Trass dust
@@ -67,3 +67,5 @@ item.spout.name=Spout
 
 # Misc
 itemGroup.tabConcrete=Thut's Concrete
+
+entity.thuttechlift.name=Elevator

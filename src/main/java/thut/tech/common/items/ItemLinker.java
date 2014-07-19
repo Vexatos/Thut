@@ -15,14 +15,13 @@ import thut.tech.common.TechCore;
 import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
 import thut.tech.common.entity.EntityLift;
 
-public class ItemLinker extends Item {
+public class ItemLinker extends ItemThutTech {
   public static Item instance;
 
   public ItemLinker() {
     super();
     this.setHasSubtypes(true);
     this.setUnlocalizedName("deviceLinker");
-    this.setCreativeTab(TechCore.tabThut);
     instance = this;
   }
 

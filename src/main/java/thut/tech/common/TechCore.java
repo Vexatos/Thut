@@ -28,8 +28,6 @@ public class TechCore {
 
   public static final String ID = ThutTechReference.MOD_ID.toLowerCase();
 
-  private static final String[] LANGUAGES_SUPPORTED = new String[] { "en_UK", "en_US", "de_DE" };
-
   @EventHandler
   public void preInit(FMLPreInitializationEvent e) {
     BlockHandler.registerBlocks();

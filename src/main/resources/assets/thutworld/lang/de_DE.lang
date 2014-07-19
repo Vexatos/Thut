@@ -21,14 +21,14 @@ tile.volcano.name=Vulkan-Spawner
 tile.rebar.name=Bewehrungsstahl
 tile.liftRail.name=Aufzugsschiene
 
-tile.worldBlock.Chalk.name=Kreide
-tile.worldBlock.Trass.name=Trass
-tile.worldBlock.Limestone.name=Kalkstein
+tile.chalk.name=Kreide
+tile.trass.name=Trass
+tile.limestone.name=Kalkstein
 
 tile.liftSpawner.name=Aufzug
 tile.liftController.name=Aufzugskontrollblock
-tile.seismicMonitor.display.name=Bildschirm
-tile.seismicMonitor.seismicSensor.name=Fernsensor
+tile.display.name=Bildschirm
+tile.seismicSensor.name=Fernsensor
 
 # Items
 item.dustTrass.name=Trass-Staub
@@ -67,3 +67,5 @@ item.spout.name=Hahn
 
 # Misc
 itemGroup.tabConcrete=Thut's Concrete
+
+entity.thuttechlift.name=Fahrstuhl

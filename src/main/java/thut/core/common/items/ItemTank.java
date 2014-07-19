@@ -17,7 +17,6 @@ public class ItemTank extends ItemThutCore implements IFluidContainerItem {
     super();
     this.setHasSubtypes(false);
     this.setUnlocalizedName("tank");
-    this.setCreativeTab(TechCore.tabThut);
   }
 
   @SideOnly(Side.CLIENT)
