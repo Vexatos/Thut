@@ -15,6 +15,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
 import thut.api.ThutBlocks;
+import thut.reference.ThutTechReference;
 import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
 
 public class RenderLiftController extends TileEntitySpecialRenderer {
@@ -93,7 +94,7 @@ public class RenderLiftController extends TileEntitySpecialRenderer {
 
       GL11.glPushMatrix();
       if(renderengine != null) {
-        texture = new ResourceLocation("thuttech:textures/blocks/" + col + "Overlay.png");
+        texture = new ResourceLocation(ThutTechReference.MOD_ID.toLowerCase(), "textures/blocks/" + col + "Overlay.png");
         renderengine.bindTexture(texture);
       }
 

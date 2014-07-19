@@ -14,7 +14,7 @@ import thut.core.common.ThutCore;
 import java.util.HashMap;
 import java.util.List;
 
-public class ItemDusts extends Item {
+public class ItemDusts extends ItemThutCore {
   public static HashMap<Integer, Dust> dusts = new HashMap<Integer, Dust>();
   private static int lastDust = 0;
 
@@ -51,7 +51,7 @@ public class ItemDusts extends Item {
   public String getUnlocalizedName(ItemStack stack) {
     int i = stack.getItemDamage();
     Dust dust = dusts.get(i);
-    return dust != null ? dust.name : super.getUnlocalizedName(stack);
+    return dust != null ? ("item." + dust.name) : super.getUnlocalizedName(stack);
   }
 
   @Override

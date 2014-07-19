@@ -5,14 +5,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import thut.api.maths.Vector3;
 import thut.world.common.WorldCore;
+import thut.world.common.items.ItemThutWorld;
 
 @SuppressWarnings("unchecked")
-public class ItemGrinder extends Item {
+public class ItemGrinder extends ItemThutWorld {
 
   public static final int MAX_USES = 128;
 

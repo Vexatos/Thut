@@ -4,16 +4,19 @@
 # Blocks
 tile.concrete.name=Beton
 tile.concreteLiquid.name=Flüssiger Beton
+tile.asphalt.name=Asphalt
+tile.asphaltLiquid.name=Flüssiger Asphalt
 tile.Lava0.name=Mafische Lava
 tile.Lava1.name=Intermediäre Lava
 tile.Lava2.name=Felsische Lava
 tile.solidLava0.name=Basalt
 tile.solidLava1.name=Andesit
 tile.solidLava2.name=Rhyolith
-tile.dust.name=Vulkanische Asche
+tile.dust.name=Vulkanasche
 tile.REconcrete.name=Verstärkter Beton
 tile.REconcreteLiquid.name=Flüssiger Verstärkter Beton
 tile.blockLimekiln.name=Kalkofen
+tile.blockMixer.name=Mixer
 tile.volcano.name=Vulkan-Spawner
 tile.rebar.name=Bewehrungsstahl
 tile.liftRail.name=Aufzugsschiene
@@ -22,18 +25,18 @@ tile.worldBlock.Chalk.name=Kreide
 tile.worldBlock.Trass.name=Trass
 tile.worldBlock.Limestone.name=Kalkstein
 
-tile.Block.liftSpawner.name=Aufzug
-tile.Block.liftController.name=Aufzugskontrollblock
+tile.liftSpawner.name=Aufzug
+tile.liftController.name=Aufzugskontrollblock
 tile.seismicMonitor.display.name=Bildschirm
 tile.seismicMonitor.seismicSensor.name=Fernsensor
 
 # Items
-item.dust.dustTrass.name=Trass-Staub
-item.dust.dustCaO.name=Kalk
-item.dust.dust.name=Staub
-item.dust.dustCement.name=Zement
-item.dust.dustCaCO3.name=Calciumkarbonat
-item.dust.dustSulfur.name=Schwefel
+item.dustTrass.name=Trass-Staub
+item.dustCaO.name=Kalk
+item.dust.name=Staub
+item.dustCement.name=Zement
+item.dustCaCO3.name=Calciumkarbonat
+item.dustSulfur.name=Schwefel
 
 item.paintBrush0.name=Schwarzer Pinsel
 item.paintBrush1.name=Roter Pinsel
@@ -58,6 +61,9 @@ item.smoother.name=Glätter
 item.bucketOconcrete.name=Beton-Eimer
 
 item.deviceLinker.name=Geräte-Linker
+
+item.tank.name=Tank
+item.spout.name=Hahn
 
 # Misc
 itemGroup.tabConcrete=Thut's Concrete

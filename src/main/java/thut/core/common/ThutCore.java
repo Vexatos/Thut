@@ -14,20 +14,17 @@ import net.minecraftforge.common.MinecraftForge;
 import thut.api.explosion.ExplosionCustom.Cruncher;
 import thut.api.network.PacketPipeline;
 import thut.core.common.handlers.ConfigHandler;
+import thut.reference.ThutCoreReference;
 
-@Mod(modid = "ThutCore", name = "ThutCore", version = "0.0.1")
+@Mod(modid = ThutCoreReference.MOD_ID, name = ThutCoreReference.MOD_NAME, version = ThutCoreReference.VERSION)
 
 public class ThutCore {
 
-  @SidedProxy(clientSide = "thut.core.client.ClientProxy", serverSide = "thut.core.common.CommonProxy")
+  @SidedProxy(clientSide = ThutCoreReference.CLIENT_PROXY_CLASS, serverSide = ThutCoreReference.COMMON_PROXY_CLASS)
   public static CommonProxy proxy;
 
-  @Instance("ThutCore")
+  @Instance(ThutCoreReference.MOD_ID)
   public static ThutCore instance;
-
-  public static String modid = "ThutCore";
-
-  private static final String[] LANGUAGES_SUPPORTED = new String[] { "en_UK", "en_US", "de_DE" };
 
   public static CreativeTabThut tabThut = CreativeTabThut.tabThut;
 

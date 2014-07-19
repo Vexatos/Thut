@@ -40,7 +40,7 @@ public class BlockLift extends Block implements ITileEntityProvider, IMetaBlock/
     super(Material.iron);
     setHardness(3.5f);
     setCreativeTab(TechCore.tabThut);
-    this.setBlockName("Block");
+    this.setBlockName("blockLift");
     ThutBlocks.lift = this;
   }
 
@@ -356,7 +356,7 @@ public class BlockLift extends Block implements ITileEntityProvider, IMetaBlock/
 
   @Override
   public String getUnlocalizedName(ItemStack stack) {
-    return stack.getItemDamage() == 1 ? "tile.control" : "tile.lift";
+    return stack.getItemDamage() == 1 ? "tile.liftController" : "tile.liftSpawner";
   }
 
   ///////////////////////////////////////////////MFR Rednet Compatibility stuff///////////////////////////////////////////////////

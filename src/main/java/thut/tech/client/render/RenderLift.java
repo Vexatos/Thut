@@ -7,6 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
+import thut.reference.ThutTechReference;
 import thut.tech.common.entity.EntityLift;
 
 public class RenderLift extends Render {
@@ -26,7 +27,7 @@ public class RenderLift extends Render {
   ResourceLocation texture;
 
   public RenderLift() {
-    modelTurret = AdvancedModelLoader.loadModel(new ResourceLocation("thuttech", "models/lift.obj"));
+    modelTurret = AdvancedModelLoader.loadModel(new ResourceLocation(ThutTechReference.MOD_ID.toLowerCase(), "models/lift.obj"));
   }
 
   public void render(Entity te, double x, double y, double z) {
@@ -53,7 +54,7 @@ public class RenderLift extends Render {
     GL11.glScalef(2, 2.5F, 2);
 
     GL11.glTranslated((-5 + lift.size) * 0.25, 0, 0);
-    texture = new ResourceLocation("thuttech", "textures/models/railAttatchment.png");
+    texture = new ResourceLocation(ThutTechReference.MOD_ID.toLowerCase(), "textures/models/railAttatchment.png");
     FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
     modelTurret.renderPart("railAttatchment2");
 
@@ -80,13 +81,13 @@ public class RenderLift extends Render {
 
     GL11.glScalef(scale, 2, scale);
 
-    texture = new ResourceLocation("thuttech", "textures/models/liftFloor.png");
+    texture = new ResourceLocation(ThutTechReference.MOD_ID.toLowerCase(), "textures/models/liftFloor.png");
     FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
     modelTurret.renderPart("base");
 
     GL11.glScalef(1, 0.5F, 1);
     GL11.glTranslated(0, 4.5, 0);
-    texture = new ResourceLocation("thuttech", "textures/models/liftRoof.png");
+    texture = new ResourceLocation(ThutTechReference.MOD_ID.toLowerCase(), "textures/models/liftRoof.png");
     FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
     modelTurret.renderPart("base");
 

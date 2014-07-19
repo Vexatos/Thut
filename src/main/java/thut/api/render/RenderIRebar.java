@@ -173,7 +173,7 @@ public class RenderIRebar {
         zMax = z + length - dl,
         xMax = x + (0.5 + dS + dT - 0.001);
     tessAddCuboid(tessellator, icon, xMin, zMin, yMin, xMax, zMax, yMax, sides);
-		
+
 		/*/
 		double 	yMin = y+(0.5-dS-dT),
 				zMin = z+dl+min,

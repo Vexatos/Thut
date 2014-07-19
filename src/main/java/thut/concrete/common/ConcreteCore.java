@@ -14,14 +14,17 @@ import thut.concrete.common.handlers.BlockHandler;
 import thut.concrete.common.handlers.ItemHandler;
 import thut.concrete.common.handlers.RecipeHandler;
 import thut.core.common.CreativeTabThut;
+import thut.reference.ThutConcreteReference;
 
-@Mod(modid = "ThutConcrete", name = "Thut's Concrete", version = "1.0.0")
+@Mod(modid = ThutConcreteReference.MOD_ID, name = ThutConcreteReference.MOD_NAME, version = ThutConcreteReference.VERSION)
 public class ConcreteCore {
-  @SidedProxy(clientSide = "thut.concrete.client.ClientProxy", serverSide = "thut.concrete.common.CommonProxy")
+  @SidedProxy(clientSide = ThutConcreteReference.CLIENT_PROXY_CLASS, serverSide = ThutConcreteReference.COMMON_PROXY_CLASS)
   public static CommonProxy proxy;
 
-  @Instance("ThutConcrete")
+  @Instance(ThutConcreteReference.MOD_ID)
   public static ConcreteCore instance;
+
+  public static final String ID = ThutConcreteReference.MOD_ID.toLowerCase();
 
   private static final String[] LANGUAGES_SUPPORTED = new String[] { "en_UK", "en_US", "de_DE" };
 

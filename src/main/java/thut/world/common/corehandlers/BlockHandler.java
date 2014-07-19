@@ -71,7 +71,7 @@ public class BlockHandler {
 
   public void registerBlocks() {
     for(Block block : blocks) {
-      GameRegistry.registerBlock(block, block.getUnlocalizedName().substring(5));
+      GameRegistry.registerBlock(block, block.getUnlocalizedName());
     }
 
   }

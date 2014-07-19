@@ -10,22 +10,23 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.config.Configuration;
 import thut.api.network.PacketPipeline;
 import thut.core.common.CreativeTabThut;
+import thut.reference.ThutTechReference;
 import thut.tech.common.handlers.BlockHandler;
 import thut.tech.common.handlers.ConfigHandler;
 import thut.tech.common.handlers.ItemHandler;
 import thut.tech.common.network.PacketThutTech;
 
-@Mod(modid = TechCore.ID, name = "Thut's Tech", version = "1.0.0")
+@Mod(modid = ThutTechReference.MOD_ID, name = ThutTechReference.MOD_NAME, version = "1.0.0")
 public class TechCore {
-  @SidedProxy(clientSide = "thut.tech.client.ClientProxy", serverSide = "thut.tech.common.CommonProxy")
+  @SidedProxy(clientSide = ThutTechReference.CLIENT_PROXY_CLASS, serverSide = ThutTechReference.COMMON_PROXY_CLASS)
   public static CommonProxy proxy;
 
-  public static final String ID = "thuttech";
-
-  @Instance(ID)
+  @Instance(ThutTechReference.MOD_ID)
   public static TechCore instance;
 
   public static CreativeTabThut tabThut = CreativeTabThut.tabThut;
+
+  public static final String ID = ThutTechReference.MOD_ID.toLowerCase();
 
   private static final String[] LANGUAGES_SUPPORTED = new String[] { "en_UK", "en_US", "de_DE" };
 

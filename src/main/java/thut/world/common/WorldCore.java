@@ -10,7 +10,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
@@ -25,31 +24,29 @@ import thut.api.ThutBlocks;
 import thut.api.maths.Vector3;
 import thut.api.network.PacketPipeline;
 import thut.core.common.CreativeTabThut;
+import thut.reference.ThutWorldReference;
 import thut.world.common.corehandlers.*;
 import thut.world.common.worldgen.BiomeGenChalk;
 import thut.world.common.worldgen.BiomeVolcano;
 import thut.world.common.worldgen.TrassWorldGen;
 import thut.world.common.worldgen.VolcanoWorldGen;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Mod(modid = "thutworld", name = "Thut's WorldGen", version = "0.0.1")
+@Mod(modid = ThutWorldReference.MOD_ID, name = ThutWorldReference.MOD_NAME, version = ThutWorldReference.VERSION)
 public class WorldCore {
 
-  @SidedProxy(clientSide = "thut.world.client.ClientProxy", serverSide = "thut.world.common.CommonProxy")
+  @SidedProxy(clientSide = ThutWorldReference.CLIENT_PROXY_CLASS, serverSide = ThutWorldReference.COMMON_PROXY_CLASS)
   public static CommonProxy proxy;
-  public static final String TEXTURE_PATH = "thutworld:";
+  public static final String TEXTURE_PATH = ThutWorldReference.MOD_ID.toLowerCase() + ":";
 
-  @Instance("thutworld")
+  @Instance(ThutWorldReference.MOD_ID)
   public static WorldCore instance;
 
-  public static String modid = "thutworld";
-
-  private static final String[] LANGUAGES_SUPPORTED = new String[] { "en_UK", "en_US", "de_DE" };
+  public static final String ID = ThutWorldReference.MOD_ID.toLowerCase();
 
   public static CreativeTabThut tabThut = CreativeTabThut.tabThut;
 
@@ -109,7 +106,7 @@ public class WorldCore {
     BiomeDictionary.registerBiomeType(chalk, Type.PLAINS);
     BiomeManager.addVillageBiome(chalk, true);
     initOreMap();
-    registerLanguages();
+    //registerLanguages();
 
     PacketPipeline.packetPipeline.initalise();
     //*/
@@ -120,45 +117,6 @@ public class WorldCore {
     initHardens();
     recipes.registerRecipes();
     PacketPipeline.packetPipeline.postInitialise();
-
-    initPokecubeCompat();
-  }
-
-  public static void initPokecubeCompat() {
-    try {
-      Class<?> pokecubeCoreHelper = Class.forName("pokecube.core.Mod_Pokecube_Helper");
-      Class<?> pokecubeCore = Class.forName("pokecube.core.mod_Pokecube");
-
-      Method m = pokecubeCoreHelper.getDeclaredMethod("getSurfaceBlocks");
-      List<Block> blocks = (List<Block>) m.invoke(null);
-
-      if(blocks != null) {
-        for(Block b : ThutBlocks.solidLavas) {
-          if(!blocks.contains(b)) {
-            blocks.add(b);
-          }
-        }
-      }
-
-      m = pokecubeCoreHelper.getDeclaredMethod("getCaveBlocks");
-      blocks = (List<Block>) m.invoke(null);
-
-      if(blocks != null) {
-        for(Block b : ThutBlocks.solidLavas) {
-          if(!blocks.contains(b)) {
-            blocks.add(b);
-          }
-        }
-      }
-
-      m = pokecubeCore.getDeclaredMethod("getEntityClassFromPokedexNumber", int.class);
-
-      test = (Class) m.invoke(null, 41);
-
-    } catch(ClassNotFoundException ex) {
-    } catch(Exception ex) {
-      ex.printStackTrace();//TODO remove this
-    }
   }
 
   static int entityID = 0;
@@ -207,10 +165,10 @@ public class WorldCore {
 
   }
 
-  public void registerLanguages() {
+  /*public void registerLanguages() {
     /**
      * Handle language support
-     */
+     *\/
     int languages = 0;
 
     for(String language : LANGUAGES_SUPPORTED) {
@@ -232,7 +190,7 @@ public class WorldCore {
       }
     }
 
-  }
+  }*/
 
   public void initOreMap() {
     oreMap0.put("copper", 500);

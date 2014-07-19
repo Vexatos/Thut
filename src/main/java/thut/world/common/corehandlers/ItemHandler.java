@@ -55,7 +55,7 @@ public class ItemHandler {
   }
 
   void addDusts() {
-    ItemDusts.addDust(new Dust("dust", WorldCore.modid) {
+    ItemDusts.addDust(new Dust("dust", WorldCore.ID) {
       public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
         if(!world.isRemote && stack.getItemDamage() == 0) {
           int x1 = ForgeDirection.getOrientation(side).offsetX + x, y1 = ForgeDirection.getOrientation(side).offsetY + y, z1 = ForgeDirection.getOrientation(side).offsetZ + z;
@@ -93,17 +93,17 @@ public class ItemHandler {
         return false;
       }
     });
-    ItemDusts.addDust(new Dust("dustCaCO3", WorldCore.modid));
-    ItemDusts.addDust(new Dust("dustCaO", WorldCore.modid));
-    ItemDusts.addDust(new Dust("dustTrass", WorldCore.modid));
-    ItemDusts.addDust(new Dust("dustCement", WorldCore.modid));
-    ItemDusts.addDust(new Dust("dustSulfur", WorldCore.modid));
+    ItemDusts.addDust(new Dust("dustCaCO3", WorldCore.ID));
+    ItemDusts.addDust(new Dust("dustCaO", WorldCore.ID));
+    ItemDusts.addDust(new Dust("dustTrass", WorldCore.ID));
+    ItemDusts.addDust(new Dust("dustCement", WorldCore.ID));
+    ItemDusts.addDust(new Dust("dustSulfur", WorldCore.ID));
 
   }
 
   public void registerItems() {
     for(Item item : itemList) {
-      GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
+      GameRegistry.registerItem(item, item.getUnlocalizedName());
     }
   }
 }
