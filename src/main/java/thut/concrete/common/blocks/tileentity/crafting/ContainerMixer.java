@@ -6,6 +6,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import thut.util.LogHelper;
 
 public class ContainerMixer extends Container {
   private TileEntityMixer tileEntity;
@@ -117,11 +118,11 @@ public class ContainerMixer extends Container {
   }
 
   public boolean func_94530_a(ItemStack par1ItemStack, Slot par2Slot) {
-    System.out.println("test");
+    LogHelper.debug("test");
     if(par1ItemStack == null) {
       return true;
     }
-    System.out.println(par2Slot.slotNumber + " " + par1ItemStack);
+    LogHelper.debug(par2Slot.slotNumber + " " + par1ItemStack);
     return tileEntity.isItemValidForSlot(par2Slot.slotNumber, par1ItemStack);
   }
 }

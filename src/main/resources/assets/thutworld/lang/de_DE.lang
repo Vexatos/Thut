@@ -15,8 +15,8 @@ tile.solidLava2.name=Rhyolith
 tile.dust.name=Vulkanasche
 tile.REconcrete.name=Verstärkter Beton
 tile.REconcreteLiquid.name=Flüssiger Verstärkter Beton
-tile.blockLimekiln.name=Kalkofen
-tile.blockMixer.name=Mixer
+tile.blockLimekiln.name=Kalkofen [WIP]
+tile.blockMixer.name=Mixer [WIP]
 tile.volcano.name=Vulkan-Spawner
 tile.rebar.name=Bewehrungsstahl
 tile.liftRail.name=Aufzugsschiene
@@ -27,8 +27,8 @@ tile.limestone.name=Kalkstein
 
 tile.liftSpawner.name=Aufzug
 tile.liftController.name=Aufzugskontrollblock
-tile.display.name=Bildschirm
-tile.seismicSensor.name=Fernsensor
+tile.display.name=Bildschirm [WIP]
+tile.seismicSensor.name=Fernsensor [WIP]
 
 # Items
 item.dustTrass.name=Trass-Staub
@@ -60,12 +60,21 @@ item.wallstamper.name=Stempel
 item.smoother.name=Glätter
 item.bucketOconcrete.name=Beton-Eimer
 
-item.deviceLinker.name=Geräte-Linker
+item.deviceLinker.name=Verbindungsgerät
 
 item.tank.name=Tank
 item.spout.name=Hahn
 
+# Chat Messages
+msg.noRails.name=Schienen sind nicht vollständig.
+msg.noBase.name=Basis ist nicht vollständig.
+
+msg.liftSet.name=Aufzug ausgewähkt
+
+msg.floorSet.name=Dieses Stockwerk wurde auf Nummer %s gesetzt
+msg.particlesLeft.name=Verbleibende Partikel
+
 # Misc
 itemGroup.tabConcrete=Thut's Concrete
 
-entity.thuttechlift.name=Fahrstuhl
+entity.thuttechlift.name=Aufzug

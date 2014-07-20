@@ -21,6 +21,7 @@ import thut.concrete.common.ConcreteCore;
 import thut.concrete.common.blocks.tileentity.crafting.TileEntityMixer;
 import thut.core.common.blocks.tileentity.TileEntityMultiBlockPartFluids;
 import thut.core.common.blocks.tileentity.TileEntityMultiCoreFluids;
+import thut.util.LogHelper;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -78,7 +79,7 @@ public class BlockMixer extends Block implements ITileEntityProvider {
         }
       }
       // Check if the multi-block structure has been formed.
-      System.out.println(Arrays.toString(tileEntity.tankCapacities()));
+      LogHelper.debug(Arrays.toString(tileEntity.tankCapacities()));
       if(tileEntity.getIsValid())//TODO gui in core
       {
         player.openGui(ConcreteCore.instance, ConcreteCore.GUIIDs.mixer, world, x, y, z);
@@ -204,7 +205,7 @@ public class BlockMixer extends Block implements ITileEntityProvider {
 
   @Override
   public Item getItemDropped(int par1, Random par2Random, int par3) {
-    System.out.println(par1 + " " + par3);
+    LogHelper.debug(par1 + " " + par3);
     if(par1 == 2) {
       return Item.getItemFromBlock(brick_block);
     }

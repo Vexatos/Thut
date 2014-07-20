@@ -90,7 +90,7 @@ public class PacketThutTech extends Packet {
         TileEntity te = player.worldObj.getTileEntity(x, y, z);
         if(te instanceof TileEntityLiftAccess) {
           ((TileEntityLiftAccess) te).lift = EntityLift.lifts.get(id);
-          System.out.println(te + " " + ((TileEntityLiftAccess) te).lift);
+          //System.out.println(te + " " + ((TileEntityLiftAccess) te).lift);
         }
       }
     } catch(IOException e) {

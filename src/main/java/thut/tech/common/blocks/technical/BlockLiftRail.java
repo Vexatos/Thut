@@ -60,10 +60,10 @@ public class BlockLiftRail extends Block implements ITileEntityProvider, IRebar 
       }
     } else {
       TileEntity te = world.getTileEntity(x, y, z);
-      if(te != null && te instanceof TileEntityLiftAccess) {
+      /*if(te != null && te instanceof TileEntityLiftAccess) {
         String test = "" + ((TileEntityLiftAccess) te).connectionInfo();
-        player.addChatMessage(new ChatComponentText(test));
-      }
+        player.addChatComponentMessage(new ChatComponentText(test));
+      }*/
     }
     return placed;
   }

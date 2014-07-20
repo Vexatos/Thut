@@ -7,7 +7,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -17,6 +16,7 @@ import net.minecraft.tileentity.TileEntityHopper;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import thut.api.ThutBlocks;
 import thut.api.entity.IMultiBox;
@@ -27,6 +27,7 @@ import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
 import thut.tech.common.handlers.ConfigHandler;
 import thut.tech.common.items.ItemLinker;
 import thut.tech.common.network.PacketThutTech;
+import thut.util.ThutUtils;
 
 import java.util.List;
 import java.util.Random;
@@ -185,7 +186,7 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
     List<Entity> list = worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox);
     if(list.size() > 0) {
       hasPassenger = true;
-      System.out.println("passenger");
+      //System.out.println("passenger");
     } else {
       hasPassenger = false;
     }
@@ -226,7 +227,7 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
     up = destinationY > posY;
     toMoveY = true;
     called = true;
-    System.out.println("called client " + destinationY + " " + up);
+    //System.out.println("called client " + destinationY + " " + up);
   }
 
   public void callYValue(int yValue) {
@@ -488,31 +489,27 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
    */
   public boolean interactFirst(EntityPlayer player) {
     ItemStack item = player.getHeldItem();
-    System.out.println("interact");
+    //System.out.println("interact");
     if(player.isSneaking() && item != null && item.getItem() instanceof ItemLinker) {
       if(item.stackTagCompound == null) {
         item.setTagCompound(new NBTTagCompound());
       }
       item.stackTagCompound.setInteger("lift", id);
       if(worldObj.isRemote) {
-        player.addChatMessage(new ChatComponentText("lift set"));
+        player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("msg.liftSet.name")));
       }
       return true;
     }
-    if(player.isSneaking() && item != null && (
-        player.getHeldItem().getItem().getUnlocalizedName().toLowerCase().contains("wrench")
-            || player.getHeldItem().getItem().getUnlocalizedName().toLowerCase().contains("screwdriver")
-            || player.getHeldItem().getItem().getUnlocalizedName().equals(Items.stick.getUnlocalizedName())
-    )) {
-      if(worldObj.isRemote) {
-        player.addChatMessage(new ChatComponentText("killed lift"));
-      }
+    if(player.isSneaking() && item != null &&
+        ThutUtils.isWrench(player.getHeldItem().getItem(), true, false)) {
+      /*if(worldObj.isRemote) {
+        player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("msg.liftKilled.name")));
+      }*/
       setDead();
       return true;
     }
-    if(item != null && (
-        player.getHeldItem().getItem().getUnlocalizedName().toLowerCase().contains("wrench")
-            || player.getHeldItem().getItem().getUnlocalizedName().toLowerCase().contains("screwdriver"))) {
+    if(item != null &&
+        ThutUtils.isWrench(player.getHeldItem().getItem(), false, false)) {
 
       axis = !axis;
       return true;
@@ -695,7 +692,22 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
 
   @Override
   public ItemStack[] getLastActiveItems() {
-    return null;
+    return new ItemStack[0];
+  }
+
+  @Override
+  public int getTotalArmorValue() {
+    return 0;
+  }
+
+  @Override
+  protected float applyPotionDamageCalculations(DamageSource p_70672_1_, float p_70672_2_) {
+    return 1;
+  }
+
+  @Override
+  protected void damageEntity(DamageSource p_70665_1_, float p_70665_2_) {
+    this.setHealth(this.getMaxHealth());
   }
 
 }

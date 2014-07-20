@@ -263,7 +263,7 @@ public class TileEntityLiftAccess extends TileEntity// implements IPeripheral//,
         buttonPress(button);
         calledFloor = lift.destinationFloor;
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-        System.out.println(calledFloor + " " + button + " " + lift);
+        //System.out.println(calledFloor + " " + button + " " + lift);
       }
     }
   }

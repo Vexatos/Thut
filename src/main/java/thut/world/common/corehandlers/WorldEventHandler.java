@@ -8,6 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import thut.util.LogHelper;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -160,7 +161,7 @@ public class WorldEventHandler {
     } else {
       mount.setPosition(x, y, z);
     }
-    System.out.println(player.ridingEntity);
+    LogHelper.debug(player.ridingEntity);
     player.onChunkLoad();
     mount.worldObj.updateEntities();
 

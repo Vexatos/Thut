@@ -9,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import thut.api.ThutBlocks;
 import thut.tech.common.TechCore;
@@ -96,7 +97,7 @@ public class ItemLinker extends ItemThutTech {
         te.setLift(lift);
         te.setFloor(te.getButtonFromClick(side, hitX, hitY, hitZ));
         if(worldObj.isRemote) {
-          player.addChatMessage(new ChatComponentText("Set this Floor to " + te.floor));
+          player.addChatComponentMessage(new ChatComponentText(String.format(StatCollector.translateToLocal("msg.floorSet.name"), te.floor)));
         }
         return true;
       }

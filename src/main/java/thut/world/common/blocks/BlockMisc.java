@@ -13,6 +13,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import thut.api.ThutBlocks;
 import thut.api.explosion.ExplosionCustom;
+import thut.util.LogHelper;
 import thut.world.common.WorldCore;
 import thut.world.common.corehandlers.ConfigHandler;
 
@@ -50,7 +51,7 @@ public class BlockMisc extends Block {
 
     if(!worldObj.isRemote && item != null && item.getItem() instanceof ItemDye) {
       int meta1 = (15 - item.getItemDamage()) + 1;
-      System.out.println("boom");
+      LogHelper.debug("boom");
       ExplosionCustom boom = new ExplosionCustom(worldObj, null, x + 0.5, y + 0.5, z + 0.5, meta1 * meta1 * 250);
       boom.doExplosionA();
       return true;

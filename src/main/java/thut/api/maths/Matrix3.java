@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.util.DamageSource;
 import thut.api.entity.IMultiBox;
+import thut.util.LogHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -323,7 +324,7 @@ public class Matrix3 {
 
     offset.y += e.yOffset;
     if(entity.isNaN()) {
-      System.out.println("HOW DIS NAN " + entity.toString());
+      LogHelper.warn("HOW DIS NAN " + entity.toString());
       entity.clear();
     }
 
@@ -535,7 +536,7 @@ public class Matrix3 {
       Vector3 offset, Vector3 entity) {
     offset.y += e.yOffset;
     if(entity.isNaN()) {
-      System.out.println("HOW DIS NAN " + entity.toString());
+      LogHelper.warn("HOW DIS NAN " + entity.toString());
       entity.clear();
     }
 

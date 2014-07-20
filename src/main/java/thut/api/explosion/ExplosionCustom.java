@@ -9,6 +9,7 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import thut.api.maths.Vector3;
+import thut.util.LogHelper;
 
 import java.util.*;
 
@@ -568,7 +569,7 @@ public class ExplosionCustom extends Explosion {
       new Thread(new Runnable() {
         public void run() {
 
-          System.out.println("Initializing explosion volume");
+          LogHelper.info("Initializing explosion volume");
 
           Integer[] quadrant;
           Double[] radii;
@@ -613,7 +614,7 @@ public class ExplosionCustom extends Explosion {
             locs.add(i);
           }
 
-          System.out.println("Explosion volume Initialized");
+          LogHelper.info("Explosion volume Initialized");
 
         }
       }).start();

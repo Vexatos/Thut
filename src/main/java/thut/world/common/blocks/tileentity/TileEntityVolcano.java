@@ -9,6 +9,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.MinecraftForge;
@@ -16,6 +17,7 @@ import thut.api.ThutBlocks;
 import thut.api.explosion.ExplosionCustom;
 import thut.api.maths.Vector3;
 import thut.core.common.blocks.BlockFluid;
+import thut.util.LogHelper;
 import thut.world.common.Volcano;
 import thut.world.common.WorldCore;
 import thut.world.common.blocks.fluids.liquids.BlockLava;
@@ -162,14 +164,14 @@ public class TileEntityVolcano extends TileEntity {
           dormant = true;
           v.activeFactor = 0.01;
           if(ConfigHandler.debugPrints) {
-            System.out.println(types[typeid] + " Volcano at location " + xCoord + " " + z + " changed to activity state: " + getState() + " " + worldObj);
+            LogHelper.info(types[typeid] + " Volcano at location " + xCoord + " " + z + " changed to activity state: " + getState() + " " + worldObj);
           }
         }
       } else if(rand.nextGaussian() > activityRate) {
         dormant = false;
         v.activeFactor = 1;
         if(ConfigHandler.debugPrints) {
-          System.out.println(types[typeid] + " Volcano at location " + xCoord + " " + z + " changed to activity state: " + getState() + " " + worldObj);
+          LogHelper.info(types[typeid] + " Volcano at location " + xCoord + " " + z + " changed to activity state: " + getState() + " " + worldObj);
         }
       }
       if(v.growthFactor != growthFactor || v.minorFactor != minorFactor || v.majorFactor != majorFactor || v.activeFactor != activeFactor) {
@@ -198,7 +200,7 @@ public class TileEntityVolcano extends TileEntity {
       grown = test;
       if(grown) {
         if(ConfigHandler.debugPrints) {
-          System.out.println("max size " + (maxLength));
+          LogHelper.info("max size " + (maxLength));
         }
       }
     }
@@ -221,7 +223,7 @@ public class TileEntityVolcano extends TileEntity {
   public void setDormancy(boolean bool) {
     dormant = bool;
     if(ConfigHandler.debugPrints) {
-      System.out.println(types[typeid] + " Volcano at location " + xCoord + " " + z + " changed to activity state: " + getState() + " " + worldObj);
+      LogHelper.info(types[typeid] + " Volcano at location " + xCoord + " " + z + " changed to activity state: " + getState() + " " + worldObj);
     }
   }
 
@@ -264,7 +266,7 @@ public class TileEntityVolcano extends TileEntity {
       }
     }
     if(!worldObj.isRemote && ConfigHandler.debugPrints) {
-      System.out.println("Initiated " + types[typeid] + " Volcano at location " + xCoord + " " + z + " of activity state: " + getState() +
+      LogHelper.info("Initiated " + types[typeid] + " Volcano at location " + xCoord + " " + z + " of activity state: " + getState() +
           ". Maximum Height of:  " + (height + 64) + ". Number of Vents: " + (sideVents.size() + 1) + ". Number of sulfur vents: " + (sulfurVents.size()));
     }
     lavaBlock = BlockLava.getInstance(typeid);
@@ -484,7 +486,7 @@ public class TileEntityVolcano extends TileEntity {
         active = false;
         v.activeFactor = 0.5;
         if(ConfigHandler.debugPrints) {
-          System.out.println(types[typeid] + " Volcano at location " + xCoord + " " + z + " changed to activity state: " + getState());
+          LogHelper.info(types[typeid] + " Volcano at location " + xCoord + " " + z + " changed to activity state: " + getState());
         }
       }
 
@@ -500,7 +502,7 @@ public class TileEntityVolcano extends TileEntity {
       active = true;
       v.activeFactor = 1;
       if(ConfigHandler.debugPrints) {
-        System.out.println(types[typeid] + " Volcano at location " + xCoord + " " + z + " changed to activity state: " + getState());
+        LogHelper.info(types[typeid] + " Volcano at location " + xCoord + " " + z + " changed to activity state: " + getState());
       }
     }
   }
@@ -560,7 +562,7 @@ public class TileEntityVolcano extends TileEntity {
       if(!active && erupted) {
         active = true;
         if(ConfigHandler.debugPrints) {
-          System.out.println(types[typeid] + " Volcano at location " + xCoord + " " + z + " changed to activity state: " + getState());
+          LogHelper.info(types[typeid] + " Volcano at location " + xCoord + " " + z + " changed to activity state: " + getState());
         }
       }
       erupted = false;
@@ -612,7 +614,7 @@ public class TileEntityVolcano extends TileEntity {
 
     particles.removeAll(deadParticles);
     if(ConfigHandler.debugPrints && worldObj.isRemote && WorldCore.proxy.getPlayer() != null) {
-      String message = "Particles Remaining" + (particles.size());
+      String message = StatCollector.translateToLocal("msg.particlesLeft.name") + (particles.size());
       WorldCore.proxy.getPlayer().addChatMessage(new ChatComponentText(message));
     }
   }
@@ -702,7 +704,7 @@ public class TileEntityVolcano extends TileEntity {
       toErupt = true;
       active = false;
       if(ConfigHandler.debugPrints) {
-        System.out.println(types[typeid] + " Volcano at location " + xCoord + " " + this.z + " changed to activity state: " + getState() + " " + worldObj);
+        LogHelper.info(types[typeid] + " Volcano at location " + xCoord + " " + this.z + " changed to activity state: " + getState() + " " + worldObj);
       }
     }
 
@@ -711,7 +713,7 @@ public class TileEntityVolcano extends TileEntity {
 
       if(!worldObj.isRemote) {
         if(ConfigHandler.debugPrints) {
-          System.out.println(types[typeid] + " Volcano at location " + xCoord + " " + this.z + " minor Explosion " + centre.toString() + " " + worldObj);
+          LogHelper.info(types[typeid] + " Volcano at location " + xCoord + " " + this.z + " minor Explosion " + centre.toString() + " " + worldObj);
         }
 
         double rad = Math.random() * 75;

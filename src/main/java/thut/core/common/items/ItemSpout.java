@@ -15,6 +15,7 @@ import net.minecraftforge.fluids.IFluidContainerItem;
 import thut.api.maths.Vector3;
 import thut.core.common.blocks.BlockFluid;
 import thut.tech.common.TechCore;
+import thut.util.LogHelper;
 
 import java.util.ArrayList;
 
@@ -74,7 +75,7 @@ public class ItemSpout extends ItemThutCore {
 
           toDrain = maxMeta == 0 ? 1000 : (int) (metaDiff * 1000f / (maxMeta + 1));
           next.setBlock(worldObj, b, metaDiff - 1, 3);
-          System.out.println(tank.drain(stack, toDrain, true).amount);
+          LogHelper.debug(tank.drain(stack, toDrain, true).amount);
           break;
         } else {
           tank.drain(stack, 1000, true);

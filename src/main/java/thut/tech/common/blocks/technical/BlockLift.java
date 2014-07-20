@@ -7,7 +7,7 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -24,7 +25,7 @@ import thut.api.blocks.IMetaBlock;
 import thut.tech.common.TechCore;
 import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
 import thut.tech.common.entity.EntityLift;
-import thut.tech.common.items.ItemLinker;
+import thut.util.ThutUtils;
 
 import java.util.List;
 
@@ -44,10 +45,27 @@ public class BlockLift extends Block implements ITileEntityProvider, IMetaBlock/
     ThutBlocks.lift = this;
   }
 
-  /**
+  @Override
+  public void onBlockPlacedBy(World worldObj, int x, int y, int z, EntityLivingBase entity, ItemStack item) {
+    if(entity instanceof EntityPlayer) {
+      int meta = worldObj.getBlockMetadata(x, y, z);
+      if(meta == 1) {
+        TileEntity t = worldObj.getTileEntity(x, y, z);
+        if(t instanceof TileEntityLiftAccess) {
+          TileEntityLiftAccess te = (TileEntityLiftAccess) worldObj.getTileEntity(x, y, z);
+          if(te != null) {
+            ForgeDirection fside = getFacingfromEntity(entity);
+            te.setSide(fside.getOpposite().ordinal());
+          }
+        }
+      }
+    }
+  }
+
+  /*/**
    * Called when a block is placed using its ItemBlock. Args: World, X, Y, Z, side, hitX, hitY, hitZ, block metadata
-   */
-  public int onBlockPlaced(World worldObj, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int meta) {
+   *\/
+    public int onBlockPlaced(World worldObj, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int meta) {
     if(meta == 1) {
       TileEntity t = worldObj.getTileEntity(x, y, z);
       if(t instanceof TileEntityLiftAccess) {
@@ -59,28 +77,33 @@ public class BlockLift extends Block implements ITileEntityProvider, IMetaBlock/
       }
     }
     return meta;
-  }
+  }*/
 
-  public ForgeDirection getFacingfromEntity(EntityLiving e) {
+  /**
+   * Returns the direction the entity is facing
+   * @param e The entity
+   * @return The ForgeDirection the entity is facing
+   */
+  private ForgeDirection getFacingfromEntity(EntityLivingBase e) {
     ForgeDirection side = null;
-    double angle = e.rotationYaw % 360;
+    double angle = Math.abs(e.getRotationYawHead()) % 360;
 
     if(angle > 315 || angle <= 45) {
       return ForgeDirection.SOUTH;
     }
     if(angle > 45 && angle <= 135) {
-      return ForgeDirection.WEST;
+      return ForgeDirection.EAST;
     }
     if(angle > 135 && angle <= 225) {
       return ForgeDirection.NORTH;
     }
     if(angle > 225 && angle <= 315) {
-      return ForgeDirection.EAST;
+      return ForgeDirection.WEST;
     }
-
     return side;
   }
 
+  @Override
   public boolean onBlockActivated(World worldObj, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
     int meta = worldObj.getBlockMetadata(x, y, z);
 
@@ -88,10 +111,7 @@ public class BlockLift extends Block implements ITileEntityProvider, IMetaBlock/
       TileEntityLiftAccess te = (TileEntityLiftAccess) worldObj.getTileEntity(x, y, z);
       if(te != null && side != te.side) {
         if(player.getHeldItem() != null &&
-            player.getHeldItem().getItem().getUnlocalizedName().toLowerCase().contains("wrench")
-            || player.getHeldItem().getItem().getUnlocalizedName().toLowerCase().contains("screwdriver")
-            || player.getHeldItem().getItem() instanceof ItemLinker
-            ) {
+            ThutUtils.isWrench(player.getHeldItem().getItem(), false, true)) {
           te.setSide(side);
           return true;
         }
@@ -106,12 +126,11 @@ public class BlockLift extends Block implements ITileEntityProvider, IMetaBlock/
       ret = checkRailsForSpawn(worldObj, true, x, y, z);
       if(!ret) {
         ret = checkRailsForSpawn(worldObj, false, x, y, z);
-        if(ret) {
-          rails = true;
-        }
       }
+      rails = ret;
+
       if(!ret && worldObj.isRemote) {
-        player.addChatMessage(new ChatComponentText("complete rails not found"));
+        player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("msg.noRails.name")));
       }
       if(ret) {
         ret = checkBlocks(worldObj, x, y, z);
@@ -123,7 +142,7 @@ public class BlockLift extends Block implements ITileEntityProvider, IMetaBlock/
         worldObj.spawnEntityInWorld(lift);
       }
       if(!ret && rails && worldObj.isRemote) {
-        player.addChatMessage(new ChatComponentText("complete base not found"));
+        player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("msg.noBase.name")));
       }
     } else if(meta == 1) {
       TileEntityLiftAccess te = (TileEntityLiftAccess) worldObj.getTileEntity(x, y, z);
@@ -133,8 +152,7 @@ public class BlockLift extends Block implements ITileEntityProvider, IMetaBlock/
       }
       ret = true;
     }
-
-    return ret;
+    return true;
   }
 
   public boolean checkRailsForSpawn(World worldObj, boolean axis, int x, int y, int z) {

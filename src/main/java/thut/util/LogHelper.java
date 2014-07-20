@@ -5,7 +5,8 @@ import org.apache.logging.log4j.Level;
 import thut.reference.ThutCoreReference;
 
 /**
- * @author Vexatos
+ * Totally not stolen from EE3
+ * @author Pahimar
  */
 public class LogHelper {
   public static void log(Level logLevel, Object object) {

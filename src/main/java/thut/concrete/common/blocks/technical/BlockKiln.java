@@ -22,6 +22,7 @@ import thut.concrete.common.blocks.tileentity.crafting.TileEntityKiln;
 import thut.concrete.common.blocks.tileentity.crafting.TileEntityMixer;
 import thut.core.common.blocks.tileentity.TileEntityMultiBlockPart;
 import thut.core.common.blocks.tileentity.TileEntityMultiCore;
+import thut.util.LogHelper;
 
 import java.util.Random;
 
@@ -260,7 +261,7 @@ public class BlockKiln extends Block implements ITileEntityProvider {
 
   @Override
   public Item getItemDropped(int par1, Random par2Random, int par3) {
-    System.out.println(par1 + " " + par3);
+    LogHelper.debug(par1 + " " + par3);
     if(par1 == 2) {
       return Item.getItemFromBlock(brick_block);
     }

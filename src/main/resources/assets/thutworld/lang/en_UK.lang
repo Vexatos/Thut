@@ -15,8 +15,8 @@ tile.solidLava2.name=Rhyolite
 tile.dust.name=Volcanic Ash
 tile.REconcrete.name=Reinforced Concrete
 tile.REconcreteLiquid.name=Liquid Reinforced Concrete
-tile.blockLimekiln.name=Lime Kiln
-tile.blockMixer.name=Mixer
+tile.blockLimekiln.name=Lime Kiln [WIP]
+tile.blockMixer.name=Mixer [WIP]
 tile.volcano.name=Volcano Spawner
 tile.rebar.name=Rebar
 tile.liftRail.name=Lift Rail
@@ -27,8 +27,8 @@ tile.worldBlock.Limestone.name=Limestone
 
 tile.liftSpawner.name=Lift
 tile.liftController.name=Lift Controller Block
-tile.seismicMonitor.display.name=Display
-tile.seismicMonitor.seismicSensor.name=Remote Sensor
+tile.seismicMonitor.display.name=Display [WIP]
+tile.seismicMonitor.seismicSensor.name=Remote Sensor [WIP]
 
 # Items
 item.dustTrass.name=Trass dust
@@ -60,10 +60,19 @@ item.wallstamper.name=Stamper
 item.smoother.name=Smoother
 item.bucketOconcrete.name=Bucket of Concrete
 
-item.deviceLinker.name=Device Linker
+item.deviceLinker.name=Linking Device
 
 item.tank.name=Tank
 item.spout.name=Spout
+
+# Chat Messages
+msg.noRails.name=Complete rails not found.
+msg.noBase.name=Complete base not found.
+
+msg.liftSet.name=Lift set
+
+msg.floorSet.name=Set this Floor to %s
+msg.particlesLeft.name=Particles Remaining
 
 # Misc
 itemGroup.tabConcrete=Thut's Concrete
