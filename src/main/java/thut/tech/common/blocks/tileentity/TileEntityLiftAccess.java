@@ -13,6 +13,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import thut.api.ThutBlocks;
 import thut.api.maths.Vector3;
 import thut.tech.common.entity.EntityLift;
+import thut.util.LogHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -263,7 +264,7 @@ public class TileEntityLiftAccess extends TileEntity// implements IPeripheral//,
         buttonPress(button);
         calledFloor = lift.destinationFloor;
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-        //System.out.println(calledFloor + " " + button + " " + lift);
+        LogHelper.debug(calledFloor + " " + button + " " + lift);
       }
     }
   }

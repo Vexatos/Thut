@@ -225,7 +225,7 @@ public class RenderIRebar {
 
 		
 		/*/
-		double 	xMin = x+(0.5-dS-dT),
+    double 	xMin = x+(0.5-dS-dT),
 				yMin = y+dl+min,
 				zMin = z+(0.5-dS-dT),
 				xMax = x+(0.5-dS+dT),
