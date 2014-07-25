@@ -612,9 +612,11 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
 
   public void removeFloor(int floor) {
     for(int i = 0; i < 4; i++) {
-      floors[floor - 1][i] = null;
-      for(int j = 0; j < 3; j++) {
-        floorArray[floor - 1][i][j] = 0;
+      if(floor - 1 >= 0) {
+        floors[floor - 1][i] = null;
+        for(int j = 0; j < 3; j++) {
+          floorArray[floor - 1][i][j] = 0;
+        }
       }
     }
   }

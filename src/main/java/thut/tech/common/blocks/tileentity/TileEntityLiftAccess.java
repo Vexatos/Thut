@@ -230,7 +230,9 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
 
   public synchronized void setFloor(int floor) {
     if(lift != null && floor <= 64 && floor > 0) {
-      lift.removeFloor(this.floor);
+      if(this.floor >= 1) {
+        lift.removeFloor(this.floor);
+      }
       lift.setFloor(this, floor);
       this.floor = floor;
       worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
