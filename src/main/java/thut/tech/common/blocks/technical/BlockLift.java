@@ -85,20 +85,21 @@ public class BlockLift extends Block implements ITileEntityProvider, IMetaBlock/
    * @return The ForgeDirection the entity is facing
    */
   private ForgeDirection getFacingfromEntity(EntityLivingBase e) {
-    ForgeDirection side = null;
-    double angle = Math.abs(e.getRotationYawHead()) % 360;
+    ForgeDirection side = ForgeDirection.NORTH;
+    double angle = e.rotationYaw % 360;
+    double angle2 = Math.abs(angle);
 
-    if(angle > 315 || angle <= 45) {
+    if(angle2 > 315 || angle2 <= 45) {
       return ForgeDirection.SOUTH;
     }
-    if(angle > 45 && angle <= 135) {
-      return ForgeDirection.EAST;
+    if((angle > 45 && angle <= 135) || (angle < -225 && angle >= -315)) {
+      return ForgeDirection.WEST;
     }
-    if(angle > 135 && angle <= 225) {
+    if(angle2 > 135 && angle2 <= 225) {
       return ForgeDirection.NORTH;
     }
-    if(angle > 225 && angle <= 315) {
-      return ForgeDirection.WEST;
+    if((angle > 225 && angle <= 315) || (angle < -45 && angle >= -135)) {
+      return ForgeDirection.EAST;
     }
     return side;
   }

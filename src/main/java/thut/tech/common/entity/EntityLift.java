@@ -1,5 +1,6 @@
 package thut.tech.common.entity;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
@@ -23,6 +24,7 @@ import thut.api.entity.IMultiBox;
 import thut.api.maths.Matrix3;
 import thut.api.maths.Vector3;
 import thut.api.network.PacketPipeline;
+import thut.reference.ThutTechReference;
 import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
 import thut.tech.common.handlers.ConfigHandler;
 import thut.tech.common.items.ItemLinker;
@@ -71,6 +73,9 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
 
   public double prevFloorY = 0;
   public double prevFloor = 0;
+
+  public double currentFloor = 0;
+  private boolean hasJustMoved = false;
 
   public boolean called = false;
   TileEntityLiftAccess current;
@@ -162,8 +167,27 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
     accelerate();
     if(toMoveY) {
       doMotion();
+      if(Loader.isModLoaded(ThutTechReference.MOD_OPENCOMPUTERS)) {
+        for(int j = 0; j < floorArray.length; j++) {
+          for(int i = 0; i < 4; i++) {
+            if(floorArray[j][i] != null) {
+              if(floorArray[j][i] != null && floorArray[j][i].length == 3) {
+                int y = floorArray[j][i][1];
+                if(y == ((int) this.posY) && (currentFloor != j + 1) && (j + 1 != 0)) {
+                  currentFloor = j + 1;
+                  hasJustMoved = true;
+                }
+              }
+            }
+          }
+        }
+      }
     } else {
       setPosition(posX, called && Math.abs(posY - destinationY) < 0.5 ? destinationY : Math.floor(posY), posZ);
+      if(hasJustMoved) {
+        currentFloor = destinationFloor + 1;
+        hasJustMoved = false;
+      }
       called = false;
       prevFloor = destinationFloor;
       prevFloorY = destinationY;
@@ -276,6 +300,10 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
           prevFloor = destinationFloor;
           prevFloorY = destinationY;
           destinationY = -1;
+          if(hasJustMoved) {
+            currentFloor = destinationFloor;
+            hasJustMoved = false;
+          }
           destinationFloor = 0;
           if(current != null) {
             current.setCalled(false);
@@ -308,6 +336,10 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
           prevFloor = destinationFloor;
           prevFloorY = destinationY;
           destinationY = -1;
+          if(hasJustMoved) {
+            currentFloor = destinationFloor;
+            hasJustMoved = false;
+          }
           destinationFloor = 0;
           if(current != null) {
             current.setCalled(false);
@@ -543,7 +575,7 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
     id = data.readInt();
   }
 
-  public void setFoor(TileEntityLiftAccess te, int floor) {
+  public void setFloor(TileEntityLiftAccess te, int floor) {
     if(te.floor == 0) {
       int j = 0;
       for(int i = 0; i < 4; i++) {
@@ -577,6 +609,15 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
   //	{
   //		super.entityInit();
   //	}
+
+  public void removeFloor(int floor) {
+    for(int i = 0; i < 4; i++) {
+      floors[floor - 1][i] = null;
+      for(int j = 0; j < 3; j++) {
+        floorArray[floor - 1][i][j] = 0;
+      }
+    }
+  }
 
   @Override
   public void readEntityFromNBT(NBTTagCompound nbt) {

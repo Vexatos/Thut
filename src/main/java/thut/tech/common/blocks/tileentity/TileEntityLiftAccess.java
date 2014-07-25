@@ -1,5 +1,9 @@
 package thut.tech.common.blocks.tileentity;
 
+import cpw.mods.fml.common.Optional;
+import li.cil.oc.api.network.Arguments;
+import li.cil.oc.api.network.Callback;
+import li.cil.oc.api.network.Context;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
@@ -12,6 +16,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
 import thut.api.ThutBlocks;
 import thut.api.maths.Vector3;
+import thut.reference.ThutTechReference;
 import thut.tech.common.entity.EntityLift;
 import thut.util.LogHelper;
 
@@ -32,7 +37,11 @@ import java.util.Vector;
 //import dan200.computer.api.IPeripheral;
 //import universalelectricity.core.block.IElectricityStorage;
 
-public class TileEntityLiftAccess extends TileEntity// implements IPeripheral//, IGridMachine, IDirectionalMETile
+@Optional.InterfaceList({
+    @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = ThutTechReference.MOD_OPENCOMPUTERS),
+    //@Optional.Interface(iface = "dan200.computer.api.IPeripheral", modid = "ComputerCraft")
+})
+public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.network.SimpleComponent// implements IPeripheral//, IGridMachine, IDirectionalMETile
 {
 
   public int power = 0;
@@ -221,7 +230,8 @@ public class TileEntityLiftAccess extends TileEntity// implements IPeripheral//,
 
   public synchronized void setFloor(int floor) {
     if(lift != null && floor <= 64 && floor > 0) {
-      lift.setFoor(this, floor);
+      lift.removeFloor(this.floor);
+      lift.setFloor(this, floor);
       this.floor = floor;
       worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     }
@@ -251,7 +261,7 @@ public class TileEntityLiftAccess extends TileEntity// implements IPeripheral//,
     side = par1.getInteger("side");
     floor = par1.getInteger("floor");
     liftID = par1.getInteger("lift");
-    root = root.readFromNBT(par1, "root");
+    root = Vector3.readFromNBT(par1, "root");
     if(EntityLift.lifts.containsKey(liftID)) {
       lift = EntityLift.lifts.get(liftID);
     }
@@ -259,7 +269,7 @@ public class TileEntityLiftAccess extends TileEntity// implements IPeripheral//,
 
   public void doButtonClick(int side, float hitX, float hitY, float hitZ) {
     if(!worldObj.isRemote && lift != null) {
-      if(side == this.side) {
+      if(side == this.side && !lift.called) {
         int button = getButtonFromClick(side, hitX, hitY, hitZ);
         buttonPress(button);
         calledFloor = lift.destinationFloor;
@@ -394,6 +404,82 @@ public class TileEntityLiftAccess extends TileEntity// implements IPeripheral//,
 
   public void setBlock(ForgeDirection side, Block id, int meta) {
     worldObj.setBlock(xCoord + side.offsetX, yCoord + side.offsetY, zCoord + side.offsetZ, id, meta, 3);
+  }
+
+  @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
+  @Override
+  public String getComponentName() {
+    return "elevator";
+  }
+
+  @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
+  @Callback
+  public Object[] call(Context context, Arguments args) {
+    if(args.count() >= 1 && args.checkInteger(0) >= 1 && args.checkInteger(0) <= 16) {
+      int lFloor = args.checkInteger(0);
+      if(!worldObj.isRemote && lift != null) {
+        if(!lift.called && doesFloorExist(lFloor)) {
+          buttonPress(lFloor);
+          calledFloor = lift.destinationFloor;
+          worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+          LogHelper.debug(calledFloor + " " + lFloor + " " + lift);
+        } else {
+          return new Object[] { false, "floor does not exist." };
+        }
+      }
+    } else {
+      args.checkInteger(0);
+    }
+    return new Object[] { true };
+  }
+
+  @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
+  @Callback
+  public Object[] isReady(Context context, Arguments args) {
+    return new Object[] { !lift.called };
+  }
+
+  @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
+  @Callback
+  public Object[] getLocalFloor(Context context, Arguments args) {
+    return new Object[] { this.floor };
+  }
+
+  @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
+  @Callback
+  public Object[] getElevatorFloor(Context context, Arguments args) {
+    if(lift.destinationFloor >= 1) {
+      return new Object[] { lift.currentFloor, lift.destinationFloor };
+    }
+    return new Object[] { lift.currentFloor };
+  }
+
+  @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
+  private boolean doesFloorExist(int lFloor) {
+    if(lift.floorArray[lFloor - 1] != null) {
+      for(int j = 0; j < 4; j++) {
+        if(lift.floorArray[lFloor - 1][j] != null && lift.floorArray[lFloor - 1][j].length == 3) {
+          int x = lift.floorArray[lFloor - 1][j][0];
+          int y = lift.floorArray[lFloor - 1][j][1];
+          int z = lift.floorArray[lFloor - 1][j][2];
+          if(worldObj.getTileEntity(x, y, z) != null && worldObj.getTileEntity(x, y, z) instanceof TileEntityLiftAccess) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
+
+  @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
+  @Callback
+  public Object[] doesFloorExist(Context context, Arguments args) {
+    if(args.count() >= 1 && args.checkInteger(0) >= 1 && args.checkInteger(0) <= 16) {
+      return new Object[] { doesFloorExist(args.checkInteger(0)) };
+    } else {
+      args.checkInteger(0);
+    }
+    return new Object[] { false, "floor is not a number between 1 and 16" };
   }
 
   //////////////////////////////////////////////////////////ComputerCraft Stuff/////////////////////////////////////////////////////////////////
