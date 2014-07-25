@@ -72,6 +72,7 @@ msg.noBase.name=Complete base not found.
 msg.liftSet.name=Elevator set
 
 msg.floorSet.name=Set this Floor to %s
+msg.floorError.name=Floor %s already exists.
 msg.particlesLeft.name=Particles Remaining
 
 

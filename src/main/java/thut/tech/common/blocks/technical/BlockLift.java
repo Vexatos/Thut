@@ -120,20 +120,21 @@ public class BlockLift extends Block implements ITileEntityProvider, IMetaBlock/
     }
     worldObj.markBlockForUpdate(x, y, z);
     boolean ret = false;
-    int id;
+    int check;
     boolean rails = false;
 
     if(meta == 0) {
-      ret = checkRailsForSpawn(worldObj, true, x, y, z);
-      if(!ret) {
-        ret = checkRailsForSpawn(worldObj, false, x, y, z);
+      check = checkRailsForSpawn(worldObj, true, x, y, z);
+      if(check == -1) {
+        check = checkRailsForSpawn(worldObj, false, x, y, z);
       }
-      rails = ret;
+      rails = check != -1;
 
-      if(!ret && worldObj.isRemote) {
+      ret = check == 1;
+      if(check == -1 && worldObj.isRemote) {
         player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("msg.noRails.name")));
       }
-      if(ret) {
+      if(check == 1) {
         ret = checkBlocks(worldObj, x, y, z);
       }
 
@@ -151,18 +152,19 @@ public class BlockLift extends Block implements ITileEntityProvider, IMetaBlock/
       if(te != null) {
         te.doButtonClick(side, hitX, hitY, hitZ);
       }
-      ret = true;
+      //ret = true;
     }
     return true;
   }
 
-  public boolean checkRailsForSpawn(World worldObj, boolean axis, int x, int y, int z) {
+  public int checkRailsForSpawn(World worldObj, boolean axis, int x, int y, int z) {
     int[] sizes = { 5, 3, 1 };
 
-    boolean ret = false;
+    int ret = -1;
 
     for(int j = 0; j < 3; j++) {
-      boolean bool = true;
+      boolean bool1 = true;
+      boolean bool2 = true;
 
       int rail = (int) (1 + Math.floor(sizes[j] / 2));
       int colmn = (int) (Math.floor(sizes[j] / 2));
@@ -171,18 +173,21 @@ public class BlockLift extends Block implements ITileEntityProvider, IMetaBlock/
       int[][] colm = { { colmn, 0 }, { -colmn, 0 }, { 0, colmn }, { 0, -colmn } };
 
       for(int i = 0; i < 5; i++) {
-        bool = bool && worldObj.getBlock(x + sides[axis ? 2 : 0][0], y + i, z + sides[axis ? 2 : 0][1]) == ThutBlocks.liftRail;
-        bool = bool && worldObj.getBlock(x + sides[axis ? 3 : 1][0], y + i, z + sides[axis ? 3 : 1][1]) == ThutBlocks.liftRail;
+        bool1 = bool1 && worldObj.getBlock(x + sides[axis ? 2 : 0][0], y + i, z + sides[axis ? 2 : 0][1]) == ThutBlocks.liftRail;
+        bool1 = bool1 && worldObj.getBlock(x + sides[axis ? 3 : 1][0], y + i, z + sides[axis ? 3 : 1][1]) == ThutBlocks.liftRail;
 
         if(i != 0 && colmn != 0) {
-          bool = bool && (worldObj.getBlock(x + colm[axis ? 2 : 0][0], y + i, z + colm[axis ? 2 : 0][1]) == Blocks.iron_block);
-          bool = bool && (worldObj.getBlock(x + colm[axis ? 3 : 1][0], y + i, z + colm[axis ? 3 : 1][1]) == Blocks.iron_block);
+          bool2 = bool2 && (worldObj.getBlock(x + colm[axis ? 2 : 0][0], y + i, z + colm[axis ? 2 : 0][1]) == Blocks.iron_block);
+          bool2 = bool2 && (worldObj.getBlock(x + colm[axis ? 3 : 1][0], y + i, z + colm[axis ? 3 : 1][1]) == Blocks.iron_block);
         }
 
       }
-      if(bool) {
+      if(bool1 && bool2) {
         size = sizes[j];
-        ret = true;
+        ret = 1;
+        break;
+      } else if(bool1) {
+        ret = 0;
         break;
       }
     }

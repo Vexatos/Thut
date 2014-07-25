@@ -3,7 +3,6 @@ package thut.tech.common.blocks.technical;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
@@ -19,7 +18,6 @@ import thut.api.ThutBlocks;
 import thut.api.blocks.IRebar;
 import thut.api.render.RenderRebar;
 import thut.tech.common.TechCore;
-import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
 
 import java.util.List;
 
@@ -42,6 +40,7 @@ public class BlockLiftRail extends Block implements IRebar {
     setResistance(10.0f);
   }
 
+  @Override
   public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9) {
     boolean placed = false;
     ItemStack item = player.getHeldItem();
@@ -164,6 +163,7 @@ public class BlockLiftRail extends Block implements IRebar {
   /**
    * Called when the block is clicked by a player. Args: x, y, z, entityPlayer
    */
+  @Override
   public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player) {
     boolean placed = false;
     ItemStack item = player.getHeldItem();
@@ -203,8 +203,9 @@ public class BlockLiftRail extends Block implements IRebar {
   /**
    * Can this block provide power. Only wire currently seems to have this change based on its state.
    */
+  @Override
   public boolean canProvidePower() {
-    return true;
+    return false;
   }
 
   /**
@@ -212,7 +213,7 @@ public class BlockLiftRail extends Block implements IRebar {
    * returns true, standard redstone propagation rules will apply instead and this will not be called. Args: World, X,
    * Y, Z, side. Note that the side is reversed - eg it is 1 (up) when checking the bottom of the block.
    */
-  public int isProvidingWeakPower(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
+  /*public int isProvidingWeakPower(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
 
     TileEntityLiftAccess controller = (TileEntityLiftAccess) par1IBlockAccess.getTileEntity(par2, par3, par4);
     if(controller != null) {
@@ -221,18 +222,18 @@ public class BlockLiftRail extends Block implements IRebar {
     }
 
     return 0;
-  }
+  }*/
 
   /**
    * Returns true if the block is emitting direct/strong redstone power on the specified side. Args: World, X, Y, Z,
    * side. Note that the side is reversed - eg it is 1 (up) when checking the bottom of the block.
    */
-  public int isProvidingStrongPower(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
+  /*public int isProvidingStrongPower(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
     return isProvidingWeakPower(par1IBlockAccess, par2, par3, par4, par5);
-  }
+  }*/
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+  @Override
   @SideOnly(Side.CLIENT)
   public void registerBlockIcons(IIconRegister par1IconRegister) {
     this.blockIcon = par1IconRegister.registerIcon("thuttech:liftRails");
@@ -291,6 +292,7 @@ public class BlockLiftRail extends Block implements IRebar {
     return new boolean[] { false, false, false, false, true, true };
   }
 
+  @Override
   public boolean isOpaqueCube() {
     return false;
   }

@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
@@ -29,6 +28,7 @@ public class ItemLinker extends ItemThutTech {
   /**
    * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
    */
+  @Override
   public ItemStack onItemRightClick(ItemStack itemstack, World worldObj, EntityPlayer player) {
 
     if(itemstack.stackTagCompound == null) {
@@ -71,6 +71,7 @@ public class ItemLinker extends ItemThutTech {
     return itemstack;
   }
 
+  @Override
   public boolean onItemUse(ItemStack itemstack, EntityPlayer player, World worldObj, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
     boolean ret = false;
 
@@ -95,9 +96,15 @@ public class ItemLinker extends ItemThutTech {
       if(player.isSneaking() && lift != null && id == ThutBlocks.lift && meta == 1) {
         TileEntityLiftAccess te = (TileEntityLiftAccess) worldObj.getTileEntity(x, y, z);
         te.setLift(lift);
-        te.setFloor(te.getButtonFromClick(side, hitX, hitY, hitZ));
+        int button = te.getButtonFromClick(side, hitX, hitY, hitZ);
+        //boolean floorSet = te.setFloor(button);
+        te.setFloor(button);
         if(worldObj.isRemote) {
+          //if(floorSet) {
           player.addChatComponentMessage(new ChatComponentText(String.format(StatCollector.translateToLocal("msg.floorSet.name"), te.floor)));
+          //} else {
+          //  player.addChatComponentMessage(new ChatComponentText(String.format(StatCollector.translateToLocal("msg.floorError.name"), button)));
+          //}
         }
         return true;
       }
@@ -112,20 +119,22 @@ public class ItemLinker extends ItemThutTech {
     return false;
   }
 
-  public void setLift(EntityLift lift, ItemStack stack) {
+  /*public void setLift(EntityLift lift, ItemStack stack) {
     if(stack.stackTagCompound == null) {
       stack.setTagCompound(new NBTTagCompound());
     }
     stack.stackTagCompound.setInteger("lift", lift.id);
-  }
+  }*/
 
   /**
    * If this function returns true (or the item is damageable), the ItemStack's NBT tag will be sent to the client.
    */
+  @Override
   public boolean getShareTag() {
     return true;
   }
 
+  @Override
   @SideOnly(Side.CLIENT)
   public void registerIcons(IIconRegister par1IconRegister) {
     this.itemIcon = par1IconRegister.registerIcon(TechCore.ID + ":" + "liftController");

@@ -89,6 +89,10 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
       //			GridTileLoadEvent evt = new GridTileLoadEvent(this, worldObj, getLocation());
       //			MinecraftForge.EVENT_BUS.post(evt);
 
+      if(EntityLift.lifts.containsKey(liftID)) {
+        lift = EntityLift.lifts.get(liftID);
+      }
+
       first = false;
     }
 
@@ -206,11 +210,19 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
     return "";
   }
 
+  @Override
+  public void onChunkUnload() {
+    lift.removeFloor(this.floor);
+    clearConnections();
+  }
+
   /**
    * invalidates a tile entity
    */
+  @Override
   public void invalidate() {
     this.tileEntityInvalid = true;
+    lift.removeFloor(this.floor);
     clearConnections();
     //		GridTileUnloadEvent evt = new GridTileUnloadEvent(this, worldObj, getLocation());
     //		MinecraftForge.EVENT_BUS.post(evt);
@@ -219,6 +231,7 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
   /**
    * validates a tile entity
    */
+  @Override
   public void validate() {
     this.tileEntityInvalid = false;
   }
@@ -270,7 +283,7 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
     floor = par1.getInteger("floor");
     liftID = par1.getInteger("lift");
     root = Vector3.readFromNBT(par1, "root");
-    if(EntityLift.lifts.containsKey(liftID)) {
+    if(liftID != -1 && EntityLift.lifts.containsKey(liftID)) {
       lift = EntityLift.lifts.get(liftID);
     }
   }
@@ -465,7 +478,7 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
     if(lift.destinationFloor >= 1) {
       return new Object[] { lift.currentFloor, lift.destinationFloor };
     }
-    return new Object[] { lift.currentFloor };
+    return new Object[] { lift.curDestFloor };
   }
 
   @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
@@ -564,12 +577,12 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
   //
   //		@Override
   //		public void attach(IComputerAccess computer) {
-  //			// TODO Auto-generated method stub
+  //			// xTODO Auto-generated method stub
   //		}
   //
   //		@Override
   //		public void detach(IComputerAccess computer) {
-  //			// TODO Auto-generated method stub
+  //			// xTODO Auto-generated method stub
   //
   //		}
   //

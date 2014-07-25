@@ -68,6 +68,7 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
 
   public double destinationY = 0;
   public int destinationFloor = 0;
+  public int curDestFloor = destinationFloor;
 
   public double prevFloorY = 0;
   public double prevFloor = 0;
@@ -102,6 +103,7 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
     this.isImmuneToFire = true;
   }
 
+  @Override
   public boolean canRenderOnFire() {
     return false;
   }
@@ -113,6 +115,7 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
     return false;
   }
 
+  @Override
   public boolean isPotionApplicable(PotionEffect par1PotionEffect) {
     return false;
   }
@@ -153,6 +156,7 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
     //		}
 
     if(first) {
+      lifts.put(id, this);
       checkRails(0);
       first = false;
     }
@@ -171,7 +175,7 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
             if(floorArray[j][i] != null) {
               if(floorArray[j][i] != null && floorArray[j][i].length == 3) {
                 int y = floorArray[j][i][1];
-                if(y == ((int) this.posY) && (currentFloor != j + 1) && (j + 1 != 0)) {
+                if(y == ((int) Math.round(this.posY)) && (currentFloor != j + 1) && (j + 1 != 0)) {
                   currentFloor = j + 1;
                   hasJustMoved = true;
                 }
@@ -183,7 +187,8 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
     } else {
       setPosition(posX, called && Math.abs(posY - destinationY) < 0.5 ? destinationY : Math.floor(posY), posZ);
       if(hasJustMoved) {
-        currentFloor = destinationFloor + 1;
+        currentFloor = destinationFloor;
+        curDestFloor = destinationFloor;
         hasJustMoved = false;
       }
       called = false;
@@ -296,6 +301,7 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
           destinationY = -1;
           if(hasJustMoved) {
             currentFloor = destinationFloor;
+            curDestFloor = destinationFloor;
             hasJustMoved = false;
           }
           destinationFloor = 0;
@@ -332,6 +338,7 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
           destinationY = -1;
           if(hasJustMoved) {
             currentFloor = destinationFloor;
+            curDestFloor = destinationFloor;
             hasJustMoved = false;
           }
           destinationFloor = 0;
@@ -545,6 +552,38 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
   }
 
   @Override
+  public void onDeath(DamageSource p_70645_1_) {
+    for(int i = 0; i < floors.length; i++) {
+      for(int j = 0; j < 4; j++) {
+        if(floors[i][j] != null) {
+          TileEntityLiftAccess te = floors[i][j];
+          te.floor = 0;
+          te.lift = null;
+          worldObj.markBlockForUpdate(te.xCoord, te.yCoord, te.zCoord);
+        }
+        floors[i][j] = null;
+      }
+    }
+    super.onDeath(p_70645_1_);
+  }
+
+  @Override
+  public void onDeathUpdate() {
+    for(int i = 0; i < floors.length; i++) {
+      for(int j = 0; j < 4; j++) {
+        if(floors[i][j] != null) {
+          TileEntityLiftAccess te = floors[i][j];
+          te.floor = 0;
+          te.lift = null;
+          worldObj.markBlockForUpdate(te.xCoord, te.yCoord, te.zCoord);
+        }
+        floors[i][j] = null;
+      }
+    }
+    super.onDeathUpdate();
+  }
+
+  @Override
   /**
    * Will get destroyed next tick.
    */
@@ -553,6 +592,7 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
       int iron = size == 1 ? 4 : size == 3 ? 23 : 55;
       this.dropItem(Item.getItemFromBlock(Blocks.iron_block), iron);
       this.dropItem(Item.getItemFromBlock(ThutBlocks.lift), 1);
+      EntityLift.lifts.remove(this.id);
     }
     super.setDead();
   }
