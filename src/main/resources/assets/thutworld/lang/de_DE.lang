@@ -62,8 +62,8 @@ item.bucketOconcrete.name=Beton-Eimer
 
 item.deviceLinker.name=Verbindungsgerät
 
-item.tank.name=Tank
-item.spout.name=Hahn
+item.tank.name=Tank [WIP]
+item.spout.name=Hahn [WIP]
 
 # Chat Messages
 msg.noRails.name=Schienen sind nicht vollständig.

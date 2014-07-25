@@ -220,7 +220,7 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
   }
 
   public boolean checkSides() {
-    List<Entity> check = worldObj.getEntitiesWithinAABB(EntityLift.class, AxisAlignedBB.getBoundingBox(xCoord + 0.5 - 1, yCoord, zCoord + 0.5 - 1, xCoord + 0.5 + 1, yCoord + 1, zCoord + 0.5 + 1));
+    List check = worldObj.getEntitiesWithinAABB(EntityLift.class, AxisAlignedBB.getBoundingBox(xCoord + 0.5 - 1, yCoord, zCoord + 0.5 - 1, xCoord + 0.5 + 1, yCoord + 1, zCoord + 0.5 + 1));
     if(check != null && check.size() > 0) {
       lift = (EntityLift) check.get(0);
       liftID = lift.id;
@@ -425,8 +425,10 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
           calledFloor = lift.destinationFloor;
           worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
           LogHelper.debug(calledFloor + " " + lFloor + " " + lift);
-        } else {
+        } else if(!doesFloorExist(lFloor)) {
           return new Object[] { false, "floor does not exist." };
+        } else {
+          return new Object[] { false, "elevator is currently moving." };
         }
       }
     } else {

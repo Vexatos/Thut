@@ -26,7 +26,7 @@ tile.trass.name=Trass
 tile.limestone.name=Limestone
 
 tile.liftSpawner.name=Elevator
-tile.liftController.name=Elevator Controller Block
+tile.liftController.name=Elevator Control
 tile.display.name=Display [WIP]
 tile.seismicSensor.name=Remote Sensor [WIP]
 
@@ -62,8 +62,8 @@ item.bucketOconcrete.name=Bucket of Concrete
 
 item.deviceLinker.name=Linking Device
 
-item.tank.name=Tank
-item.spout.name=Spout
+item.tank.name=Tank [WIP]
+item.spout.name=Spout [WIP]
 
 # Chat Messages
 msg.noRails.name=Complete rails not found.

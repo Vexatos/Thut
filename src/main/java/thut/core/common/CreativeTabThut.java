@@ -6,6 +6,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import thut.api.ThutBlocks;
+import thut.reference.ThutConcreteReference;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class CreativeTabThut extends CreativeTabs {
 
   @SideOnly(Side.CLIENT)
   public String getTabLabel() {
-    return "Concrete";
+    return ThutConcreteReference.MOD_NAME;
   }
 
   @SideOnly(Side.CLIENT)
