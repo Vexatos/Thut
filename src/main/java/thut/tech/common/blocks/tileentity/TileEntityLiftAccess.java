@@ -38,8 +38,8 @@ import java.util.Vector;
 //import universalelectricity.core.block.IElectricityStorage;
 
 @Optional.InterfaceList({
-    @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = ThutTechReference.MOD_OPENCOMPUTERS),
-    //@Optional.Interface(iface = "dan200.computer.api.IPeripheral", modid = "ComputerCraft")
+    @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = ThutTechReference.MOD_OPENCOMPUTERS)
+    //,@Optional.Interface(iface = "dan200.computer.api.IPeripheral", modid = "ComputerCraft")
 })
 public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.network.SimpleComponent// implements IPeripheral//, IGridMachine, IDirectionalMETile
 {
@@ -49,7 +49,7 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
   public EntityLift lift;
 
   boolean listNull = false;
-  List<Entity> list = new ArrayList<Entity>();
+  List list = new ArrayList<Entity>();
   Vector3 here;
 
   public Vector3 root = new Vector3();
@@ -114,7 +114,8 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
         loaded = true;
       }
       boolean check = false;
-      for(Entity e : list) {
+      for(Object e2 : list) {
+        Entity e = (Entity) e2;
         if(e != null) {
           //					((EntityLift)e).source = source;
           boolean flag = ((EntityLift) e).destinationFloor != 0 && ((int) ((EntityLift) e).prevFloorY) == yCoord;
