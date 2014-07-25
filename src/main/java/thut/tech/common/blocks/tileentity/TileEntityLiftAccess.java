@@ -45,7 +45,7 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
 {
 
   public int power = 0;
-  public int prevPower = 1;
+  //public int prevPower = 1;
   public EntityLift lift;
 
   boolean listNull = false;
@@ -56,7 +56,7 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
   //	public IElectricityStorage source;
   public TileEntityLiftAccess rootNode;
   public Vector<TileEntityLiftAccess> connected = new Vector<TileEntityLiftAccess>();
-  ForgeDirection sourceSide;
+  //ForgeDirection sourceSide;
   public double energy;
 
   public long time = 0;
@@ -67,26 +67,28 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
 
   public boolean called = false;
   public int floor = 0;
-  public int calledYValue = -1;
+  //public int calledYValue = -1;
   public int calledFloor = 0;
   int liftID = -1;
   public int side = 2;
 
-  int tries = 0;
+  //int tries = 0;
 
-  public boolean toClear = false;
+  //public boolean toClear = false;
 
   public boolean first = true;
   public boolean read = false;
   public boolean redstone = true;
-  public boolean powered = false;
+  //public boolean powered = false;
 
+  @Override
   public void updateEntity() {
     if(first) {
       blockID = worldObj.getBlock(xCoord, yCoord, zCoord);
       here = new Vector3(this);
       //			GridTileLoadEvent evt = new GridTileLoadEvent(this, worldObj, getLocation());
       //			MinecraftForge.EVENT_BUS.post(evt);
+
       first = false;
     }
 
@@ -195,12 +197,13 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
   }
 
   public String connectionInfo() {
-    String ret = "";
+    //String ret = "";
     //		if(source!=null)
     //		{
     //			ret = "Energy stored: "+getEnergy();
     //		}
-    return ret;
+    //return ret;
+    return "";
   }
 
   /**
@@ -244,6 +247,7 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
     this.lift = lift;
   }
 
+  @Override
   public void writeToNBT(NBTTagCompound par1) {
     super.writeToNBT(par1);
     par1.setInteger("meta", metaData);
@@ -257,6 +261,7 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
     par1.setInteger("lift", liftID);
   }
 
+  @Override
   public void readFromNBT(NBTTagCompound par1) {
     super.readFromNBT(par1);
     metaData = par1.getInteger("meta");
@@ -416,7 +421,8 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
   }
 
   @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
-  @Callback
+  @Callback(doc = "'call(floor:number):boolean'\n"
+      + "  Tries to call the elevator to a certain floor. Returns 'true' on success, 'false' and an error message otherwise.")
   public Object[] call(Context context, Arguments args) {
     if(args.count() >= 1 && args.checkInteger(0) >= 1 && args.checkInteger(0) <= 16) {
       int lFloor = args.checkInteger(0);
@@ -439,19 +445,22 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
   }
 
   @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
-  @Callback
+  @Callback(doc = "'isReady():boolean'\n"
+      + "  Returns 'true' if the elevator can be called, 'false' if it can not (because it is already moving).")
   public Object[] isReady(Context context, Arguments args) {
     return new Object[] { !lift.called };
   }
 
   @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
-  @Callback
+  @Callback(doc = "'getLocalFloor():number'\n"
+      + "  Returns the number of the floor the currently accessed Elevator Control is set to.")
   public Object[] getLocalFloor(Context context, Arguments args) {
     return new Object[] { this.floor };
   }
 
   @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
-  @Callback
+  @Callback(doc = "'getElevatorFloor():number'\n"
+      + "  Returns the number of the floor the elevator is currently at. If the elevator is moving, the function returns the destination floor as its second argument.")
   public Object[] getElevatorFloor(Context context, Arguments args) {
     if(lift.destinationFloor >= 1) {
       return new Object[] { lift.currentFloor, lift.destinationFloor };
@@ -461,7 +470,7 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
 
   @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
   private boolean doesFloorExist(int lFloor) {
-    if(lift.floorArray[lFloor - 1] != null) {
+    if(lift.floorArray[(lFloor - 1)] != null) {
       for(int j = 0; j < 4; j++) {
         if(lift.floorArray[lFloor - 1][j] != null && lift.floorArray[lFloor - 1][j].length == 3) {
           int x = lift.floorArray[lFloor - 1][j][0];
@@ -477,7 +486,8 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
   }
 
   @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
-  @Callback
+  @Callback(doc = "'doesFloorExist(floor:number):boolean'\n"
+      + "  Returns 'true' if the floor exists and thus can be called; the function returns 'false' if the floor does not exist.")
   public Object[] doesFloorExist(Context context, Arguments args) {
     if(args.count() >= 1 && args.checkInteger(0) >= 1 && args.checkInteger(0) <= 16) {
       return new Object[] { doesFloorExist(args.checkInteger(0)) };

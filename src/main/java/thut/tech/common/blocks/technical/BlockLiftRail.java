@@ -24,8 +24,8 @@ import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
 import java.util.List;
 
 //import appeng.api.me.tiles.IGridTileEntity;
-
-public class BlockLiftRail extends Block implements ITileEntityProvider, IRebar {
+//implements ITileEntityProvider
+public class BlockLiftRail extends Block implements IRebar {
 
   public IIcon[] iconArray;
 
@@ -275,10 +275,11 @@ public class BlockLiftRail extends Block implements ITileEntityProvider, IRebar 
     return false;
   }
 
-  @Override
+  /*@Override
   public TileEntity createNewTileEntity(World var1, int var2) {
     return new TileEntityLiftAccess();
-  }
+    //return null;
+  }*/
 
   @Override
   public IIcon getIcon(Block block) {

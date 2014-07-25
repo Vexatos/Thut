@@ -12,8 +12,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityHopper;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
@@ -40,14 +38,14 @@ import static thut.api.ThutBlocks.liftRail;
 
 public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpawnData, IMultiBox {
 
-  //TODO remove this
-  TileEntity test = new TileEntityHopper();
+  //xTODO remove this
+  //TileEntity test = new TileEntityHopper();
 
   public double size = 1;
   public final double speedUp = ConfigHandler.LiftSpeedUp;
   public final double speedDown = -ConfigHandler.LiftSpeedDown;
-  public double NOPASSENGERSPEEDDOWN = -ConfigHandler.LiftSpeedDown;
-  public double PASSENDERSPEEDDOWN = -ConfigHandler.LiftSpeedDownOccupied;
+  //public double NOPASSENGERSPEEDDOWN = -ConfigHandler.LiftSpeedDown;
+  //public double PASSENDERSPEEDDOWN = -ConfigHandler.LiftSpeedDownOccupied;
   public static int ACCELERATIONTICKS = 20;
   public final double acceleration = 0.05;
   public boolean up = true;
@@ -62,11 +60,11 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
   final Random r = new Random();
   //	public IElectricityStorage source;
 
-  public double storedEnergy = 0;
+  //public double storedEnergy = 0;
 
   public static double ENERGYCOST = 0;
 
-  public boolean xAxis = false;
+  //public boolean xAxis = false;
 
   public double destinationY = 0;
   public int destinationFloor = 0;
@@ -74,7 +72,7 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
   public double prevFloorY = 0;
   public double prevFloor = 0;
 
-  public double currentFloor = 0;
+  public int currentFloor = 0;
   private boolean hasJustMoved = false;
 
   public boolean called = false;
@@ -93,9 +91,9 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
 
   public final int[][][] floorArray = new int[64][4][3];
 
-  Matrix3 base = new Matrix3();
+  /*Matrix3 base = new Matrix3();
   Matrix3 top = new Matrix3();
-  Matrix3 wall1 = new Matrix3();
+  Matrix3 wall1 = new Matrix3();*/
 
   public EntityLift(World par1World) {
     super(par1World);
@@ -208,12 +206,8 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
   @SuppressWarnings("unchecked")
   public void passengerCheck() {
     List<Entity> list = worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox);
-    if(list.size() > 0) {
-      hasPassenger = true;
-      //System.out.println("passenger");
-    } else {
-      hasPassenger = false;
-    }
+    //System.out.println("passenger");
+    hasPassenger = list.size() > 0;
   }
 
   public void call(int floor) {
@@ -222,7 +216,7 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
     }
 
     if(!worldObj.isRemote && floorArray[floor - 1] != null) {
-      int i = -1;
+      //int i = -1;
       for(int j = 0; j < 4; j++) {
         if(floorArray[floor - 1][j] != null && floorArray[floor - 1][j].length == 3) {
           int x = floorArray[floor - 1][j][0];
@@ -550,6 +544,7 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
     return false;
   }
 
+  @Override
   /**
    * Will get destroyed next tick.
    */
@@ -586,7 +581,7 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
       }
       floors[floor - 1][j] = te;
       floorArray[floor - 1][j] = new int[] { te.xCoord, te.yCoord, te.zCoord };
-    } else if(te.floor != 0) {
+    } else {
       for(int i = 0; i < 4; i++) {
         if(floors[te.floor - 1][i] == te) {
           floors[te.floor - 1][i] = null;
@@ -627,6 +622,21 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
     id = nbt.getInteger("cuid");
     MAXID = nbt.getInteger("MAXID");
     size = nbt.getDouble("size");
+
+    currentFloor = nbt.getInteger("curfloor");
+    /*up = nbt.getBoolean("up");
+    moved = nbt.getBoolean("moved");
+
+    currentFloor = nbt.getInteger("curfloor");
+    toMoveY = nbt.getBoolean("tomove");
+    hasJustMoved = nbt.getBoolean("justmoved");
+    called = nbt.getBoolean("called");
+
+    prevFloor = nbt.getDouble("prevfloor");
+    prevFloorY = nbt.getDouble("prevy");
+    destinationFloor = nbt.getInteger("destfloor");
+    destinationY = nbt.getDouble("desty");*/
+
     lifts.put(id, this);
     readList(nbt);
   }
@@ -638,6 +648,21 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
     nbt.setInteger("cuid", id);
     nbt.setInteger("MAXID", MAXID);
     nbt.setDouble("size", size);
+
+    nbt.setInteger("curfloor", currentFloor);
+    /*nbt.setBoolean("up", up);
+    nbt.setBoolean("moved", moved);
+
+    nbt.setInteger("curfloor", currentFloor);
+    nbt.setBoolean("tomove", toMoveY);
+    nbt.setBoolean("justmoved", hasJustMoved);
+    nbt.setBoolean("called", called);
+
+    nbt.setDouble("prevfloor", prevFloor);
+    nbt.setDouble("prevy", prevFloorY);
+    nbt.setInteger("destfloor", destinationFloor);
+    nbt.setDouble("desty", destinationY);*/
+
     writeList(nbt);
   }
 
@@ -706,12 +731,12 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
     return new Matrix3(new Vector3(-size / 2, 0, -size / 2), new Vector3(size / 2, 5, size / 2));
   }
 
+  @Override
   /**
    * Called when the entity is attacked.
    */
-  public boolean attackEntityFrom(DamageSource source, int damage) {
+  public boolean attackEntityFrom(DamageSource source, float damage) {
     return damage > 15;
-
   }
 
   @Override

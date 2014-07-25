@@ -165,7 +165,7 @@ public class BlockLift extends Block implements ITileEntityProvider, IMetaBlock/
       boolean bool = true;
 
       int rail = (int) (1 + Math.floor(sizes[j] / 2));
-      int colmn = sizes[j] / 2;
+      int colmn = (int) (Math.floor(sizes[j] / 2));
 
       int[][] sides = { { rail, 0 }, { -rail, 0 }, { 0, rail }, { 0, -rail } };
       int[][] colm = { { colmn, 0 }, { -colmn, 0 }, { 0, colmn }, { 0, -colmn } };
@@ -182,7 +182,7 @@ public class BlockLift extends Block implements ITileEntityProvider, IMetaBlock/
       }
       if(bool) {
         size = sizes[j];
-        ret = bool;
+        ret = true;
         break;
       }
     }
@@ -322,6 +322,7 @@ public class BlockLift extends Block implements ITileEntityProvider, IMetaBlock/
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+  @SuppressWarnings("unchecked")
   @Override
   @SideOnly(Side.CLIENT)
 
@@ -400,14 +401,14 @@ public class BlockLift extends Block implements ITileEntityProvider, IMetaBlock/
   //	@Override
   //	public int[] getOutputValues(World world, int x, int y, int z,
   //			ForgeDirection side) {
-  //		// TODO Auto-generated method stub
+  //		// xTODO Auto-generated method stub
   //		return null;
   //	}
   //
   //	@Override
   //	public int getOutputValue(World world, int x, int y, int z,
   //			ForgeDirection side, int subnet) {
-  //		// TODO Auto-generated method stub
+  //		// xTODO Auto-generated method stub
   //		return 0;
   //	}
   //
@@ -464,7 +465,7 @@ public class BlockLift extends Block implements ITileEntityProvider, IMetaBlock/
   //	@Override
   //	public void onInputChanged(World world, int x, int y, int z,
   //			ForgeDirection side, int inputValue) {
-  //		// TODO Auto-generated method stub
+  //		// xTODO Auto-generated method stub
   //
   //	}
 }
