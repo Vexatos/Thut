@@ -56,7 +56,7 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
   public static boolean AUGMENTG = true;
   int n = 0;
   int passengertime = 10;
-  boolean first = true;
+  public boolean first = true;
   final Random r = new Random();
   //	public IElectricityStorage source;
 
@@ -78,7 +78,7 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
 
   public boolean called = false;
   TileEntityLiftAccess current;
-  public int id;
+  public int id = -1;
 
   public static final ConcurrentHashMap<Integer, EntityLift> lifts = new ConcurrentHashMap<Integer, EntityLift>();
   public static int MAXID = 0;

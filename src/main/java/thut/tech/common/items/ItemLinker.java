@@ -135,6 +135,11 @@ public class ItemLinker extends ItemThutTech {
   }
 
   @Override
+  public boolean isFull3D() {
+    return true;
+  }
+
+  @Override
   @SideOnly(Side.CLIENT)
   public void registerIcons(IIconRegister par1IconRegister) {
     this.itemIcon = par1IconRegister.registerIcon(TechCore.ID + ":" + "liftController");

@@ -71,7 +71,7 @@ msg.noBase.name=Basis ist nicht vollständig.
 
 msg.liftSet.name=Aufzug ausgewähkt
 
-msg.floorSet.name=Dieses Stockwerk wurde auf Nummer %s gesetzt.
+msg.floorSet.name=Dieses Stockwerk wurde auf Nummer %s gesetzt
 msg.floorError.name=Stockwerk %s existiert bereits.
 msg.particlesLeft.name=Verbleibende Partikel
 
