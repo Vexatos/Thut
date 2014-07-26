@@ -88,6 +88,9 @@ public class TileEntityLiftAccess extends TileEntity // implements IPeripheral//
     }
 
     if(lift != null && blockID == ThutBlocks.lift && getBlockMetadata() == 1) {
+      /*if(calledFloor > 0) {
+        LogHelper.info("Access Called floor: " + String.valueOf(calledFloor));
+      }*/
       int calledFloorOld = calledFloor;
       calledFloor = lift.destinationFloor;
       if(calledFloor != calledFloorOld) {

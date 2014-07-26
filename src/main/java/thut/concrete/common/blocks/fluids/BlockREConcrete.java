@@ -91,6 +91,7 @@ public class BlockREConcrete extends BlockFluid implements IRebar, ITileEntityPr
    * Adds all intersecting collision boxes to a list. (Be sure to only add boxes to the list if they intersect the
    * mask.) Parameters: World, X, Y, Z, mask, list, colliding entity
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void addCollisionBoxesToList(World worldObj, int x, int y, int z, AxisAlignedBB aaBB, List list, Entity par7Entity) {
     side = sides(worldObj, x, y, z);
@@ -257,9 +258,9 @@ public class BlockREConcrete extends BlockFluid implements IRebar, ITileEntityPr
   public void registerBlockIcons(IIconRegister par1IconRegister) {
     this.blockIcon = par1IconRegister.registerIcon("concrete:dryConcrete_" + 8);
     this.theIcon = par1IconRegister.registerIcon("concrete:" + "rebarRusty");
-    this.iconArray = new IIcon[16];
-    for(int i = 0; i < this.iconArray.length; ++i) {
-      this.iconArray[i] = par1IconRegister.registerIcon("concrete:" + "dryConcrete_" + i);
+    iconArray = new IIcon[16];
+    for(int i = 0; i < iconArray.length; ++i) {
+      iconArray[i] = par1IconRegister.registerIcon("concrete:" + "dryConcrete_" + i);
     }
   }
 

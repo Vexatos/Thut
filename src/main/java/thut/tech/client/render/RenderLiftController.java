@@ -17,6 +17,7 @@ import org.lwjgl.opengl.GL11;
 import thut.api.ThutBlocks;
 import thut.reference.ThutTechReference;
 import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
+import thut.tech.common.blocks.tileentity.TileEntityLiftControl;
 
 public class RenderLiftController extends TileEntitySpecialRenderer {
 
@@ -62,28 +63,32 @@ public class RenderLiftController extends TileEntitySpecialRenderer {
   @Override
   public void renderTileEntityAt(TileEntity tileentity, double x, double y,
       double z, float f) {
-    TileEntityLiftAccess monitor = (TileEntityLiftAccess) tileentity;
+    if(tileentity instanceof TileEntityLiftControl) {
+      TileEntityLiftControl monitor = (TileEntityLiftControl) tileentity;
 
-    GL11.glPushMatrix();
+      GL11.glPushMatrix();
 
-    GL11.glTranslatef((float) x, (float) y, (float) z);
+      GL11.glTranslatef((float) x, (float) y, (float) z);
 
-    if(monitor.getFacing() == ForgeDirection.EAST) {
-      GL11.glTranslatef(1, 0, 0);
-      GL11.glRotatef(270, 0, 1, 0);
-    } else if(monitor.getFacing() == ForgeDirection.SOUTH) {
-      GL11.glTranslatef(1, 0, 1);
-      GL11.glRotatef(180, 0, 1, 0);
-    } else if(monitor.getFacing() == ForgeDirection.WEST) {
-      GL11.glTranslatef(0, 0, 1);
-      GL11.glRotatef(90, 0, 1, 0);
+      if(monitor.getFacing() == ForgeDirection.EAST) {
+        GL11.glTranslatef(1, 0, 0);
+        GL11.glRotatef(270, 0, 1, 0);
+      } else if(monitor.getFacing() == ForgeDirection.SOUTH) {
+        GL11.glTranslatef(1, 0, 1);
+        GL11.glRotatef(180, 0, 1, 0);
+      } else if(monitor.getFacing() == ForgeDirection.WEST) {
+        GL11.glTranslatef(0, 0, 1);
+        GL11.glRotatef(90, 0, 1, 0);
+      }
+
+      drawOverLay(monitor, monitor.floor, 0);
+      /*if(monitor.calledFloor > 0) {
+        LogHelper.info("Called floor: " + String.valueOf(monitor.calledFloor));
+      }*/
+      drawOverLay(monitor, monitor.calledFloor, 1);
+
+      GL11.glPopMatrix();
     }
-
-    drawOverLay(monitor, monitor.floor, 0);
-    drawOverLay(monitor, monitor.calledFloor, 1);
-
-    GL11.glPopMatrix();
-
   }
 
   public void drawOverLay(TileEntityLiftAccess monitor, int floor, int colour) {
