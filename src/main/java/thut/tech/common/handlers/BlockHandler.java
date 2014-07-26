@@ -8,6 +8,7 @@ import thut.tech.common.TechCore;
 import thut.tech.common.blocks.technical.BlockLift;
 import thut.tech.common.blocks.technical.BlockLiftRail;
 import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
+import thut.tech.common.blocks.tileentity.TileEntityLiftControl;
 import thut.tech.common.entity.EntityLift;
 
 public class BlockHandler {
@@ -17,6 +18,7 @@ public class BlockHandler {
     Block rail = new BlockLiftRail();
 
     GameRegistry.registerTileEntity(TileEntityLiftAccess.class, "liftaccesste");
+    GameRegistry.registerTileEntity(TileEntityLiftControl.class, "liftcontrolte");
 
     EntityRegistry.registerModEntity(EntityLift.class, "thuttechlift", 1, TechCore.instance, 32, 3, true);
 

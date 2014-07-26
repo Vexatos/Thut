@@ -24,6 +24,7 @@ import thut.api.ThutBlocks;
 import thut.api.blocks.IMetaBlock;
 import thut.tech.common.TechCore;
 import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
+import thut.tech.common.blocks.tileentity.TileEntityLiftControl;
 import thut.tech.common.entity.EntityLift;
 import thut.util.ThutUtils;
 
@@ -286,7 +287,7 @@ public class BlockLift extends Block implements ITileEntityProvider, IMetaBlock/
    */
   public TileEntity createTileEntity(World world, int metadata) {
     if(metadata == 1) {
-      return new TileEntityLiftAccess();
+      return new TileEntityLiftControl();
     }
     return null;
   }

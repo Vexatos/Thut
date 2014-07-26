@@ -1,9 +1,5 @@
 package thut.tech.common.blocks.tileentity;
 
-import cpw.mods.fml.common.Optional;
-import li.cil.oc.api.network.Arguments;
-import li.cil.oc.api.network.Callback;
-import li.cil.oc.api.network.Context;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
@@ -16,7 +12,6 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
 import thut.api.ThutBlocks;
 import thut.api.maths.Vector3;
-import thut.reference.ThutTechReference;
 import thut.tech.common.entity.EntityLift;
 import thut.util.LogHelper;
 
@@ -37,11 +32,7 @@ import java.util.Vector;
 //import dan200.computer.api.IPeripheral;
 //import universalelectricity.core.block.IElectricityStorage;
 
-@Optional.InterfaceList({
-    @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = ThutTechReference.MOD_OPENCOMPUTERS)
-    //,@Optional.Interface(iface = "dan200.computer.api.IPeripheral", modid = "ComputerCraft")
-})
-public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.network.SimpleComponent// implements IPeripheral//, IGridMachine, IDirectionalMETile
+public class TileEntityLiftAccess extends TileEntity // implements IPeripheral//, IGridMachine, IDirectionalMETile
 {
 
   public int power = 0;
@@ -69,7 +60,7 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
   public int floor = 0;
   //public int calledYValue = -1;
   public int calledFloor = 0;
-  int liftID = -1;
+  public int liftID = -1;
   public int side = 2;
 
   //int tries = 0;
@@ -257,6 +248,7 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
   }
 
   public void setLift(EntityLift lift) {
+    this.liftID = lift.id;
     this.lift = lift;
   }
 
@@ -278,7 +270,9 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
   public void readFromNBT(NBTTagCompound par1) {
     super.readFromNBT(par1);
     metaData = par1.getInteger("meta");
-    blockID = Block.getBlockFromName(par1.getString("block id"));
+    if(Block.getBlockFromName(par1.getString("block id")) != null) {
+      blockID = Block.getBlockFromName(par1.getString("block id"));
+    }
     side = par1.getInteger("side");
     floor = par1.getInteger("floor");
     liftID = par1.getInteger("lift");
@@ -286,6 +280,12 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
     if(liftID != -1 && EntityLift.lifts.containsKey(liftID)) {
       lift = EntityLift.lifts.get(liftID);
     }
+    /*System.out.println(metaData);
+    System.out.println(blockID != null);
+    System.out.println(side);
+    System.out.println(floor);
+    System.out.println(liftID);
+    System.out.println(lift != null);*/
   }
 
   public void doButtonClick(int side, float hitX, float hitY, float hitZ) {
@@ -425,89 +425,6 @@ public class TileEntityLiftAccess extends TileEntity implements li.cil.oc.api.ne
 
   public void setBlock(ForgeDirection side, Block id, int meta) {
     worldObj.setBlock(xCoord + side.offsetX, yCoord + side.offsetY, zCoord + side.offsetZ, id, meta, 3);
-  }
-
-  @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
-  @Override
-  public String getComponentName() {
-    return "elevator";
-  }
-
-  @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
-  @Callback(doc = "'call(floor:number):boolean'\n"
-      + "  Tries to call the elevator to a certain floor. Returns 'true' on success, 'false' and an error message otherwise.")
-  public Object[] call(Context context, Arguments args) {
-    if(args.count() >= 1 && args.checkInteger(0) >= 1 && args.checkInteger(0) <= 16) {
-      int lFloor = args.checkInteger(0);
-      if(!worldObj.isRemote && lift != null) {
-        if(!lift.called && doesFloorExist(lFloor)) {
-          buttonPress(lFloor);
-          calledFloor = lift.destinationFloor;
-          worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-          LogHelper.debug(calledFloor + " " + lFloor + " " + lift);
-        } else if(!doesFloorExist(lFloor)) {
-          return new Object[] { false, "floor does not exist." };
-        } else {
-          return new Object[] { false, "elevator is currently moving." };
-        }
-      }
-    } else {
-      args.checkInteger(0);
-    }
-    return new Object[] { true };
-  }
-
-  @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
-  @Callback(doc = "'isReady():boolean'\n"
-      + "  Returns 'true' if the elevator can be called, 'false' if it can not (because it is already moving).")
-  public Object[] isReady(Context context, Arguments args) {
-    return new Object[] { !lift.called };
-  }
-
-  @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
-  @Callback(doc = "'getLocalFloor():number'\n"
-      + "  Returns the number of the floor the currently accessed Elevator Control is set to.")
-  public Object[] getLocalFloor(Context context, Arguments args) {
-    return new Object[] { this.floor };
-  }
-
-  @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
-  @Callback(doc = "'getElevatorFloor():number'\n"
-      + "  Returns the number of the floor the elevator is currently at. If the elevator is moving, the function returns the destination floor as its second argument.")
-  public Object[] getElevatorFloor(Context context, Arguments args) {
-    if(lift.destinationFloor >= 1) {
-      return new Object[] { lift.currentFloor, lift.destinationFloor };
-    }
-    return new Object[] { lift.curDestFloor };
-  }
-
-  @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
-  private boolean doesFloorExist(int lFloor) {
-    if(lift.floorArray[(lFloor - 1)] != null) {
-      for(int j = 0; j < 4; j++) {
-        if(lift.floorArray[lFloor - 1][j] != null && lift.floorArray[lFloor - 1][j].length == 3) {
-          int x = lift.floorArray[lFloor - 1][j][0];
-          int y = lift.floorArray[lFloor - 1][j][1];
-          int z = lift.floorArray[lFloor - 1][j][2];
-          if(worldObj.getTileEntity(x, y, z) != null && worldObj.getTileEntity(x, y, z) instanceof TileEntityLiftAccess) {
-            return true;
-          }
-        }
-      }
-    }
-    return false;
-  }
-
-  @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
-  @Callback(doc = "'doesFloorExist(floor:number):boolean'\n"
-      + "  Returns 'true' if the floor exists and thus can be called; the function returns 'false' if the floor does not exist.")
-  public Object[] doesFloorExist(Context context, Arguments args) {
-    if(args.count() >= 1 && args.checkInteger(0) >= 1 && args.checkInteger(0) <= 16) {
-      return new Object[] { doesFloorExist(args.checkInteger(0)) };
-    } else {
-      args.checkInteger(0);
-    }
-    return new Object[] { false, "floor is not a number between 1 and 16" };
   }
 
   //////////////////////////////////////////////////////////ComputerCraft Stuff/////////////////////////////////////////////////////////////////

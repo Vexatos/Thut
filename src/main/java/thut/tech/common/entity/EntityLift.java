@@ -175,7 +175,7 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
             if(floorArray[j][i] != null) {
               if(floorArray[j][i] != null && floorArray[j][i].length == 3) {
                 int y = floorArray[j][i][1];
-                if(y == ((int) Math.round(this.posY)) && (currentFloor != j + 1) && (j + 1 != 0)) {
+                if(y - 2 == ((int) Math.round(this.posY)) && (currentFloor != j + 1) && (j + 1 != 0)) {
                   currentFloor = j + 1;
                   hasJustMoved = true;
                 }
@@ -186,11 +186,11 @@ public class EntityLift extends EntityLivingBase implements IEntityAdditionalSpa
       }
     } else {
       setPosition(posX, called && Math.abs(posY - destinationY) < 0.5 ? destinationY : Math.floor(posY), posZ);
-      if(hasJustMoved) {
+      /*if(hasJustMoved) {
         currentFloor = destinationFloor;
         curDestFloor = destinationFloor;
         hasJustMoved = false;
-      }
+      }*/
       called = false;
       prevFloor = destinationFloor;
       prevFloorY = destinationY;

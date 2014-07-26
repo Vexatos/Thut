@@ -3,6 +3,7 @@ package thut.tech.common.blocks.technical;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
@@ -18,12 +19,13 @@ import thut.api.ThutBlocks;
 import thut.api.blocks.IRebar;
 import thut.api.render.RenderRebar;
 import thut.tech.common.TechCore;
+import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
 
 import java.util.List;
 
 //import appeng.api.me.tiles.IGridTileEntity;
 //implements ITileEntityProvider
-public class BlockLiftRail extends Block implements IRebar {
+public class BlockLiftRail extends Block implements ITileEntityProvider, IRebar {
 
   public IIcon[] iconArray;
 
@@ -70,6 +72,7 @@ public class BlockLiftRail extends Block implements IRebar {
    * Adds all intersecting collision boxes to a list. (Be sure to only add boxes to the list if they intersect the
    * mask.) Parameters: World, X, Y, Z, mask, list, colliding entity
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void addCollisionBoxesToList(World worldObj, int x, int y, int z, AxisAlignedBB aaBB, List list, Entity par7Entity) {
     side = sides(worldObj, x, y, z);
@@ -213,7 +216,7 @@ public class BlockLiftRail extends Block implements IRebar {
    * returns true, standard redstone propagation rules will apply instead and this will not be called. Args: World, X,
    * Y, Z, side. Note that the side is reversed - eg it is 1 (up) when checking the bottom of the block.
    */
-  /*public int isProvidingWeakPower(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
+  public int isProvidingWeakPower(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
 
     TileEntityLiftAccess controller = (TileEntityLiftAccess) par1IBlockAccess.getTileEntity(par2, par3, par4);
     if(controller != null) {
@@ -222,15 +225,15 @@ public class BlockLiftRail extends Block implements IRebar {
     }
 
     return 0;
-  }*/
+  }
 
   /**
    * Returns true if the block is emitting direct/strong redstone power on the specified side. Args: World, X, Y, Z,
    * side. Note that the side is reversed - eg it is 1 (up) when checking the bottom of the block.
    */
-  /*public int isProvidingStrongPower(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
+  public int isProvidingStrongPower(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
     return isProvidingWeakPower(par1IBlockAccess, par2, par3, par4, par5);
-  }*/
+  }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   @Override
@@ -276,11 +279,11 @@ public class BlockLiftRail extends Block implements IRebar {
     return false;
   }
 
-  /*@Override
+  @Override
   public TileEntity createNewTileEntity(World var1, int var2) {
     return new TileEntityLiftAccess();
     //return null;
-  }*/
+  }
 
   @Override
   public IIcon getIcon(Block block) {

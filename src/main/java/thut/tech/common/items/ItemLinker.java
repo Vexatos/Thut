@@ -106,6 +106,14 @@ public class ItemLinker extends ItemThutTech {
           //  player.addChatComponentMessage(new ChatComponentText(String.format(StatCollector.translateToLocal("msg.floorError.name"), button)));
           //}
         }
+        /*System.out.println(te.metaData);
+        System.out.println(te.blockID != null);
+        System.out.println(te.side);
+        System.out.println(side);
+        System.out.println(te.floor);
+        System.out.println(te.liftID);
+        System.out.println(te.lift.currentFloor);
+        System.out.println(lift.currentFloor);*/
         return true;
       }
       if(lift != null && id == ThutBlocks.lift && meta == 1) {
