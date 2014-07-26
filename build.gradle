@@ -22,11 +22,12 @@ group = "thut" // http://maven.apache.org/guides/mini/guide-naming-conventions.h
 archivesBaseName = "Thut"
 
 minecraft {
-    version = "1.7.10-10.13.0.1187"
+    version = "1.7.10-10.13.0.1188"
     assetDir = "eclipse/assets"
 }
 
 dependencies {
+    compile files("apis/OpenComputers-MC1.7.10-1.3.2.59-dev-api.jar")
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
     //compile "some.group:artifact:version:classifier"

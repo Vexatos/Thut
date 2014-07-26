@@ -39,6 +39,8 @@ public class TileEntityLiftControl extends TileEntityLiftAccess implements li.ci
         } else {
           return new Object[] { false, "elevator is currently moving." };
         }
+      } else {
+        return new Object[] { null, "no connected lift found" };
       }
     } else {
       args.checkInteger(0);
@@ -50,29 +52,41 @@ public class TileEntityLiftControl extends TileEntityLiftAccess implements li.ci
   @Callback(doc = "'isReady():boolean'\n"
       + "  Returns 'true' if the elevator can be called, 'false' if it can not (because it is already moving).")
   public Object[] isReady(Context context, Arguments args) {
-    return new Object[] { !lift.called };
+    if(lift != null) {
+      return new Object[] { !lift.called };
+    } else {
+      return new Object[] { null, "no connected lift found" };
+    }
   }
 
   @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
   @Callback(doc = "'getLocalFloor():number'\n"
       + "  Returns the number of the floor the currently accessed Elevator Control is set to.")
   public Object[] getLocalFloor(Context context, Arguments args) {
-    return new Object[] { this.floor };
+    if(this.floor != 0) {
+      return new Object[] { this.floor };
+    } else {
+      return new Object[] { null, "no connected lift found" };
+    }
   }
 
   @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
   @Callback(doc = "'getElevatorFloor():number'\n"
       + "  Returns the number of the floor the elevator is currently at. If the elevator is moving, the function returns the destination floor as its second argument.")
   public Object[] getElevatorFloor(Context context, Arguments args) {
-    if(lift.destinationFloor >= 1) {
-      return new Object[] { lift.currentFloor, lift.destinationFloor };
+    if(lift != null) {
+      if(lift.destinationFloor >= 1) {
+        return new Object[] { lift.currentFloor, lift.destinationFloor };
+      }
+      return new Object[] { lift.currentFloor };
+    } else {
+      return new Object[] { null, "no connected lift found" };
     }
-    return new Object[] { lift.currentFloor };
   }
 
   @Optional.Method(modid = ThutTechReference.MOD_OPENCOMPUTERS)
   private boolean doesFloorExist(int lFloor) {
-    if(lift.floorArray[(lFloor - 1)] != null) {
+    if(lift != null && lift.floorArray[(lFloor - 1)] != null) {
       for(int j = 0; j < 4; j++) {
         if(lift.floorArray[lFloor - 1][j] != null && lift.floorArray[lFloor - 1][j].length == 3) {
           int x = lift.floorArray[lFloor - 1][j][0];

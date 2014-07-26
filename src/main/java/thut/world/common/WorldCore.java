@@ -13,14 +13,11 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.oredict.OreDictionary;
-import thut.api.ThutBlocks;
 import thut.api.maths.Vector3;
 import thut.api.network.PacketPipeline;
 import thut.core.common.CreativeTabThut;
@@ -74,7 +71,7 @@ public class WorldCore {
 
     MinecraftForge.EVENT_BUS.register(this);
 
-    loader = new WorldEventHandler(config.ChunkSize);
+    loader = new WorldEventHandler(ConfigHandler.ChunkSize);
     MinecraftForge.EVENT_BUS.register(loader);
 
     blockList = new BlockHandler(config);
@@ -96,12 +93,12 @@ public class WorldCore {
     NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
 
     recipes = new RecipeHandler(config);
-    items = itemList.items;
-    blocks = blockList.blocks;
+    items = ItemHandler.items;
+    blocks = BlockHandler.blocks;
     //*
-    chalk = new BiomeGenChalk(config.IDBiome);
-    volcano = new BiomeVolcano(config.IDBiome + 1);
-    //	GameRegistry.addBiome(chalk);TODO biome adding
+    chalk = new BiomeGenChalk(ConfigHandler.IDBiome);
+    volcano = new BiomeVolcano(ConfigHandler.IDBiome + 1);
+    //	GameRegistry.addBiome(chalk);xTODO biome adding
     BiomeDictionary.registerBiomeType(volcano, Type.NETHER, Type.MOUNTAIN);
     BiomeDictionary.registerBiomeType(chalk, Type.PLAINS);
     BiomeManager.addVillageBiome(chalk, true);
@@ -114,7 +111,7 @@ public class WorldCore {
 
   @EventHandler
   public void postInit(FMLPostInitializationEvent e) {
-    initHardens();
+    //initHardens();
     recipes.registerRecipes();
     PacketPipeline.packetPipeline.postInitialise();
   }
@@ -258,7 +255,7 @@ public class WorldCore {
 
   }
 
-  public void initHardens() {
+ /* public void initHardens() {
     String name;
     for(Block b : ThutBlocks.getAllBlocks()) {
       for(int meta = 0; meta < 16; meta++) {
@@ -266,7 +263,7 @@ public class WorldCore {
           name = oreDictName(b, meta);
           for(String s : oreMap0.keySet()) {
             //						if(!s.contains("nether")&&!b.getUnlocalizedName().toLowerCase().contains("nether")&&(s.equals("quartz")||!ores.contains(s)))
-            //						if(!BlockSolidLava.getInstance(0).turnto.contains(b.blockID + 4096*WorldCore.oreMap0.get(s) + 4096*1024*meta))TODO solid lava harden to
+            //						if(!BlockSolidLava.getInstance(0).turnto.contains(b.blockID + 4096*WorldCore.oreMap0.get(s) + 4096*1024*meta))xTODO solid lava harden to
             //						if(name.toLowerCase().contains(s)&&name.toLowerCase().contains("ore"))
             //						{
             //							BlockSolidLava.getInstance(0).turnto.add(b.blockID + 4096*WorldCore.oreMap0.get(s) + 4096*1024*meta);
@@ -286,7 +283,8 @@ public class WorldCore {
   }
 
   public static String oreDictName(Block id, int meta) {
-    return OreDictionary.getOreName(OreDictionary.getOreID(new ItemStack(id, 1, meta)));
-  }
+
+    return OreDictionary.getOreName(OreDictionary.getOreIDs(new ItemStack(id, 1, meta))[0]);
+  }*/
 
 }

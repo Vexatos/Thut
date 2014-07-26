@@ -203,7 +203,9 @@ public class TileEntityLiftAccess extends TileEntity // implements IPeripheral//
 
   @Override
   public void onChunkUnload() {
-    lift.removeFloor(this.floor);
+    if(lift != null) {
+      lift.removeFloor(this.floor);
+    }
     clearConnections();
   }
 
@@ -213,7 +215,9 @@ public class TileEntityLiftAccess extends TileEntity // implements IPeripheral//
   @Override
   public void invalidate() {
     this.tileEntityInvalid = true;
-    lift.removeFloor(this.floor);
+    if(lift != null) {
+      lift.removeFloor(this.floor);
+    }
     clearConnections();
     //		GridTileUnloadEvent evt = new GridTileUnloadEvent(this, worldObj, getLocation());
     //		MinecraftForge.EVENT_BUS.post(evt);

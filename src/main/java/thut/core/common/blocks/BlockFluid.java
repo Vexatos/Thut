@@ -231,6 +231,7 @@ public abstract class BlockFluid extends BlockFluidBase {
    * boxes to the list if they intersect the mask.) Parameters: World, X, Y,
    * Z, mask, list, colliding entity
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void addCollisionBoxesToList(World worldObj, int x, int y, int z,
       AxisAlignedBB aaBB, List list, Entity par7Entity) {
@@ -361,7 +362,7 @@ public abstract class BlockFluid extends BlockFluidBase {
       if(aFlow >= 1F) {
         return aFlow;
       }
-      if(aFlow >= 0) { // TODO maybe revert back to >=0?
+      if(aFlow >= 0) { // xTODO maybe revert back to >=0?
         total += aFlow;
         count++;
       }
@@ -557,8 +558,8 @@ public abstract class BlockFluid extends BlockFluidBase {
 
   /**
    * TODO More Optimization Checks if the block should spread to the side
-   * @param worldObj
-   * @param vec
+   * @param worldObj the world object
+   * @param vec the Vector3 instance
    */
   public boolean trySpread(World worldObj, Vector3 vec) {
     boolean moved = false;
@@ -605,8 +606,8 @@ public abstract class BlockFluid extends BlockFluidBase {
 
   /**
    * TODO More Optimization Checks if the block should fall down
-   * @param worldObj
-   * @param vec
+   * @param worldObj The world object
+   * @param vec The Vector3 instance
    */
   public boolean tryFall(World worldObj, Vector3 vec) {
     Block id = vec.getBlock(worldObj);
@@ -802,7 +803,7 @@ public abstract class BlockFluid extends BlockFluidBase {
         meta1 = meta1Old = (-1);
       }
 
-      while(meta > 0 && meta1 < 15 && meta >= ((id1 == idHarden) ? meta1 + diff : meta1 + spread)) {//TODO
+      while(meta > 0 && meta1 < 15 && meta >= ((id1 == idHarden) ? meta1 + diff : meta1 + spread)) {//xTODO
         meta--;
         meta1++;
         changed = true;
