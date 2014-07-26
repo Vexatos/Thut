@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 import thut.tech.client.render.RenderLift;
 import thut.tech.client.render.RenderLiftController;
 import thut.tech.common.CommonProxy;
-import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
+import thut.tech.common.blocks.tileentity.TileEntityLiftControl;
 import thut.tech.common.entity.EntityLift;
 
 public class ClientProxy extends CommonProxy {
@@ -27,7 +27,8 @@ public class ClientProxy extends CommonProxy {
     mc = FMLClientHandler.instance().getClient();
     //	RenderingRegistry.registerBlockHandler(RenderRebar.ID,RenderRebar.renderer);
 
-    ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLiftAccess.class, new RenderLiftController());
+    //ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLiftAccess.class, new RenderLiftController());
+    ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLiftControl.class, new RenderLiftController());
 
     RenderingRegistry.registerEntityRenderingHandler(EntityLift.class, new RenderLift());
   }
@@ -71,11 +72,11 @@ public class ClientProxy extends CommonProxy {
 
   @Override
   public void loadSounds() {
-    try {
-
+    /*try {
+      //stuff
     } catch(Exception e) {
       e.printStackTrace();
-    }
+    }*/
   }
 
   public EntityPlayer getPlayer() {
