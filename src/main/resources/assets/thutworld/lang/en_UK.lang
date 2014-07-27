@@ -78,4 +78,4 @@ msg.particlesLeft.name=Particles Remaining
 # Misc
 itemGroup.tabConcrete=Thut's Concrete
 
-entity.thuttechlift.name=Lift
+entity.thuttech.thuttechlift.name=Lift
