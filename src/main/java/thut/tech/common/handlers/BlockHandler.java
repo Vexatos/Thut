@@ -7,6 +7,7 @@ import thut.api.blocks.ItemBlockMeta;
 import thut.tech.common.TechCore;
 import thut.tech.common.blocks.technical.BlockLift;
 import thut.tech.common.blocks.technical.BlockLiftRail;
+import thut.tech.common.blocks.technical.BlockPlatformRail;
 import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
 import thut.tech.common.blocks.tileentity.TileEntityLiftControl;
 import thut.tech.common.entity.EntityLift;
@@ -16,6 +17,7 @@ public class BlockHandler {
   public static void registerBlocks() {
     Block lift = new BlockLift();
     Block rail = new BlockLiftRail();
+    Block platformRail = new BlockPlatformRail();
 
     GameRegistry.registerTileEntity(TileEntityLiftAccess.class, "liftaccesste");
     GameRegistry.registerTileEntity(TileEntityLiftControl.class, "liftcontrolte");
@@ -24,5 +26,6 @@ public class BlockHandler {
 
     GameRegistry.registerBlock(lift, ItemBlockMeta.class, lift.getLocalizedName().substring(5));
     GameRegistry.registerBlock(rail, rail.getUnlocalizedName().substring(5));
+    GameRegistry.registerBlock(platformRail, platformRail.getUnlocalizedName().substring(5));
   }
 }

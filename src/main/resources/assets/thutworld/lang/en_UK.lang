@@ -20,6 +20,7 @@ tile.blockMixer.name=Mixer [WIP]
 tile.volcano.name=Volcano Spawner
 tile.rebar.name=Rebar
 tile.liftRail.name=Lift Rail
+tile.platformRail.name=Platform Rail [WIP]
 
 tile.worldBlock.Chalk.name=Chalk
 tile.worldBlock.Trass.name=Trass

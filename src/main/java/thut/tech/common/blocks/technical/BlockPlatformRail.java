@@ -3,7 +3,6 @@ package thut.tech.common.blocks.technical;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
@@ -23,19 +22,21 @@ import thut.tech.common.blocks.tileentity.TileEntityLiftAccess;
 
 import java.util.List;
 
-//import appeng.api.me.tiles.IGridTileEntity;
+/**
+ * @author Vexatos
+ */
 //implements ITileEntityProvider
-public class BlockLiftRail extends Block implements ITileEntityProvider, IRebar {
+public class BlockPlatformRail extends Block implements IRebar {
 
   public IIcon[] iconArray;
 
   boolean[] side = new boolean[6];
   public static int MAX_PLACEMENT_RANGE = 64;
 
-  public BlockLiftRail() {
+  public BlockPlatformRail() {
     super(Material.iron);
-    ThutBlocks.liftRail = this;
-    this.setBlockName("liftRail");
+    ThutBlocks.platformRail = this;
+    this.setBlockName("platformRail");
     setCreativeTab(TechCore.tabThut);
     this.setBlockBounds(0, 0, 0, 0, 0, 0);
     setHardness((float) 10.0);
@@ -239,17 +240,17 @@ public class BlockLiftRail extends Block implements ITileEntityProvider, IRebar 
   @Override
   @SideOnly(Side.CLIENT)
   public void registerBlockIcons(IIconRegister par1IconRegister) {
-    this.blockIcon = par1IconRegister.registerIcon("thuttech:liftRails");
+    this.blockIcon = par1IconRegister.registerIcon("thuttech:rebarRusty");
   }
 
   @Override
   public boolean[] sides(IBlockAccess worldObj, int x, int y, int z) {
-    boolean[] side = new boolean[] { false, false, false, false, true, true };
+    boolean[] side = new boolean[] { true, true, true, true, false, false };
     int[][] sides = { { 1, 0, 0 }, { -1, 0, 0 }, { 0, 0, 1 }, { 0, 0, -1 }, { 0, 1, 0 }, { 0, -1, 0 } };
     for(int i = 0; i < 6; i++) {
       Block block = worldObj.getBlock(x + sides[i][0], y + sides[i][1], z + sides[i][2]);
       TileEntity te = worldObj.getTileEntity(x + sides[i][0], y + sides[i][1], z + sides[i][2]);
-      if(i > 3) {
+      if(i <= 3) {
         side[i] = (block instanceof IRebar);//||(te instanceof IGridTileEntity);
       } else {
         //	side[i] = (te instanceof IGridTileEntity);
@@ -281,19 +282,13 @@ public class BlockLiftRail extends Block implements ITileEntityProvider, IRebar 
   }
 
   @Override
-  public TileEntity createNewTileEntity(World var1, int var2) {
-    return new TileEntityLiftAccess();
-    //return null;
-  }
-
-  @Override
   public IIcon getIcon(Block block) {
     return blockIcon;
   }
 
   @Override
   public boolean[] getInventorySides() {
-    return new boolean[] { false, false, false, false, true, true };
+    return new boolean[] { true, true, true, true, false, false };
   }
 
   @Override

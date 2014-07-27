@@ -29,6 +29,7 @@ public class ThutBlocks extends Blocks {
 
   //Thut Tech Blocks
   public static Block liftRail;
+  public static Block platformRail;
   public static Block lift;
 
   public static Block[] solidLavas = new Block[16];

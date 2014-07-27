@@ -6,7 +6,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -49,6 +48,7 @@ public class BlockRebar extends Block implements IRebar {
     setLightOpacity(0);
   }
 
+  @Override
   public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9) {
     boolean placed = false;
     ItemStack item = player.getHeldItem();
@@ -150,6 +150,7 @@ public class BlockRebar extends Block implements IRebar {
    * Adds all intersecting collision boxes to a list. (Be sure to only add boxes to the list if they intersect the
    * mask.) Parameters: World, X, Y, Z, mask, list, colliding entity
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void addCollisionBoxesToList(World worldObj, int x, int y, int z, AxisAlignedBB aaBB, List list, Entity par7Entity) {
     side = sides(worldObj, x, y, z);
@@ -279,6 +280,7 @@ public class BlockRebar extends Block implements IRebar {
     this.theIcon = par1IconRegister.registerIcon("concrete:" + "rebar");
   }
 
+  @Override
   public boolean[] sides(IBlockAccess worldObj, int x, int y, int z) {
     boolean[] side = new boolean[] { false, false, false, false, false, false };
     int[][] sides = { { 1, 0, 0 }, { -1, 0, 0 }, { 0, 0, 1 }, { 0, 0, -1 }, { 0, 1, 0 }, { 0, -1, 0 } };

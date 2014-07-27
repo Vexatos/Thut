@@ -20,6 +20,7 @@ tile.blockMixer.name=Mixer [WIP]
 tile.volcano.name=Vulkan-Spawner
 tile.rebar.name=Bewehrungsstahl
 tile.liftRail.name=Aufzugsschiene
+tile.platformRail.name=Plattformschiene [WIP]
 
 tile.chalk.name=Kreide
 tile.trass.name=Trass
