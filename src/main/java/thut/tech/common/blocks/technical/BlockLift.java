@@ -55,7 +55,7 @@ public class BlockLift extends Block implements ITileEntityProvider, IMetaBlock/
         if(t instanceof TileEntityLiftAccess) {
           TileEntityLiftAccess te = (TileEntityLiftAccess) worldObj.getTileEntity(x, y, z);
           if(te != null) {
-            ForgeDirection fside = getFacingfromEntity(entity);
+            ForgeDirection fside = ThutUtils.getFacingfromEntity(entity);
             te.setSide(fside.getOpposite().ordinal());
           }
         }
@@ -80,30 +80,6 @@ public class BlockLift extends Block implements ITileEntityProvider, IMetaBlock/
     return meta;
   }*/
 
-  /**
-   * Returns the direction the entity is facing
-   * @param e The entity
-   * @return The ForgeDirection the entity is facing
-   */
-  private ForgeDirection getFacingfromEntity(EntityLivingBase e) {
-    ForgeDirection side = ForgeDirection.NORTH;
-    double angle = e.rotationYaw % 360;
-    double angle2 = Math.abs(angle);
-
-    if(angle2 > 315 || angle2 <= 45) {
-      return ForgeDirection.SOUTH;
-    }
-    if((angle > 45 && angle <= 135) || (angle < -225 && angle >= -315)) {
-      return ForgeDirection.WEST;
-    }
-    if(angle2 > 135 && angle2 <= 225) {
-      return ForgeDirection.NORTH;
-    }
-    if((angle > 225 && angle <= 315) || (angle < -45 && angle >= -135)) {
-      return ForgeDirection.EAST;
-    }
-    return side;
-  }
 
   @Override
   public boolean onBlockActivated(World worldObj, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {

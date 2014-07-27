@@ -124,26 +124,6 @@ public class BlockRebar extends Block implements IRebar {
 
   }
 
-  public ForgeDirection getFacingfromEntity(EntityLiving e) {
-    ForgeDirection side = null;
-    double angle = e.rotationYaw % 360;
-
-    if(angle > 315 || angle <= 45) {
-      return ForgeDirection.SOUTH;
-    }
-    if(angle > 45 && angle <= 135) {
-      return ForgeDirection.WEST;
-    }
-    if(angle > 135 && angle <= 225) {
-      return ForgeDirection.NORTH;
-    }
-    if(angle > 225 && angle <= 315) {
-      return ForgeDirection.EAST;
-    }
-
-    return side;
-  }
-
   public boolean placeBlock(World worldObj, int x, int y, int z, Block block2, int rebarMeta, ForgeDirection side) {
     int dx = side.offsetX, dy = side.offsetY, dz = side.offsetZ;
     while(Math.abs(dx) < MAX_PLACEMENT_RANGE && Math.abs(dy) < MAX_PLACEMENT_RANGE && Math.abs(dz) < MAX_PLACEMENT_RANGE) {

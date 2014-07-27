@@ -23,6 +23,7 @@ import thut.concrete.common.blocks.tileentity.crafting.TileEntityMixer;
 import thut.core.common.blocks.tileentity.TileEntityMultiBlockPart;
 import thut.core.common.blocks.tileentity.TileEntityMultiCore;
 import thut.util.LogHelper;
+import thut.util.ThutUtils;
 
 import java.util.Random;
 
@@ -117,7 +118,7 @@ public class BlockKiln extends Block implements ITileEntityProvider {
 
     int meta = world.getBlockMetadata(x, y, z);
     TileEntityKiln te = (TileEntityKiln) t;
-    ForgeDirection side = getFacingfromEntity(entity);
+    ForgeDirection side = ThutUtils.getFacingfromEntity(entity);
 
     te.facing = side;
   }
@@ -127,26 +128,6 @@ public class BlockKiln extends Block implements ITileEntityProvider {
    */
   public int onBlockPlaced(World par1World, int par2, int par3, int par4, int par5, float par6, float par7, float par8, int par9) {
     return par9;
-  }
-
-  public ForgeDirection getFacingfromEntity(EntityLivingBase e) {
-    ForgeDirection side = null;
-    double angle = e.rotationYaw % 360;
-
-    if(angle > 315 || angle <= 45) {
-      return ForgeDirection.SOUTH;
-    }
-    if(angle > 45 && angle <= 135) {
-      return ForgeDirection.WEST;
-    }
-    if(angle > 135 && angle <= 225) {
-      return ForgeDirection.NORTH;
-    }
-    if(angle > 225 && angle <= 315) {
-      return ForgeDirection.EAST;
-    }
-
-    return side;
   }
 
   @Override
