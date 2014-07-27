@@ -80,7 +80,6 @@ public class BlockLift extends Block implements ITileEntityProvider, IMetaBlock/
     return meta;
   }*/
 
-
   @Override
   public boolean onBlockActivated(World worldObj, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
     int meta = worldObj.getBlockMetadata(x, y, z);

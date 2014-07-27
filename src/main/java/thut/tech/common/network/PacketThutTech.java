@@ -90,7 +90,7 @@ public class PacketThutTech extends Packet {
         TileEntity te = player.worldObj.getTileEntity(x, y, z);
         if(te instanceof TileEntityLiftAccess) {
           ((TileEntityLiftAccess) te).lift = EntityLift.lifts.get(id);
-          //System.out.println(te + " " + ((TileEntityLiftAccess) te).lift);
+          //System.out.println(te + " " + ((TileEntityLiftAccess) te).platform);
         }
       }
     } catch(IOException e) {
@@ -118,4 +118,22 @@ public class PacketThutTech extends Packet {
     return new PacketThutTech(bos.toByteArray());
   }
 
+  public static PacketThutTech getPlatformPacket(Entity e, int command, double value, int value2) {
+    int id = e.getEntityId();
+
+    ByteArrayOutputStream bos = new ByteArrayOutputStream(16);
+    DataOutputStream dos = new DataOutputStream(bos);
+
+    try {
+      dos.writeByte(0);
+      dos.writeInt(id);
+      dos.writeInt(command);
+      dos.writeDouble(value);
+      dos.writeInt(value2);
+    } catch(IOException ex) {
+      ex.printStackTrace();
+    }
+
+    return new PacketThutTech(bos.toByteArray());
+  }
 }
